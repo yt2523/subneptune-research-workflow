@@ -25,6 +25,11 @@
     "clean_git_status": true
   },
   "live_new_api_end_to_end": "not_run",
-  "publication": "pending",
+  "publication": {
+    "public": true,
+    "url": "https://github.com/yt2523/subneptune-research-workflow",
+    "default_branch": "main",
+    "verified_remote_candidate": "e738f1d2c77b1ed9cd2bc8cf08a5966c4b32bcef"
+  },
   "independent_review": "prior blockers resolved; scoped final approval"
 }

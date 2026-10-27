@@ -16,6 +16,6 @@ Constraints: no new scientific runs, no key publication, no local credential val
 - [x] Document roles, short rules, TP acceptance, keys/setup, scientific limits, provenance and reproducibility.
 - [x] Independent clean-context review; DeepSeek fixes actionable issues.
 - [x] Secret/publication scan and clean-clone checks.
-- [ ] Public GitHub creation/push, verify remote SHA and visibility.
+- [x] Public GitHub creation/push, verify remote SHA and visibility.
 
 Review focus: credentials outside repo and never logged; path/symlink escapes; test commands fixed before coding and evidence tied to exact files; no scientific completion claims from fixture tests; interrupted/failed tasks must not become passed; tests/reviewer unavailable means stop with durable next step.
