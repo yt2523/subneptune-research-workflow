@@ -9,12 +9,13 @@ Spec: docs/workflow/ACCEPTANCE.md. User authorized publication and implementatio
 
 Constraints: no new scientific runs, no key publication, no local credential values in prompts/logs, no modification of original checkouts, one writer, code/test execution is not an OS sandbox. Retain third-party MIT attribution.
 
-- [ ] Copy existing engineering branch and workflow source (exclude private logs/runs).
-- [ ] Write acceptance tests first; observe failure for missing portable interface.
-- [ ] DeepSeek implements portable config/credential handling, bounded milestone runner, test execution and independent review adapters.
-- [ ] Verify offline multi-node run, resume, rejection/repair, budgets, stale evidence and invalid input.
-- [ ] Document roles, short rules, TP acceptance, keys/setup, scientific limits, provenance and reproducibility.
-- [ ] Independent clean-context review; DeepSeek fixes actionable issues.
-- [ ] Secret/publication scan, clean-clone checks, public GitHub creation/push, verify remote SHA and visibility.
+- [x] Copy existing engineering branch and workflow source (exclude private logs/runs).
+- [x] Write acceptance tests first; observe failure for missing portable interface.
+- [x] DeepSeek implements portable config/credential handling, bounded milestone runner, test execution and independent review adapters.
+- [x] Verify offline multi-node run, resume, rejection/repair, budgets, stale evidence and invalid input.
+- [x] Document roles, short rules, TP acceptance, keys/setup, scientific limits, provenance and reproducibility.
+- [x] Independent clean-context review; DeepSeek fixes actionable issues.
+- [x] Secret/publication scan and clean-clone checks.
+- [ ] Public GitHub creation/push, verify remote SHA and visibility.
 
 Review focus: credentials outside repo and never logged; path/symlink escapes; test commands fixed before coding and evidence tied to exact files; no scientific completion claims from fixture tests; interrupted/failed tasks must not become passed; tests/reviewer unavailable means stop with durable next step.

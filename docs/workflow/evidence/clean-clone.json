@@ -1,0 +1,52 @@
+{
+  "candidate_commit": "35eece52f1ad3811bea616b14906dce709e7f0dc",
+  "portable_sha256": "3cc1bc4f213c1d2ff9fc47055daed7679d1415b55dbb457389cd42733cd190b3",
+  "commands": [
+    {
+      "argv": [
+        "doctor",
+        "--config",
+        "workflow/examples/demo.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"ok\": true, \"checks\": []}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "run",
+        "--config",
+        "workflow/examples/demo.json",
+        "--offline"
+      ],
+      "returncode": 0,
+      "stdout": "{\"offline\": true, \"state\": \"completed\", \"statuses\": {\"step1_base\": \"passed\", \"step2_multiply\": \"passed\", \"step3_total\": \"passed\"}, \"completed\": [\"step1_base\", \"step2_multiply\", \"step3_total\"], \"model_calls\": 0, \"usage\": {}, \"attempts\": {}, \"valid_attempts\": {}, \"last_feedback\": {}, \"source_hash\": {\"before_start\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"last_source_checkpoint\": \"after_tests\", \"after_tests\": \"4a8304504806e5025fc2dec436dd838df1d68e180a2a13b753095d825e5e5691\"}, \"evidence\": {\"step1_base:tests\": {\"exit_codes\": [0], \"outputs\": [{\"argv\": [\"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\", \"-c\", \"import demo; assert demo.add(2,3)==5\"], \"exit_code\": 0, \"stdout_tail\": \"\", \"stderr_tail\": \"\"}], \"before_hash\": \"b82a14107888b5d8c3833d7085b6eebe79a5478003240db0cddffaf8c7a0ff00\", \"after_hash\": \"b82a14107888b5d8c3833d7085b6eebe79a5478003240db0cddffaf8c7a0ff00\", \"source_hash\": \"b82a14107888b5d8c3833d7085b6eebe79a5478003240db0cddffaf8c7a0ff00\", \"test_hash\": \"c0fc6e2a0326ff6291765e9a81b3d70a00d4b3209d9d632c97f9d1597cd76826\"}, \"step1_base\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"fixture\"}, \"step1_base:review\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"reviewer_pass\"}, \"step2_multiply:tests\": {\"exit_codes\": [0, 0], \"outputs\": [{\"argv\": [\"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\", \"-c\", \"import demo; assert demo.add(2,3)==5\"], \"exit_code\": 0, \"stdout_tail\": \"\", \"stderr_tail\": \"\"}, {\"argv\": [\"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\", \"-c\", \"import demo; assert demo.mul(3,4)==12\"], \"exit_code\": 0, \"stdout_tail\": \"\", \"stderr_tail\": \"\"}], \"before_hash\": \"46877f10722488c8ca49a577c1d5add2a4afc589c29b8b8da2a1d5c865273011\", \"after_hash\": \"46877f10722488c8ca49a577c1d5add2a4afc589c29b8b8da2a1d5c865273011\", \"source_hash\": \"46877f10722488c8ca49a577c1d5add2a4afc589c29b8b8da2a1d5c865273011\", \"test_hash\": \"1b761932207f9f2e7671527db710b73e7b703ed672ae22819b5eec3d3e880a66\"}, \"step2_multiply\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"fixture\"}, \"step2_multiply:review\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"reviewer_pass\"}, \"step3_total:tests\": {\"exit_codes\": [0], \"outputs\": [{\"argv\": [\"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\", \"-c\", \"import demo; assert demo.total() == 11\"], \"exit_code\": 0, \"stdout_tail\": \"\", \"stderr_tail\": \"\"}], \"before_hash\": \"4a8304504806e5025fc2dec436dd838df1d68e180a2a13b753095d825e5e5691\", \"after_hash\": \"4a8304504806e5025fc2dec436dd838df1d68e180a2a13b753095d825e5e5691\", \"source_hash\": \"4a8304504806e5025fc2dec436dd838df1d68e180a2a13b753095d825e5e5691\", \"test_hash\": \"5d09b1bd564f67dd595ea51a20d49b1c0d19af1665b6f6dbe864fc9616945ee1\"}, \"step3_total\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"fixture\"}, \"step3_total:review\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"reviewer_pass\"}}, \"stop_reason\": \"completed\", \"config_sha\": \"462e299838c231022efcb4043c93b22979bd018bce3e2ec532c9165ffff88e04\", \"current_task\": \"step3_total\", \"elapsed_seconds\": 0.5749633312225342}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "status",
+        "--config",
+        "workflow/examples/demo.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"state\": \"completed\", \"completed\": [\"step1_base\", \"step2_multiply\", \"step3_total\"], \"next\": null, \"stop_reason\": \"completed\", \"model_calls\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "run",
+        "--config",
+        "workflow/examples/demo.json",
+        "--offline"
+      ],
+      "returncode": 0,
+      "stdout": "{\"attempts\": {}, \"completed\": [\"step1_base\", \"step2_multiply\", \"step3_total\"], \"config_sha\": \"462e299838c231022efcb4043c93b22979bd018bce3e2ec532c9165ffff88e04\", \"current_task\": \"step3_total\", \"elapsed_seconds\": 0.5769679546356201, \"evidence\": {\"step1_base\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"fixture\"}, \"step1_base:review\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"reviewer_pass\"}, \"step1_base:tests\": {\"after_hash\": \"b82a14107888b5d8c3833d7085b6eebe79a5478003240db0cddffaf8c7a0ff00\", \"before_hash\": \"b82a14107888b5d8c3833d7085b6eebe79a5478003240db0cddffaf8c7a0ff00\", \"exit_codes\": [0], \"outputs\": [{\"argv\": [\"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\", \"-c\", \"import demo; assert demo.add(2,3)==5\"], \"exit_code\": 0, \"stderr_tail\": \"\", \"stdout_tail\": \"\"}], \"source_hash\": \"b82a14107888b5d8c3833d7085b6eebe79a5478003240db0cddffaf8c7a0ff00\", \"test_hash\": \"c0fc6e2a0326ff6291765e9a81b3d70a00d4b3209d9d632c97f9d1597cd76826\"}, \"step2_multiply\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"fixture\"}, \"step2_multiply:review\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"reviewer_pass\"}, \"step2_multiply:tests\": {\"after_hash\": \"46877f10722488c8ca49a577c1d5add2a4afc589c29b8b8da2a1d5c865273011\", \"before_hash\": \"46877f10722488c8ca49a577c1d5add2a4afc589c29b8b8da2a1d5c865273011\", \"exit_codes\": [0, 0], \"outputs\": [{\"argv\": [\"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\", \"-c\", \"import demo; assert demo.add(2,3)==5\"], \"exit_code\": 0, \"stderr_tail\": \"\", \"stdout_tail\": \"\"}, {\"argv\": [\"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\", \"-c\", \"import demo; assert demo.mul(3,4)==12\"], \"exit_code\": 0, \"stderr_tail\": \"\", \"stdout_tail\": \"\"}], \"source_hash\": \"46877f10722488c8ca49a577c1d5add2a4afc589c29b8b8da2a1d5c865273011\", \"test_hash\": \"1b761932207f9f2e7671527db710b73e7b703ed672ae22819b5eec3d3e880a66\"}, \"step3_total\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"fixture\"}, \"step3_total:review\": {\"origin\": \"OFFLINE_FIXTURE_NOT_LLM\", \"type\": \"reviewer_pass\"}, \"step3_total:tests\": {\"after_hash\": \"4a8304504806e5025fc2dec436dd838df1d68e180a2a13b753095d825e5e5691\", \"before_hash\": \"4a8304504806e5025fc2dec436dd838df1d68e180a2a13b753095d825e5e5691\", \"exit_codes\": [0], \"outputs\": [{\"argv\": [\"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\", \"-c\", \"import demo; assert demo.total() == 11\"], \"exit_code\": 0, \"stderr_tail\": \"\", \"stdout_tail\": \"\"}], \"source_hash\": \"4a8304504806e5025fc2dec436dd838df1d68e180a2a13b753095d825e5e5691\", \"test_hash\": \"5d09b1bd564f67dd595ea51a20d49b1c0d19af1665b6f6dbe864fc9616945ee1\"}}, \"last_feedback\": {}, \"model_calls\": 0, \"offline\": true, \"source_hash\": {\"after_tests\": \"4a8304504806e5025fc2dec436dd838df1d68e180a2a13b753095d825e5e5691\", \"before_start\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"last_source_checkpoint\": \"after_tests\"}, \"state\": \"completed\", \"statuses\": {\"step1_base\": \"passed\", \"step2_multiply\": \"passed\", \"step3_total\": \"passed\"}, \"stop_reason\": \"completed\", \"usage\": {}, \"valid_attempts\": {}}\n",
+      "stderr": ""
+    }
+  ],
+  "three_nodes_completed": true,
+  "resume_preserves_final_code": true,
+  "model_calls": 0,
+  "clean_git_status": true
+}

@@ -16,7 +16,14 @@
   "historical_archive_inventory_verified": 689,
   "scientific_source_changed": false,
   "new_scientific_runs": 0,
-  "fresh_clone": "pending local clone verification",
+  "fresh_clone": {
+    "passed": true,
+    "candidate_commit": "35eece52f1ad3811bea616b14906dce709e7f0dc",
+    "three_nodes": true,
+    "resume_preserves_code": true,
+    "zero_model_calls": true,
+    "clean_git_status": true
+  },
   "live_new_api_end_to_end": "not_run",
   "publication": "pending",
   "independent_review": "prior blockers resolved; scoped final approval"
