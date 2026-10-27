@@ -1,0 +1,2 @@
+# Preserve byte identities (including Windows line endings) for reviewed workflow.
+workflow/** -text whitespace=cr-at-eol

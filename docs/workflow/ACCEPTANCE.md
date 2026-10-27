@@ -1,0 +1,14 @@
+# Shared-workflow acceptance
+
+W01 Python standard library; Python >=3.10; clone-path independent; Git discovered from PATH.
+W02 External UTF-8 JSON or dotenv credentials supported; missing/malformed credentials fail clearly without values in output. Reject credential files inside repository. Never auto-copy credentials. Offline mode never reads credentials/calls models.
+W03 Plan tasks have unique id, scope, immutable acceptance text, dependency ids, integer priority and predeclared command argv lists. Deterministically choose available highest priority task. Reject cycles, missing dependencies, unsafe scopes and duplicate IDs.
+W04 Live coding is DeepSeek; independent review is Codex CLI read-only or separately configured OpenAI-compatible review API. Code/acceptance changes invalidate earlier review/tests. Model cannot edit acceptance, tests or plan.
+W05 Test runner uses explicit argv, no shell; bounded timeout; requires explicit --allow-tests in live mode. Fixed test inputs are supplied separately from writable scope; do not allow writable tests to certify themselves. Persist actual exit code and hash-bound evidence, labels distinguish offline fixtures from real model/review results.
+W06 Continuous run traverses >=3 offline milestones, preserves progress across invocation/restart, skips already verified completed tasks; no external solver launched by offline demo.
+W07 Hard logical adapter-invocation budget (direct API request / CLI review launch; CLI internal requests are not counted individually) and wall deadline; per-call timeout; cumulative reported token usage. Five ineffective valid fix rounds produce needs_codex_diagnosis (transport/parse errors pause, do not count as repairs). No automatic Codex coding fallback. Persist explicit stop reason and next task. Budget thresholds are not billing guarantees.
+W08 Scope validation rejects absolute/traversal, secret/dot paths and symlinks; credential key values redacted from errors, proposal/logs. Secret values rejected in model file proposals. No secret env propagated to test children.
+W09 Resume locks exact plan/config contract and source snapshot; unexpected edits require explicit new run/revalidation. Atomic state files; sequential writer lock released after normal exit/crash recovery; status-only operation does not call models.
+W10 Existing scientific output hashes retained; documented historical checks distinct from freshly run infrastructure tests. Full TP interface remains NOT IMPLEMENTED. No new planet experiment or provider authentication setup during this packaging task.
+
+Required fresh evidence: unit/integration suite; offline 3-node loop; no-key status/doctor; credential/path/budget/failure tests; independent code review; public remote SHA/visibility verification. Live provider availability and cross-OS execution claims only if actually tested.

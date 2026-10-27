@@ -1,0 +1,19 @@
+{
+  "acceptance_profile.py": "1f649779997d27ea8b3b6da44f25ab9d6e992b3e8d0213db650c2c0d05e505ac",
+  "AGENTS.md": "396bc97c39e763211c99c6dbbbeff00dbd7388712041df5db5b9a8843e4f08b8",
+  "agents.py": "155e9f358193024fe21571450f7386b6dedd39bf31d2880cb395221a6235fb8c",
+  "git_trial.py": "7d9f90d98ad70dbadaa781d8ecabb535384f6c49715a275b4a46a2cc60fa21d5",
+  "new_live_trial.py": "baf0be1565f26a586bedd44c3401acd78de9e31f47f68bbed7ba50ac7b120da9",
+  "offline_trial.py": "288a9906440df6ec54da50a891a6a97b684763c4245f168a1a630fb83dd711be",
+  "README.md": "1aaf2305183f4e87141d8ef6205a97d2626997722dc05b552b850ce9a9eded33",
+  "REPORT_TEMPLATE.md": "82587f5842220edcdc98f78865df706744910760f95db9b5216141bb84f91860",
+  "review.schema.json": "5f232aa6bc7e837cb23c27f9f7b3545db9ba051aa86d36aa8f2e766c0e58df64",
+  "SETUP_REPORT.md": "3112a5449264cb85d002f06162245e1e97ab437754f03da51d271b00a8696dbb",
+  "test_adapters.py": "b39bd53c40c948bb1ea4ec255f6ce41d7a9f8f3347772f638bf0b8252e3fea79",
+  "test_workflow.py": "1a520db5e9eb06f0247725a8e0ff0630dac427a1de575ba0bb54ef30eee42649",
+  "Workflow.ps1": "80f1c9d7abee04fd63377a3e0947a112e55b57e60587d4374bccb043cef1e2d9",
+  "workflow.py": "6823dfd5dcdc507ada14f46148e0a4a5a68647922500a8c9afdb249a0e874640",
+  "prompts/coder.md": "a36ed4c35aedcb1aa335ea4e1deb6d5eddb1633dd1de7eb593541d6db974679b",
+  "prompts/orchestrator.md": "1bf15d325e1be29c43f25b89fe545829bd2f63c7f5fdf11e5e6706e5e41470c2",
+  "prompts/reviewer.md": "b01b53b1d6e06e3a80017dd37d8face2be1a2190acf864c6b55c8b6465c22431"
+}

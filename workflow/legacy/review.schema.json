@@ -1,0 +1,1 @@
+{"type":"object","properties":{"model":{"type":"string","enum":["gpt"]},"approved":{"type":"boolean"},"findings":{"type":"array","items":{"type":"string"}}},"required":["model","approved","findings"],"additionalProperties":false}

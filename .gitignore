@@ -11,3 +11,19 @@ main_test.cpp
 Makefile
 #ignore outdated files
 *old*
+
+# Portable workflow: local state and credentials
+.runs/
+workflow.local.json
+*.local.json
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*credentials*.json
+*secrets*.json
+__pycache__/
+*.pyc
+workflow/**/runs/
+workflow/**/logs/

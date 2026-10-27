@@ -1,0 +1,7 @@
+runs/
+logs/
+__pycache__/
+*.pyc
+.env
+*.key
+secrets.json

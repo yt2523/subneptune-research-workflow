@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-27",
+  "portable_sha256": "3cc1bc4f213c1d2ff9fc47055daed7679d1415b55dbb457389cd42733cd190b3",
+  "windows": {
+    "python": "3.12.10",
+    "tests": 66,
+    "passed": true,
+    "skipped": 4
+  },
+  "wsl": {
+    "python": "3.14.4",
+    "tests": 66,
+    "passed": true,
+    "skipped": 2
+  },
+  "historical_archive_inventory_verified": 689,
+  "scientific_source_changed": false,
+  "new_scientific_runs": 0,
+  "fresh_clone": "pending local clone verification",
+  "live_new_api_end_to_end": "not_run",
+  "publication": "pending",
+  "independent_review": "prior blockers resolved; scoped final approval"
+}

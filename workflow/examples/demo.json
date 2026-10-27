@@ -1,0 +1,88 @@
+{
+  "project_root": "../..",
+  "run_dir": "../../.runs/demo",
+  "plan": {
+    "tasks": [
+      {
+        "id": "step1_base",
+        "priority": 10,
+        "depends_on": [],
+        "scope": [
+          "demo.py"
+        ],
+        "acceptance": "demo.py defines an add(a,b) function returning a+b.",
+        "tests": [
+          [
+            "{python}",
+            "-c",
+            "import demo; assert demo.add(2,3)==5"
+          ]
+        ],
+        "offline_files": {
+          "demo.py": "def add(a, b):\n    return a + b\n"
+        }
+      },
+      {
+        "id": "step2_multiply",
+        "priority": 5,
+        "depends_on": [
+          "step1_base"
+        ],
+        "scope": [
+          "demo.py"
+        ],
+        "acceptance": "demo.py adds a mul(a,b) function returning a*b, keeping add.",
+        "tests": [
+          [
+            "{python}",
+            "-c",
+            "import demo; assert demo.add(2,3)==5"
+          ],
+          [
+            "{python}",
+            "-c",
+            "import demo; assert demo.mul(3,4)==12"
+          ]
+        ],
+        "offline_files": {
+          "demo.py": "def add(a, b):\n    return a + b\n\ndef mul(a, b):\n    return a * b\n"
+        }
+      },
+      {
+        "id": "step3_total",
+        "priority": 1,
+        "depends_on": [
+          "step2_multiply"
+        ],
+        "scope": [
+          "demo.py"
+        ],
+        "acceptance": "demo.py adds a total() computing add(2,3)+mul(2,3).",
+        "tests": [
+          [
+            "{python}",
+            "-c",
+            "import demo; assert demo.total() == 11"
+          ]
+        ],
+        "offline_files": {
+          "demo.py": "def add(a, b):\n    return a + b\n\ndef mul(a, b):\n    return a * b\n\ndef total():\n    return add(2, 3) + mul(2, 3)\n"
+        }
+      }
+    ]
+  },
+  "coder": {
+    "model": "deepseek-v4-pro",
+    "base_url": "https://api.deepseek.com"
+  },
+  "reviewer": {
+    "provider": "codex"
+  },
+  "limits": {
+    "max_model_calls": 12,
+    "max_seconds": 7200,
+    "max_fix_rounds": 5,
+    "call_timeout": 180,
+    "max_output_tokens": 6000
+  }
+}

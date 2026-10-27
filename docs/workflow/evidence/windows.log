@@ -1,0 +1,80 @@
+{"state": "completed"}
+test_approval_must_be_boolean (test_independent.IndependentGuards.test_approval_must_be_boolean) ... ok
+test_context_can_stage_protected_test (test_independent.IndependentGuards.test_context_can_stage_protected_test) ... ok
+test_doctor_offline_needs_no_codex (test_independent.IndependentGuards.test_doctor_offline_needs_no_codex) ... ok
+test_failed_task_stays_selectable (test_independent.IndependentGuards.test_failed_task_stays_selectable) ... ok
+test_uppercase_protected_acceptance (test_independent.IndependentGuards.test_uppercase_protected_acceptance) ... ok
+test_dependency_priority_and_complete (test_portable.PortableAcceptance.test_dependency_priority_and_complete) ... ok
+test_external_json_and_dotenv_credentials (test_portable.PortableAcceptance.test_external_json_and_dotenv_credentials) ... ok
+test_plan_errors (test_portable.PortableAcceptance.test_plan_errors) ... ok
+test_redaction (test_portable.PortableAcceptance.test_redaction) ... ok
+test_completed_resume_does_not_restage (test_release_safety.ReleaseSafety.test_completed_resume_does_not_restage) ... ok
+test_full_contract_changes_reject_resume (test_release_safety.ReleaseSafety.test_full_contract_changes_reject_resume) ... ok
+test_lock_does_not_evict_live_owner_by_age (test_release_safety.ReleaseSafety.test_lock_does_not_evict_live_owner_by_age) ... ok
+test_model_call_budget_reserves_reviewer (test_release_safety.ReleaseSafety.test_model_call_budget_reserves_reviewer) ... ok
+test_offline_cli_ignores_malformed_credentials (test_release_safety.ReleaseSafety.test_offline_cli_ignores_malformed_credentials) ... ok
+test_offline_failure_executes_once (test_release_safety.ReleaseSafety.test_offline_failure_executes_once) ... ok
+test_source_and_destination_symlinks_preserve_sentinel (test_release_safety.ReleaseSafety.test_source_and_destination_symlinks_preserve_sentinel) ... 
+  test_source_and_destination_symlinks_preserve_sentinel (test_release_safety.ReleaseSafety.test_source_and_destination_symlinks_preserve_sentinel) (where='source') ... skipped 'symlink privilege unavailable'
+  test_source_and_destination_symlinks_preserve_sentinel (test_release_safety.ReleaseSafety.test_source_and_destination_symlinks_preserve_sentinel) (where='destination') ... skipped 'symlink privilege unavailable'
+test_windows_and_nested_hidden_scopes_rejected (test_release_safety.ReleaseSafety.test_windows_and_nested_hidden_scopes_rejected) ... ok
+test_findings_redacted_before_persist (test_runner.TestBlockerFixes.test_findings_redacted_before_persist) ... ok
+test_has_symlink_parent_root_mocked (test_runner.TestBlockerFixes.test_has_symlink_parent_root_mocked) ... ok
+test_has_symlink_parent_root_sentinel (test_runner.TestBlockerFixes.test_has_symlink_parent_root_sentinel) ... skipped 'cannot create directory symlink'
+test_latest_checkpoint_prefers_after_apply (test_runner.TestBlockerFixes.test_latest_checkpoint_prefers_after_apply) ... ok
+test_main_resolves_project_root_relative_to_config_dir (test_runner.TestBlockerFixes.test_main_resolves_project_root_relative_to_config_dir) ... ok
+test_pid_alive_access_denied_is_alive (test_runner.TestBlockerFixes.test_pid_alive_access_denied_is_alive) ... ok
+test_pid_alive_invalid_parameter_is_dead (test_runner.TestBlockerFixes.test_pid_alive_invalid_parameter_is_dead) ... ok
+test_pid_alive_live_and_dead_child (test_runner.TestBlockerFixes.test_pid_alive_live_and_dead_child) ... C:\Users\PC\AppData\Local\Programs\Python\Python312\Lib\unittest\case.py:589: ResourceWarning: unclosed file <_io.BufferedReader name=3>
+  if method() is not None:
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\PC\AppData\Local\Programs\Python\Python312\Lib\unittest\case.py:589: ResourceWarning: unclosed file <_io.BufferedReader name=4>
+  if method() is not None:
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_run_codex_missing_unique_output_raises (test_runner.TestBlockerFixes.test_run_codex_missing_unique_output_raises) ... ok
+test_run_codex_never_launches_at_zero_remaining (test_runner.TestBlockerFixes.test_run_codex_never_launches_at_zero_remaining) ... ok
+test_run_codex_reads_unique_output_and_cleans_up (test_runner.TestBlockerFixes.test_run_codex_reads_unique_output_and_cleans_up) ... ok
+test_run_codex_stale_file_never_read_on_nonzero_exit (test_runner.TestBlockerFixes.test_run_codex_stale_file_never_read_on_nonzero_exit) ... ok
+test_test_mutation_not_blessed_on_resume (test_runner.TestBlockerFixes.test_test_mutation_not_blessed_on_resume) ... ok
+test_verify_source_after_review_uses_fresh_hash (test_runner.TestBlockerFixes.test_verify_source_after_review_uses_fresh_hash) ... ok
+test_config_rejects_secret_values (test_runner.TestBlockerRegressions.test_config_rejects_secret_values) ... ok
+test_context_overflow_not_charged (test_runner.TestBlockerRegressions.test_context_overflow_not_charged) ... ok
+test_context_rejects_containment (test_runner.TestBlockerRegressions.test_context_rejects_containment) ... ok
+test_deadline_zero_gates_call (test_runner.TestBlockerRegressions.test_deadline_zero_gates_call) ... ok
+test_offline_empty_scope_still_runs_tests (test_runner.TestBlockerRegressions.test_offline_empty_scope_still_runs_tests) ... ok
+test_offline_failing_fixture_pauses_not_passes (test_runner.TestBlockerRegressions.test_offline_failing_fixture_pauses_not_passes) ... ok
+test_redact_findings_and_output (test_runner.TestBlockerRegressions.test_redact_findings_and_output) ... ok
+test_run_tests_persists_output_and_feedback (test_runner.TestBlockerRegressions.test_run_tests_persists_output_and_feedback) ... ok
+test_scope_rejects_drive_and_nested_dot (test_runner.TestBlockerRegressions.test_scope_rejects_drive_and_nested_dot) ... ok
+test_stale_dead_pid_lock_recovered (test_runner.TestBlockerRegressions.test_stale_dead_pid_lock_recovered) ... ok
+test_two_locks_one_winner (test_runner.TestBlockerRegressions.test_two_locks_one_winner) ... ok
+test_context_files_staged (test_runner.TestContextStaging.test_context_files_staged) ... ok
+test_minimal_runner_empty_plan (test_runner.TestContextStaging.test_minimal_runner_empty_plan) ... ok
+test_windows_symlink_staging (test_runner.TestContextStaging.test_windows_symlink_staging) ... skipped 'cannot symlink'
+test_load_json (test_runner.TestCredentials.test_load_json) ... ok
+test_load_reject_inside_repo (test_runner.TestCredentials.test_load_reject_inside_repo) ... ok
+test_redact (test_runner.TestCredentials.test_redact) ... ok
+test_doctor_no_keys (test_runner.TestDoctorStatus.test_doctor_no_keys) ... ok
+test_status_lists (test_runner.TestDoctorStatus.test_status_lists) ... ok
+test_call_limit_includes_reviewer (test_runner.TestLiveMock.test_call_limit_includes_reviewer) ... ok
+test_failed_then_repaired (test_runner.TestLiveMock.test_failed_then_repaired) ... ok
+test_mode_change_rejected (test_runner.TestLiveMock.test_mode_change_rejected) ... ok
+test_persisted_usage (test_runner.TestLiveMock.test_persisted_usage) ... ok
+test_rejected_5_rounds (test_runner.TestLiveMock.test_rejected_5_rounds) ... ok
+test_reviewer_uses_budget (test_runner.TestLiveMock.test_reviewer_uses_budget) ... ok
+test_offline_no_secret_read (test_runner.TestOffline.test_offline_no_secret_read) ... ok
+test_offline_three_tasks_and_rerun (test_runner.TestOffline.test_offline_three_tasks_and_rerun) ... ok
+test_choose_next_failed_still_selectable (test_runner.TestPlanFunctions.test_choose_next_failed_still_selectable) ... ok
+test_choose_next_requires_dep_passed (test_runner.TestPlanFunctions.test_choose_next_requires_dep_passed) ... ok
+test_choose_next_skips_passed (test_runner.TestPlanFunctions.test_choose_next_skips_passed) ... ok
+test_duplicate_id (test_runner.TestPlanFunctions.test_duplicate_id) ... ok
+test_unsafe_scope (test_runner.TestPlanFunctions.test_unsafe_scope) ... ok
+test_validate_cycle (test_runner.TestPlanFunctions.test_validate_cycle) ... ok
+test_validate_plan_ok (test_runner.TestPlanFunctions.test_validate_plan_ok) ... ok
+test_context_tamper_blocks_pass (test_runner.TestProtectedTamper.test_context_tamper_blocks_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 66 tests in 6.124s
+
+OK (skipped=4)

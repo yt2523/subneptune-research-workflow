@@ -1,0 +1,40 @@
+{
+  "project_root": ".",
+  "run_dir": ".runs/first-live",
+  "context": [],
+  "coder": {
+    "model": "deepseek-v4-pro",
+    "base_url": "https://api.deepseek.com"
+  },
+  "reviewer": {
+    "provider": "codex"
+  },
+  "limits": {
+    "max_model_calls": 6,
+    "max_seconds": 1800,
+    "max_fix_rounds": 5,
+    "call_timeout": 180,
+    "max_output_tokens": 3000
+  },
+  "plan": {
+    "tasks": [
+      {
+        "id": "first_function",
+        "priority": 10,
+        "depends_on": [],
+        "scope": [
+          "hello_workflow.py"
+        ],
+        "acceptance": "Implement add(a,b) returning a+b in hello_workflow.py. No dependencies, I/O or scientific calculations.",
+        "tests": [
+          [
+            "{python}",
+            "-c",
+            "from hello_workflow import add; assert add(2,3)==5; assert add(-1,1)==0; assert add(0,0)==0"
+          ]
+        ]
+      }
+    ]
+  },
+  "max_context_chars": 16000
+}
