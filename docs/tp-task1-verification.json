@@ -1,0 +1,120 @@
+{
+  "cli_validation": [
+    {
+      "case": "valid_guard",
+      "exit": 1,
+      "passed": true,
+      "expected": "TP integration not implemented",
+      "tail": null
+    },
+    {
+      "case": "fractional_mode",
+      "exit": 1,
+      "passed": true,
+      "expected": "only supported",
+      "tail": null
+    },
+    {
+      "case": "other_mode",
+      "exit": 1,
+      "passed": true,
+      "expected": "only supported",
+      "tail": null
+    },
+    {
+      "case": "raw_whitespace",
+      "exit": 1,
+      "passed": true,
+      "expected": "Whitespace",
+      "tail": null
+    },
+    {
+      "case": "duplicate",
+      "exit": 1,
+      "passed": true,
+      "expected": "Duplicate",
+      "tail": null
+    },
+    {
+      "case": "missing_file",
+      "exit": 1,
+      "passed": true,
+      "expected": "cannot open",
+      "tail": null
+    },
+    {
+      "case": "fixed_without_tp",
+      "exit": 1,
+      "passed": true,
+      "expected": "required",
+      "tail": null
+    },
+    {
+      "case": "wrong_selector",
+      "exit": 1,
+      "passed": true,
+      "expected": "requires",
+      "tail": null
+    },
+    {
+      "case": "bad_anchor",
+      "exit": 1,
+      "passed": true,
+      "expected": "does not match",
+      "tail": null
+    },
+    {
+      "case": "zero_gas",
+      "exit": 1,
+      "passed": true,
+      "expected": "positive",
+      "tail": null
+    },
+    {
+      "case": "jump",
+      "exit": 1,
+      "passed": true,
+      "expected": "zero",
+      "tail": null
+    },
+    {
+      "case": "raw_numeric",
+      "exit": 1,
+      "passed": true,
+      "expected": "quoted",
+      "tail": null
+    }
+  ],
+  "clean_unit_exit": 0,
+  "no_planet_solve": true,
+  "source_sha256": {
+    "src\\compfind.cpp": "b63e37165d99485b0414138b95d41b6b238c9feb2cd743827a7b5748edfccf66",
+    "src\\EOS.cpp": "88be43d2da4d6c752807d3fde8cc78fa5982522b649c887aa917de2df46cffa5",
+    "src\\EOSlist.cpp": "fd5b5bc2652f7bb3fc1e20b91d48c09c9ab48d283d4ece4ff6adf0d755b8b92b",
+    "src\\EOSmodify.cpp": "31f2639eab8d4970691e4868b63fb903676053c9ed4677ea60bf2725dad26c47",
+    "src\\hydro.cpp": "098bfc6797b8558207ff15583db0ad7b7f6877d4bb4561afd592fdb795075c7b",
+    "src\\main.cpp": "e3bdeee66139f60e35fda5d98c5feba62f2a6361f682434e6651637412b4f53c",
+    "src\\parser.cpp": "bd9a5ffd9a4c0e3feff7d45e1c74919506bf28d9d2547b74648fd00b76fb83eb",
+    "src\\phase.cpp": "909bfd89c162975cac7c1c782776c8e91dcd58ca85fe44cb8c4f47325a2c6cba",
+    "src\\tp_profile.cpp": "91c18a44e866c250e2e98db87e92653825f980a7549f1e0f55c49a496cef3f3b",
+    "src\\tp_settings.cpp": "ce6a01ca0da25c090e02d6e3852d91de07f55373cf8e09c453fedf0f2ed7ca04"
+  },
+  "profile_assertions": 38,
+  "settings_assertions": 28,
+  "build_exit": 0,
+  "review": "scoped Task1 approved; independent read-only review",
+  "note": "CLI evidence unchanged; existing source line endings mechanically preserved at integration; no semantic edits.",
+  "integrated_files_sha256": {
+    ".gitignore": "8acf09872b4bd2fb16663d085836c125c1cc4ec9a09b8b42acd1385357dfb61e",
+    "Makefile": "de65b26576e3f9a1c61b6ff09e7dba9435bdf6ce167340e66cb31085c8881b9c",
+    "src/tp_profile.h": "3d0956e65e15eac602360afa034df93d5653babe85195b5ea3a48beb6e2596bf",
+    "src/tp_profile.cpp": "91c18a44e866c250e2e98db87e92653825f980a7549f1e0f55c49a496cef3f3b",
+    "src/tp_settings.h": "dd52df9199b0eedebe55b8ee049a016e04c8f343222ae93f632e80f242b769e3",
+    "src/tp_settings.cpp": "ce6a01ca0da25c090e02d6e3852d91de07f55373cf8e09c453fedf0f2ed7ca04",
+    "src/parser.h": "cabe2c902ef84b6a50936f8bbc4f310af6bba7fbda4569f30f65a3f68862fa4c",
+    "src/parser.cpp": "bd9a5ffd9a4c0e3feff7d45e1c74919506bf28d9d2547b74648fd00b76fb83eb",
+    "src/main.cpp": "2b3ef16d10b3754f7e2a67eabdb5221dd9120c0126f7333f346417e723683de0",
+    "tests/test_tp_profile.cpp": "ef5f9c4266e7beabacd46ae8bc7e3922f980db4dfc65dcfa7804db6278b520f0",
+    "tests/test_tp_settings.cpp": "374e7fadd9ffb71d209945823aa0b9f157ec2e6dccbe5a8849c5c0ce7ce098ed"
+  }
+}

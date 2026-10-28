@@ -11,3 +11,5 @@ Next scientific milestone: read-only map of T(P), density, bidirectional integra
 Ordered gates: TP acceptance contract → default regression → analytic prescribed-TP validation → same-boundary/same-density-EOS small comparison → resolution/tolerance/base-pressure coverage → synthetic composition recovery. Physical choices must be recorded before implementation; existing code does not solve full RCE or chemistry.
 
 Packaging release implements infrastructure and offline workflow demonstration only. Read docs/workflow/RELEASE_VERIFICATION.md for fresh results and untested boundaries. No new planet simulations authorized merely by cloning or running doctor.
+
+2026-10-28 implementation update: Task1 profile/configuration infrastructure implemented and independently reviewed; see [execution ledger](TP_IMPLEMENTATION_PROGRESS.md) and tp-task1-verification.json. Full TP solver interface remains incomplete; active TP inputs deliberately stop before integration. Human authorized continued dependent stages in this session; no new target-planet physical assumptions are implied.

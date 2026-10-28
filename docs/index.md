@@ -6,6 +6,7 @@
 - [TP interface specification — design only](TP_INTERFACE_SPEC.md)
 - [TP read-only source audit](TP_SOURCE_AUDIT.md)
 - [TP implementation task plan](superpowers/plans/2026-10-28-prescribed-tp.md)
+- [TP implementation progress and evidence](TP_IMPLEMENTATION_PROGRESS.md)
 - [Scientific build / archived replay boundaries](SCIENCE_REPRODUCTION.md)
 - [Workflow setup and external API file](workflow/SETUP.md)
 - [Workflow architecture](workflow/ARCHITECTURE.md)

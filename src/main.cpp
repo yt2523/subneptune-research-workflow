@@ -5,6 +5,10 @@
 #include "hydro.h"
 #include "compfind.h"
 #include "parser.h"
+#include "tp_profile.h"
+#include "tp_settings.h"
+#include <memory>
+#include <stdexcept>
 
 struct timeval start_time, end_time;
 
@@ -197,6 +201,9 @@ int main(int argc, char* argv[])
   hydro* planet;
   ifstream fin;
   int n_settings;
+  std::unique_ptr<TPProfile> tp_profile;
+  bool has_tp_profile_option = false;
+  std::string raw_tp_profile_value;
 
   //Initialize all the parameters, will throw error later if missing
   int input_mode=0;
@@ -232,8 +239,21 @@ int main(int argc, char* argv[])
 
   //Parse input file
   try{
+    //Read and validate raw TP profile option inside try to catch exceptions
+    tp_settings::read_raw_tp_option(argv[1], has_tp_profile_option, raw_tp_profile_value);
+    if (has_tp_profile_option) {
+      tp_settings::validate_raw_tp_path_value(raw_tp_profile_value);
+    }
     Settings options(argv[1]);  // Will throw an exception if the file couldn't be opened.
-    n_settings = options.LoadSettings(); // Load settings from the file and return the number of options found.
+    n_settings = options.LoadSettings();
+    // Check agreement with parser presence
+    if (options.HasOption("tp_profile_file") != has_tp_profile_option) {
+      throw std::runtime_error("tp_profile_file presence mismatch between raw scanner and parser.");
+    }
+    // If present, validate type by attempting to get as string
+    if (options.HasOption("tp_profile_file")) {
+      options.GetOptionString("tp_profile_file");
+    } // Load settings from the file and return the number of options found.
     std::cout << "Loaded " << n_settings << " settings.\n";
     //Error Tolerances
     rho_eps_rel = options.GetOptionDouble("rho_eps_rel");
@@ -255,7 +275,11 @@ int main(int argc, char* argv[])
     // 4: composition finder, finds third layer mass to match a mass and radius measurement
     // 5: modify a built-in EOS on they fly, 
     // 6: iterate over EOS modifications with two-layer solver, 5: iterate over EOS with regular solver
-    input_mode = options.GetOptionDouble("input_mode");
+    double input_mode_double = options.GetOptionDouble("input_mode");
+    if (has_tp_profile_option && input_mode_double != 0) {
+      throw std::runtime_error("tp_profile_file is only supported with input_mode = 0");
+    }
+    input_mode = input_mode_double;
     //Get Phase Diagrams for modes which require
     if (input_mode==0 or input_mode==3 or input_mode==4 or input_mode==7 or input_mode==8)
     {
@@ -352,6 +376,21 @@ int main(int argc, char* argv[])
   } catch (SettingsParserException& e) { // This will be triggered if an exception is thrown above.
     std::cout << "\nException: " << e.what() << "\n"; // e.what() prints the exception message.
     return EXIT_FAILURE;
+  } catch (std::exception& e) {
+    std::cout << "\nException: " << e.what() << "\n";
+    return EXIT_FAILURE;
+  }
+
+  //Validate TP settings
+  tp_settings::TPOptions tp_options;
+  try {
+    tp_options = tp_settings::validate(input_mode, Mcomp[0], Mcomp[1], Mcomp[2], Mcomp[3],
+                                       Tgap[0], Tgap[1], Tgap[2], atm_phasedgm,
+                                       has_tp_profile_option, raw_tp_profile_value,
+                                       tp_settings::dirname_of(argv[1]));
+  } catch (std::exception& e) {
+    std::cout << "\nException: " << e.what() << "\n";
+    return EXIT_FAILURE;
   }
 
   //Set Phase Diagrams from string in config
@@ -389,6 +428,33 @@ int main(int argc, char* argv[])
   else
     cout<<"atm_phasedgm does not exist, using default"<<endl;
 
+
+  if (tp_options.enabled) {
+    try {
+      // First validate P_surface and Tgap.back() (surface_temp) are finite positive
+      if (!std::isfinite(P_surface) || P_surface <= 0.0) {
+        throw std::runtime_error("P_surface must be finite and positive.");
+      }
+      if (!std::isfinite(Tgap[3]) || Tgap[3] <= 0.0) {
+        throw std::runtime_error("surface_temp must be finite and positive.");
+      }
+      tp_profile.reset(new TPProfile(TPProfile::load_csv(tp_options.resolved_path)));
+      // P_surface is already in cgs microbar = dyne/cm^2, use directly
+      TPState surface_state = tp_profile->at_cgs(P_surface);
+      if (!(surface_state.temperature_K > 0.0)) {
+        throw std::runtime_error("TP profile surface conditions must be finite and positive");
+      }
+      double T_surface_from_tp = surface_state.temperature_K;
+      if (fabs(T_surface_from_tp - Tgap[3]) > 1e-12 * std::max(1.0, fabs(Tgap[3]))) {
+        throw std::runtime_error("TP profile surface temperature does not match surface_temp");
+      }
+    } catch (std::exception& e) {
+      std::cout << "\nException: " << e.what() << "\n";
+      return EXIT_FAILURE;
+    }
+    std::cout << "TP integration not implemented" << std::endl;
+    return EXIT_FAILURE;
+  }
 
   //START main code for the 9 input modes
 	// 0: regular solver, 1: temperature-free solver, 2: two-layer solver, 

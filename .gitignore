@@ -12,6 +12,8 @@ Makefile
 #ignore outdated files
 *old*
 
+tests/.build/
+
 # Portable workflow: local state and credentials
 .runs/
 workflow.local.json

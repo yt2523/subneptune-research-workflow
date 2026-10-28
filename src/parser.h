@@ -74,6 +74,14 @@ public:
    * 
    */
   bool GetOptionBool(std::string name);
+
+  /**
+   * @brief Check whether an option with the given name exists.
+   *
+   * @param name Exact option name to look for.
+   * @return bool True if present, false otherwise.
+   */
+  bool HasOption(const std::string& name) const;
 };
 
 #endif //PARSER_H_

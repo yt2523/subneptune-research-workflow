@@ -119,3 +119,11 @@ bool Settings::GetOptionBool(std::string name) {
   throw SettingsParserException ("Option Not Found.");
 }
 
+bool Settings::HasOption(const std::string& name) const {
+  for (const option& setting : settings) {
+    if (setting.name == name) {
+      return true;
+    }
+  }
+  return false;
+}
