@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "status": "TASK3_ENGINEERING_PASS_NUMERICAL_NOT_RUN",
+  "recorded_utc": "2026-10-28T23:11:43.926634+00:00",
+  "implementation": "DeepSeek; human-authorized Codex local cleanup ordering repair only. Codex owns independent checker/tests/controller.",
+  "review": "Task3 R3 APPROVE; independent pre-run controller review ready after requested-composition binding and full verifier manifest added",
+  "checks": {
+    "writer_io": 8,
+    "checker_protocol": 20,
+    "pre_solver_cli_rejections": 7,
+    "wrong_phase_fixture": {
+      "rows": 158,
+      "deep_Gas": 20,
+      "near_surface_Gas_iso": 8,
+      "result": "rejected actual wrong phase, stale/tmp absent"
+    },
+    "raw_double_roundtrip": "exact",
+    "writer_fixture_is_simulated_solver_status": true
+  },
+  "full_fitting_invocations": 0,
+  "provider_calls": {
+    "used": 44,
+    "limit": 44,
+    "no_further_calls_authorized": true
+  },
+  "numeric_contract_sha256": "6f4667856838110c39a410ab37601a749c66ef28445f78b55dc278750eae2775",
+  "files_sha256": {
+    "Makefile": "f0c16664481c3568b0d507e98133c5914c7a26cbbc9345ee40392fe1f5a3d84c",
+    "src/main.cpp": "440f3a459f285f43fdcb5d3776a686f0fa86160f0713ef11850c43d2f14775b0",
+    "src/hydro.h": "34ac278b042c7b12da373a48c99d829d762b4df8bcca96eb73cd2b9e21811215",
+    "src/tp_diagnostics.h": "4eb049790cd33b4c8242b73e74cdd031cb29ee97bb38911ddff5857cd761227c",
+    "src/tp_diagnostics.cpp": "090def245a7bc6d6131cbcf7dac779e83e86deced58b6a07c6a3b21f6c183271",
+    "tests/check_tp_model.py": "d433f06a9d6ed3d3c39c9ffe9c7b19319790290c4e95584c40ef49de30abc85a",
+    "tests/test_tp_checker.py": "7815620d2e92f852321aea294115037de549ec03a1c01d7cdf6ecbdcafc532d0",
+    "tests/test_tp_diagnostics.cpp": "5d67caa41d287789bafc83d96bfc6e009dff99e821b217006242c79765b23b48",
+    "tests/test_tp_wrong_phase.cpp": "e59e3fed539ab7df1a6f2f58c7c0be36943c70d80070d41de9bf159b4417d885",
+    "tests/test_tp_cli.py": "92d0773f2feede8cf6eba725edf69c94ab6a08c4648be38505e6b3b16ceb37d0",
+    "tests/tp_off_probe.cpp": "bda12fdd8419c4087456478161c36615c641ce18134cdf457a3f556a6f14220d",
+    "tests/run_tp_validation.py": "7677966084d0bb4f1790806a5bda465313812750eec15b2e2c2f72e13b2b3418",
+    "tests/fixtures/tp_run_contract.json": "6f4667856838110c39a410ab37601a749c66ef28445f78b55dc278750eae2775",
+    "docs/TP_NUMERICAL_RUN_CONTRACT.md": "4ea406ca8bf1053c195292443eefed964293744bb83f1c465faf3a40fa570ac6"
+  },
+  "not_claimed": [
+    "scientific convergence",
+    "forward thermal signal",
+    "numeric resolution acceptance",
+    "composition recovery",
+    "realistic target-planet EOS",
+    "full CLI OFF regression"
+  ],
+  "public_checkout_verification": {
+    "full_build_exit": 0,
+    "writer_io_checks": 8,
+    "checker_protocol_cases": 20,
+    "wrong_phase_guard_exit": 0,
+    "cli_pre_solver_rejections": 7,
+    "off_probe_build_current_exit": 0,
+    "off_probe_build_unchanged_baseline_exit": 0,
+    "full_fitting_invocations": 0,
+    "checks_log_sha256": "379b5a5157c0301c6beccb93e01af5354856b5d5e2c62d70e05ec21787bfba2c",
+    "cli_log_sha256": "6466701a27b4adf5dd095c0b2af2f8b59f259928be91b369258ca38f0151f8c4"
+  }
+}

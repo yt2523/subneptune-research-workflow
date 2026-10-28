@@ -1,6 +1,6 @@
 # Prescribed gas T(P): first implementation contract
 
-Date: 2026-10-28. Status: DESIGN ONLY / NOT IMPLEMENTED. Stage 1 delivers this contract; it does not authorize model runs. Parent acceptance: [TP01–TP12](TP_ACCEPTANCE.md). Source audit: [call paths and provenance](TP_SOURCE_AUDIT.md).
+Date: 2026-10-28. Status: implementation contract; Task1–3 engineering implementation is recorded in TP_IMPLEMENTATION_PROGRESS.md. Numerical/scientific acceptance is separate. This contract itself does not authorize model runs. Parent acceptance: [TP01–TP12](TP_ACCEPTANCE.md). Source audit: [call paths and provenance](TP_SOURCE_AUDIT.md).
 
 ## Purpose and limits
 

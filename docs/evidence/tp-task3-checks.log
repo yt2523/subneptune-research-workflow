@@ -1,0 +1,49 @@
+mkdir -p tests/.build
+g++  -std=c++11 -O2 -Isrc tests/test_tp_diagnostics.cpp src/tp_diagnostics.cpp src/hydro.cpp src/EOS.cpp src/EOSlist.cpp src/phase.cpp src/tp_profile.cpp src/tp_stepper.cpp -L/usr/local/lib -lgsl -lgslcblas -lm  -o tests/.build/test-tp-diagnostics
+tests/.build/test-tp-diagnostics tests/.build
+Diagnostic writer I/O fixture: 8 checks passed; simulated solver status only
+python3 -B tests/test_tp_checker.py
+Independent diagnostic checker: 20 protocol cases passed; no scientific solver evidence
+mkdir -p tests/.build
+g++  -std=c++11 -O2 -Isrc tests/test_tp_wrong_phase.cpp src/tp_diagnostics.cpp src/hydro.cpp src/EOS.cpp src/EOSlist.cpp src/phase.cpp src/tp_profile.cpp src/tp_stepper.cpp -L/usr/local/lib -lgsl -lgslcblas -lm  -o tests/.build/test-tp-wrong-phase
+tests/.build/test-tp-wrong-phase tests/.build
+constructor rows=158 status=2 error=
+gas_base_P=32493033270.553379 Gas_boundary_rows=1 deep_Gas_rows=20 near_surface_Gas_iso_rows=8
+writer_error=Non-Gas phase inside gas mass interval
+PASS wrong-phase serialization guard
+mkdir -p tests/.build
+g++  -std=c++11 -O3 -Wall -Isrc tests/tp_off_probe.cpp src/hydro.cpp src/EOS.cpp src/EOSlist.cpp src/phase.cpp src/tp_profile.cpp src/tp_stepper.cpp src/parser.cpp -L/usr/local/lib -lgsl -lgslcblas -lm  -o tests/.build/tp-off-probe
+In file included from src/hydro.cpp:1:
+src/hydro.h: In constructor ‘hydro::hydro(double, std::vector<PhaseDgm>&, std::vector<double>, std::vector<double>, double, double, bool, const TPProfile*)’:
+src/hydro.h:90:7: warning: ‘hydro::ode_status’ will be initialized after [-Wreorder]
+   90 |   int ode_status;                       // 0 legit result, 1 dummy EOS used, 2 not converged, 3 for two layer mode, when the code stops when the center pressure meets it accuracy target before the surface pressure reaches within 2%.
+      |       ^~~~~~~~~~
+src/hydro.h:89:17: warning:   ‘TPDiagnostics hydro::tp_diagnostics_’ [-Wreorder]
+   89 |   TPDiagnostics tp_diagnostics_;
+      |                 ^~~~~~~~~~~~~~~
+src/hydro.cpp:249:1: warning:   when initialized here [-Wreorder]
+  249 | hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vector<double> Tgap, double ode_tol, double P0, bool isothermal, const TPProfile* tp):ode_status(2), tp_diagnostics_()
+      | ^~~~~
+src/hydro.h: In constructor ‘hydro::hydro(double, double, double, std::vector<PhaseDgm>&, std::vector<double>, std::vector<double>, bool, double, double, double, double&, double&, double&, double&, double&, double&, const TPProfile*)’:
+src/hydro.h:90:7: warning: ‘hydro::ode_status’ will be initialized after [-Wreorder]
+   90 |   int ode_status;                       // 0 legit result, 1 dummy EOS used, 2 not converged, 3 for two layer mode, when the code stops when the center pressure meets it accuracy target before the surface pressure reaches within 2%.
+      |       ^~~~~~~~~~
+src/hydro.h:89:17: warning:   ‘TPDiagnostics hydro::tp_diagnostics_’ [-Wreorder]
+   89 |   TPDiagnostics tp_diagnostics_;
+      |                 ^~~~~~~~~~~~~~~
+src/hydro.cpp:841:3: warning:   when initialized here [-Wreorder]
+  841 |   hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vector<double> Tgap, bool isothermal, double Mfit, double ode_tol, double P0, double &Ri, double &Pi, double &Ti, double &Ro, double &Po, double &To, const TPProfile* tp):ode_status(2), tp_diagnostics_()
+      |   ^~~~~
+src/tp_profile.cpp: In member function ‘TPState TPProfile::at_cgs(double) const’:
+src/tp_profile.cpp:214:27: warning: unused variable ‘ln_query_ratio’ [-Wunused-variable]
+  214 |         const long double ln_query_ratio = log_ratio(p_query, p0);
+      |                           ^~~~~~~~~~~~~~
+
+PASS CLI pre-solver stale guard: missing-profile
+PASS CLI pre-solver stale guard: surface-mismatch
+PASS CLI pre-solver stale guard: bad-path
+PASS CLI pre-solver stale guard: jump
+PASS CLI pre-solver stale guard: zero-gas
+PASS CLI pre-solver stale guard: wrong-mode
+PASS CLI pre-solver stale guard: duplicate-TP
+CLI validation:7 cases rejected before fitting; full planet runs0

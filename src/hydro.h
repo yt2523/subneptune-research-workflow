@@ -78,6 +78,7 @@ struct hydro			// pressure, density of each species, and maybe temperature again
   void setstatus(int s);
   int getstatus(){return ode_status;}
   const TPDiagnostics& tp_diagnostics() const { return tp_diagnostics_; }
+  const EOS* getphase(int layer) const { return Phaselist.at(layer); }
   
 private:
   vector<double> rb, P, M, T, rho; // all the value at grid points.

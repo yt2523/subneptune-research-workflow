@@ -71,3 +71,30 @@ test-tp-callbacks: $(TP_TEST_SOURCES) tests/test_tp_callbacks.cpp
 	tests/.build/test-tp-callbacks outer > tests/.build/legacy-outer.log
 
 .PHONY: test-tp-edges test-tp-truncation test-tp-callbacks
+
+test-tp-diagnostics: $(TP_TEST_SOURCES) src/tp_diagnostics.cpp tests/test_tp_diagnostics.cpp
+	mkdir -p tests/.build
+	$(CC) -std=c++11 -O2 -Isrc tests/test_tp_diagnostics.cpp src/tp_diagnostics.cpp $(TP_TEST_SOURCES) $(LDFLAGS) -o tests/.build/test-tp-diagnostics
+	tests/.build/test-tp-diagnostics tests/.build
+
+test-tp-checker:
+	python3 -B tests/test_tp_checker.py
+
+.PHONY: test-tp-diagnostics test-tp-checker
+
+test-tp-wrong-phase: $(TP_TEST_SOURCES) src/tp_diagnostics.cpp tests/test_tp_wrong_phase.cpp
+	mkdir -p tests/.build
+	$(CC) -std=c++11 -O2 -Isrc tests/test_tp_wrong_phase.cpp src/tp_diagnostics.cpp $(TP_TEST_SOURCES) $(LDFLAGS) -o tests/.build/test-tp-wrong-phase
+	tests/.build/test-tp-wrong-phase tests/.build
+
+test-tp-cli: planet
+	python3 -B tests/test_tp_cli.py
+
+.PHONY: test-tp-wrong-phase test-tp-cli
+
+# Build only: running this precision probe counts as a full solver invocation.
+build-tp-off-probe: $(TP_TEST_SOURCES) src/parser.cpp tests/tp_off_probe.cpp
+	mkdir -p tests/.build
+	$(CC) -std=c++11 -O3 -Wall -Isrc tests/tp_off_probe.cpp $(TP_TEST_SOURCES) src/parser.cpp $(LDFLAGS) -o tests/.build/tp-off-probe
+
+.PHONY: build-tp-off-probe

@@ -6,6 +6,7 @@
 #include "compfind.h"
 #include "parser.h"
 #include "tp_profile.h"
+#include "tp_diagnostics.h"
 #include "tp_settings.h"
 #include <memory>
 #include <stdexcept>
@@ -239,13 +240,20 @@ int main(int argc, char* argv[])
 
   //Parse input file
   try{
-    //Read and validate raw TP profile option inside try to catch exceptions
+    Settings options(argv[1]);  // Will throw an exception if the file couldn't be opened.
+    n_settings = options.LoadSettings();
+    // Clear this TP request's generated sidecar before the raw duplicate check can fail.
+    if (options.HasOption("tp_profile_file")) {
+      const std::string tp_output_file = options.GetOptionString("output_file");
+      if (tp_output_file.empty()) {
+        throw std::runtime_error("Output file not specified");
+      }
+      remove_tp_sidecar(tp_output_file);
+    }
     tp_settings::read_raw_tp_option(argv[1], has_tp_profile_option, raw_tp_profile_value);
     if (has_tp_profile_option) {
       tp_settings::validate_raw_tp_path_value(raw_tp_profile_value);
     }
-    Settings options(argv[1]);  // Will throw an exception if the file couldn't be opened.
-    n_settings = options.LoadSettings();
     // Check agreement with parser presence
     if (options.HasOption("tp_profile_file") != has_tp_profile_option) {
       throw std::runtime_error("tp_profile_file presence mismatch between raw scanner and parser.");
@@ -454,8 +462,15 @@ int main(int argc, char* argv[])
       std::cout << "\nException: " << e.what() << "\n";
       return EXIT_FAILURE;
     }
-    std::cout << "TP diagnostics not implemented" << std::endl;
-    return EXIT_FAILURE;
+    try
+    {
+      remove_tp_sidecar(outputfile);
+    }
+    catch (const std::exception& e)
+    {
+      std::cout << "Error removing TP sidecar: " << e.what() << std::endl;
+      return EXIT_FAILURE;
+    }
   }
 
   //START main code for the 9 input modes
@@ -480,9 +495,26 @@ int main(int argc, char* argv[])
       for (unsigned int i=0; i < Mcomp.size(); i++)
         cout<<Mcomp[i]<<", ";
       cout<<"\t No solution found."<<endl;
+      if (tp_profile)
+      {
+        return EXIT_FAILURE;
+      }
     }
     else
     {
+      if (tp_profile)
+      {
+        try
+        {
+          write_tp_diagnostics(outputfile, *planet, *tp_profile, P_surface, Tgap[3]);
+        }
+        catch (const std::exception& e)
+        {
+          std::cout << "Error writing TP diagnostics: " << e.what() << std::endl;
+          delete planet;
+          return EXIT_FAILURE;
+        }
+      }
       planet->print(outputfile, false); // Save the result in an asc file with this name.
       cout<<"Planet saved: "<<outputfile<<endl;
     }
