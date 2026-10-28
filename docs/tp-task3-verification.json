@@ -36,9 +36,9 @@
     "tests/test_tp_wrong_phase.cpp": "e59e3fed539ab7df1a6f2f58c7c0be36943c70d80070d41de9bf159b4417d885",
     "tests/test_tp_cli.py": "92d0773f2feede8cf6eba725edf69c94ab6a08c4648be38505e6b3b16ceb37d0",
     "tests/tp_off_probe.cpp": "bda12fdd8419c4087456478161c36615c641ce18134cdf457a3f556a6f14220d",
-    "tests/run_tp_validation.py": "7677966084d0bb4f1790806a5bda465313812750eec15b2e2c2f72e13b2b3418",
+    "tests/run_tp_validation.py": "896f1054a443b0a6dd6fbb032b37c6248132231dfc743c2aaa8388d2ded189e9",
     "tests/fixtures/tp_run_contract.json": "6f4667856838110c39a410ab37601a749c66ef28445f78b55dc278750eae2775",
-    "docs/TP_NUMERICAL_RUN_CONTRACT.md": "4ea406ca8bf1053c195292443eefed964293744bb83f1c465faf3a40fa570ac6"
+    "docs/TP_NUMERICAL_RUN_CONTRACT.md": "d3c7613d6fbd66e303f5f147f14bf401f66aa179c92b1103ebe93864e4498301"
   },
   "not_claimed": [
     "scientific convergence",
@@ -59,5 +59,6 @@
     "full_fitting_invocations": 0,
     "checks_log_sha256": "379b5a5157c0301c6beccb93e01af5354856b5d5e2c62d70e05ec21787bfba2c",
     "cli_log_sha256": "6466701a27b4adf5dd095c0b2af2f8b59f259928be91b369258ca38f0151f8c4"
-  }
+  },
+  "pre_run_provenance_addition": "Freeze runtime tabulated EOS files before each case; no physics/threshold/budget change, full fitting calls remain0."
 }

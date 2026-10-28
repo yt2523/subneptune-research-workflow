@@ -20,6 +20,7 @@ def run(args):
     frozen={'numeric_contract_sha256':sha(contract_path),'baseline_source_commit':contract['baseline_source_commit'],'created_unix':time.time(),'cases':[],'full_planet_invocations':0}
     for label,root,binary in [('current',source,Path(args.current_binary).resolve()),('baseline',baseline,Path(args.baseline_binary).resolve())]:
         files=[*sorted((root/'src').glob('*.cpp')),*sorted((root/'src').glob('*.h')),root/'Makefile']
+        files.extend(p for p in sorted((root/'tabulated').rglob('*')) if p.is_file())
         files.extend([source/'tests/run_tp_validation.py',source/'tests/check_tp_model.py',Path(args.off_probe_source).resolve(),source/'run/mode0.cfg',contract_path])
         frozen[label]={'root':str(root),'binary':str(binary),'binary_sha256':sha(binary),'files':[{'path':str(p),'sha256':sha(p)} for p in files]}
     frozen['off_current']={'path':str(Path(args.off_current_binary).resolve()),'sha256':sha(args.off_current_binary)}
