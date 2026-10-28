@@ -27,6 +27,7 @@ public:
 
     double min_pressure_cgs() const;
     double max_pressure_cgs() const;
+    const std::vector<double>& pressures_cgs() const { return p_cgs_; }
 
 private:
     TPProfile() {}  // populated by load_csv

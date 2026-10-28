@@ -12,6 +12,16 @@ Actual checks: 38 profile assertions,28 settings assertions,12 CLI validation ca
 
 The first existing Cline invocation was explicitly in act mode (saved mode=act; no --plan flag); it produced prolonged planning before stubs, then was stopped. Do not claim this was proven to be plan-mode misconfiguration. Same DeepSeek model subsequently used official direct API with thinking disabled and bounded text edits. No installation/authentication change. Truncated or mismatched proposals were rejected or recovered only as complete uniquely matching file/edit entries, with original responses retained privately on D:. Portable workflow runtime was not modified and is not claimed to have orchestrated this run.
 
-Current full TP interface: NOT IMPLEMENTED. Enabled valid input deliberately stops with TP integration not implemented. No planet integrations or historical grids were run for Task1. Next: Task2 explicit context, fixed density EOS selector, coupled density/T state and fitting guards; then diagnostics and bounded numeric checks.
+Task1 checkpoint: full TP interface was not implemented; its enabled-input guard deliberately prevented solving. No full planet invocations or historical grids were run for Task1. See current Task2 state below.
 
 Archiving: scoped Task1 files committed on the existing main continuation; remote SHA recorded in the executing chat after push. Existing dirty research checkouts and historical archived output bytes preserved. Existing line endings were mechanically retained where possible; this is not a solver algorithm change.
+
+## Task2: context, common effective state and fitting guards complete
+
+DeepSeek implemented fixed-mu2 gas selection, explicit per-solve context, density/temperature agreement, knot-aware stepping, gas-base continuity and strict non-gas fitting guards. Codex supplied fixed tests and diagnosis. Independent review rejected earlier versions and approved repaired R4 actual source; model prose was not accepted as evidence.
+
+Actual checks: 18 RHS assertions,353 knot assertions,118 constructor assertions; reverse traversal and near-knot entry at zero/nonzero mass coordinate; early0.9995-Mfit truncation rejection; original coverage error preserved and latched across later callbacks. Two legacy OFF correction fixtures produce byte-identical outputs to unchanged baseline (615 and599 rows). These controlled constructor/callback integrations are not full converged planet fitting or historical batch repeats. Evidence: tp-task2-verification.json and evidence/tp-task2-checks.log.
+
+Current full TP interface: PARTIAL. Valid enabled CLI input still stops with TP diagnostics not implemented. Task3 high-precision sidecar and CLI activation remain pending; no full planet invocations or synthetic inference claims. The density EOS mu2 remains an engineering fixture; deeper temperature coupling is retained. Existing Cline run was act mode; plan mode was not the observed cause of delay.
+
+Provider control: human explicitly approved maximum12 additional bounded DeepSeek calls, raising direct-call cap32 to44. Actual usage retained privately; no API credentials are included in this repository. The frozen new whole-planet budget remains20 including failures, used0 at Task2 archive.

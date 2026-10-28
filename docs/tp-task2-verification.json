@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "status": "TASK2_SCOPED_PASS_FULL_INTERFACE_PENDING",
+  "recorded_utc": "2026-10-28T22:42:37.269021+00:00",
+  "implementation": "DeepSeek; Codex fixed tests/diagnosis/acceptance, no Codex scientific source implementation",
+  "review": {
+    "scope": "Task2 R4 only",
+    "result": "APPROVE after prior rejected versions repaired",
+    "reviewed_hydro_sha256": "62f3b541c36d63e75ae00e26f3c6d378dd7bb529a4e7f6751a8a0a2431ec8f6a"
+  },
+  "checks": {
+    "profile_assertions": 38,
+    "settings_assertions": 28,
+    "rhs_assertions": 18,
+    "knot_assertions": 353,
+    "knot_steps": 116,
+    "constructor_assertions": 118,
+    "reverse_calls": 165,
+    "reverse_max_temperature_absolute_K": 4.1296175368188415e-09,
+    "near_knot_zero_and_nonzero_mass_coordinate": "PASS",
+    "coverage_original_error_and_repeated_latch": "PASS",
+    "truncation_at_0_9995_Mfit": "REJECTED as required",
+    "all_task2_fixed_targets_exit": 0,
+    "legacy_correction_comparison": {
+      "inner": {
+        "byte_identical_to_unchanged_baseline": true,
+        "output_sha256": "c4b515ad9ab81a3de6a8673183cafd51b7f230d96348c036bf2a50b2a4e1b170",
+        "rows": 615
+      },
+      "outer": {
+        "byte_identical_to_unchanged_baseline": true,
+        "output_sha256": "21a731ed032aeebf13acc441e7444a011a2a42cca32e094a26c72ba0a2fa21b1",
+        "rows": 599
+      }
+    }
+  },
+  "scientific_planet_invocations": 0,
+  "not_claimed": [
+    "full prescribed TP CLI activation",
+    "Task3 diagnostics sidecar",
+    "full OFF baseline planet regression",
+    "numeric forward-pair/tightening/recovery",
+    "realistic target-planet atmosphere"
+  ],
+  "source_hashes": {
+    "Makefile": "e70bf00de9c5c6a66d1836fe1ad1aaf610e5650882b8cd44451853fe04e6ab31",
+    "src/tp_profile.h": "cad902c684f3cceb58fc8afd4ae7d409af18741472e063eeeebc277cb999652d",
+    "src/hydro.h": "e1828950eeec848868943c6188733fd9cac433f3f7ddfa5de6ac9e5f6f1f61a3",
+    "src/hydro.cpp": "62f3b541c36d63e75ae00e26f3c6d378dd7bb529a4e7f6751a8a0a2431ec8f6a",
+    "src/phase.h": "1f8c51cd6ee7ccc8cd2a732af9c3d6c56f589f8c50dbaf37ccd7c07d48ddb4cf",
+    "src/phase.cpp": "05e8d8264d7d9b037427287aca777035ab85734fa4e8a4ee2c7ac751ae014ba9",
+    "src/main.cpp": "af97b8f603bccc00842e9fcc6453df662ebaa8cfc5a067898f5c312d1afe6ddd",
+    "src/tp_stepper.cpp": "c78fea949630c6faa129988e87e4f0ce01b02589f96a5bc38b8a7b5ee7831fb4",
+    "tests/test_tp_hydro.cpp": "5d55eaf7da6168f8a66a55c05bb772f8afadd65d2d1bfc33a7430ceddcd9ede9",
+    "tests/test_tp_knots.cpp": "17f7efdf8996bdf416332d22222c72fa245ab7dfbe462db1a27e2b6dd2128df1",
+    "tests/test_tp_constructors.cpp": "1ca413144ac05ac79db528cb6307dbd0d23537348373098073607906d108579d",
+    "tests/test_tp_stepper_edges.cpp": "eba9e9225ea0badcd541b9a5c6c05a74c61112321bd7585c17ff3bae3e529dcb",
+    "tests/test_tp_truncation.cpp": "3ee2182956ca5143194c57cbe1e1d7dfb94f40197ed16724739180fe7e5621ab",
+    "tests/test_tp_callbacks.cpp": "20431da35b1bffa1b71ad891e2c6cda7de7621e5cc892eac6906ddf2b6931343",
+    "tests/fixtures/tp-edge-knots.csv": "ee99cac7394c400e5057fa576115133e28076de638e12689b8fd30a904bb5e3e",
+    "tests/fixtures/tp-truncation-broad.csv": "b3a629d327044543d9e91b37bdbe152aea5fadb2738759f2692ba8973c1bbbb0",
+    "tests/fixtures/tp-short-coverage.csv": "f30743c550d15aaac49666d36645c8a756f2dcaccbc8e65ea9494a9ea86b46e7"
+  },
+  "integrated_hashes": {
+    "Makefile": "4f81ffd8b01067fd79ef6864215328a1cf3f77cab19f171dadce0f0cc88a977f",
+    "src/tp_profile.h": "cad902c684f3cceb58fc8afd4ae7d409af18741472e063eeeebc277cb999652d",
+    "src/hydro.h": "e1828950eeec848868943c6188733fd9cac433f3f7ddfa5de6ac9e5f6f1f61a3",
+    "src/hydro.cpp": "1cc35dd847e3fc39f025ef4b5d97cef7aae8bdf44d038b2822ad3b3041b7ee4e",
+    "src/phase.h": "1f8c51cd6ee7ccc8cd2a732af9c3d6c56f589f8c50dbaf37ccd7c07d48ddb4cf",
+    "src/phase.cpp": "534b841823bdb2f698999fa0685551c4906750f93ace5cc537ebe69302a6ea44",
+    "src/main.cpp": "8d96c69f298c259bc315cd722d06a2231be74a7f2894d63d975455fe8659258b",
+    "src/tp_stepper.cpp": "c78fea949630c6faa129988e87e4f0ce01b02589f96a5bc38b8a7b5ee7831fb4",
+    "tests/test_tp_hydro.cpp": "5d55eaf7da6168f8a66a55c05bb772f8afadd65d2d1bfc33a7430ceddcd9ede9",
+    "tests/test_tp_knots.cpp": "17f7efdf8996bdf416332d22222c72fa245ab7dfbe462db1a27e2b6dd2128df1",
+    "tests/test_tp_constructors.cpp": "1ca413144ac05ac79db528cb6307dbd0d23537348373098073607906d108579d",
+    "tests/test_tp_stepper_edges.cpp": "eba9e9225ea0badcd541b9a5c6c05a74c61112321bd7585c17ff3bae3e529dcb",
+    "tests/test_tp_truncation.cpp": "3ee2182956ca5143194c57cbe1e1d7dfb94f40197ed16724739180fe7e5621ab",
+    "tests/test_tp_callbacks.cpp": "20431da35b1bffa1b71ad891e2c6cda7de7621e5cc892eac6906ddf2b6931343",
+    "tests/fixtures/tp-edge-knots.csv": "ee99cac7394c400e5057fa576115133e28076de638e12689b8fd30a904bb5e3e",
+    "tests/fixtures/tp-truncation-broad.csv": "b3a629d327044543d9e91b37bdbe152aea5fadb2738759f2692ba8973c1bbbb0",
+    "tests/fixtures/tp-short-coverage.csv": "f30743c550d15aaac49666d36645c8a756f2dcaccbc8e65ea9494a9ea86b46e7"
+  },
+  "line_endings": "Existing unchanged lines retained from public HEAD; canonical text equality checked; new files copied verbatim",
+  "private_full_log_sha256": "a860381d7140fa9264787998f870dd7a10d6ee5dee36273af81e9de7b16d599e",
+  "public_checkout_verification": {
+    "full_make_B_exit": 0,
+    "all_eight_test_targets_exit": 0,
+    "checks_log_sha256": "de972976d4f208f6e93f6f296e0d50831a2022029e8fbbf8e9c82008f412eb85",
+    "build_log_sha256": "872d38d54d2bda9edd112067dea30e870da27d9b338ddfa5fa2d96e893f09046"
+  },
+  "formatting_note": "Removed surplus final blank line from three test files after verification; no code or assertions changed."
+}

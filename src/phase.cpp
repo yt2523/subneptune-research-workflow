@@ -651,6 +651,15 @@ EOS* find_phase_gas_default(double P, double T)
     return Gas;
 }
 
+EOS* find_phase_gas_fixed_mu2(double P, double T)
+{
+  if (P <= 0 || T <= 0)
+  {
+    return NULL;
+  }
+  return Gas;
+}
+
 // ---------------------------------
 // H/He Gas: Isothermal ideal for P<100 bar, P>100 bar: tabulated real gas, Chabrier & Debras 2021 Y=0.275
 EOS* find_phase_HHe_tabulated(double P, double T)
@@ -678,6 +687,7 @@ PhaseDgm water1("water1", find_phase_water_tabulated);
 PhaseDgm water2("water2", find_phase_water_legacy);
 PhaseDgm atm("atm", find_phase_gas_default); //Phase Diagrams for Atmosphere
 PhaseDgm atm1("atm1", find_phase_HHe_tabulated);
+PhaseDgm atm_fixed_mu2("atm_fixed_mu2", find_phase_gas_fixed_mu2);
 
 EOS* find_phase(double m, double MC, double MM, double MW, double MG, double P, double T, bool inward)
 // given the accumulated mass (in g), P (in cgs) and T, return the corresponding phase

@@ -425,6 +425,8 @@ int main(int argc, char* argv[])
     Comp[3]=atm;
   else if (atm_phasedgm=="HHe_tabulated")
     Comp[3]=atm1;
+  else if (atm_phasedgm=="gas_fixed_mu2")
+    Comp[3]=atm_fixed_mu2;
   else
     cout<<"atm_phasedgm does not exist, using default"<<endl;
 
@@ -452,7 +454,7 @@ int main(int argc, char* argv[])
       std::cout << "\nException: " << e.what() << "\n";
       return EXIT_FAILURE;
     }
-    std::cout << "TP integration not implemented" << std::endl;
+    std::cout << "TP diagnostics not implemented" << std::endl;
     return EXIT_FAILURE;
   }
 
@@ -468,7 +470,7 @@ int main(int argc, char* argv[])
   {
     double deltat;
     gettimeofday(&start_time,NULL);
-    planet=fitting_method(Comp, Mcomp, Tgap, ave_rho, P_surface, false);
+    planet=fitting_method(Comp, Mcomp, Tgap, ave_rho, P_surface, false, tp_profile.get());
     cout<<"# of shots "<<count_shoot<<", # of total steps "<<count_step<<endl;
     gettimeofday(&end_time, NULL);
     deltat = ((end_time.tv_sec  - start_time.tv_sec) * 1000000u + end_time.tv_usec - start_time.tv_usec) / 1.e6;

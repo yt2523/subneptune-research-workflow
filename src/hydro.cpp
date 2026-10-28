@@ -2,6 +2,30 @@
 #include "EOSlist.h"
 #include <gsl/gsl_integration.h>
 
+static bool project_tp_state(const TPProfile* tp, bool gas, double P, double& T, TPDiagnostics& diag, bool accepted)
+{
+  if (!tp || !gas) return true;
+  try {
+    TPState st = tp->at_cgs(P);
+    if (!gsl_finite(st.temperature_K) || st.temperature_K <= 0.0) {
+      diag.error = "TP profile returned non-positive temperature at P = " + std::to_string(P) + " (input P must be finite positive)";
+      return false;
+    }
+    if (accepted) {
+      double prescribed = st.temperature_K;
+      double raw = T;
+      double rel = std::fabs(raw - prescribed) / std::max(1.0, std::fabs(prescribed));
+      diag.max_pre_projection_relative = std::max(diag.max_pre_projection_relative, rel);
+      if (gas) diag.accepted_gas_pressure_max = std::max(diag.accepted_gas_pressure_max, P);
+    }
+    T = st.temperature_K;
+    return true;
+  } catch (const std::exception& e) {
+    diag.error = "TP profile evaluation failed at P = " + std::to_string(P) + ": " + e.what();
+    return false;
+  }
+}
+
 int derivs_m(double x, const double y[], double dydx[], void * params)
 // derivative equations
 // two equations, x is mass, y0 is radius, y1 is P.
@@ -67,12 +91,42 @@ int derivs_m2(double x, const double y[], double dydx[], void * params)
   EOS *Phase = p -> Phase;
   double Mtot = accumulate(M.begin(), M.end(), 0.0) * ME;
 
-  rho = Phase -> density(y[1], y[2], rho);
+  double effectiveT = y[2];
+  double dTdP = 0.0;
+  bool tp_gas = (p->tp != nullptr) && p->tp_gas;
+  if (tp_gas)
+  {
+    TPState state;
+    try
+    {
+      state = p->tp->at_cgs(y[1]);
+    }
+    catch (const std::exception& e)
+    {
+      if (p->tp_diagnostics)
+      {
+        p->tp_diagnostics->error = "TP profile evaluation failed at pressure: " + std::to_string(y[1]);
+        p->tp_diagnostics->error += " (error: ";
+        p->tp_diagnostics->error += e.what();
+        p->tp_diagnostics->error += ")";
+      }
+      return GSL_EBADFUNC;
+    }
+    effectiveT = state.temperature_K;
+    dTdP = state.dT_dP_cgs;
+    if (p->tp_diagnostics)
+    {
+      p->tp_diagnostics->gas_pressure_min = std::min(p->tp_diagnostics->gas_pressure_min, y[1]);
+      p->tp_diagnostics->gas_pressure_max = std::max(p->tp_diagnostics->gas_pressure_max, y[1]);
+    }
+  }
+
+  rho = Phase -> density(y[1], effectiveT, rho);
   if (!gsl_finite(rho)) 
   {
     if (verbose)
     {
-      cout<<"Warning: Can't find density for "<<Phase->getEOS()<<" when performing outside-in integral against m at location: r="<<y[0]<<"cm, m="<<(Mtot-x)/ME<<"MEarth, P="<<y[1]/1E10<<"GPa, T="<<y[2]<<"K, Component masses ";
+      cout<<"Warning: Can't find density for "<<Phase->getEOS()<<" when performing outside-in integral against m at location: r="<<y[0]<<"cm, m="<<(Mtot-x)/ME<<"MEarth, P="<<y[1]/1E10<<"GPa, T="<<effectiveT<<"K, Component masses ";
       for (int i=0; i < int(p -> M.size()); i++)
         cout<<p -> M[i]<<' ';
       cout<<endl;
@@ -82,12 +136,14 @@ int derivs_m2(double x, const double y[], double dydx[], void * params)
 
   dydx[0] = - 1 / (4 * pi * sq(y[0]) * rho); // dr/d(Mtot-m) = - 1 / (4 pi r^2 rho)
   dydx[1] = G * (Mtot - x) / (4 * pi * pow(y[0], 4)); // dP/d(Mtot-m)= G m / (4 pi r^4)
-  if (thermal == 0 || thermal == 4)
+  if (tp_gas)
+    dydx[2] = dTdP * dydx[1];
+  else if (thermal == 0 || thermal == 4)
     dydx[2] = 0;
   else if (thermal == 10)
-    dydx[2] = Phase->dTdP_S(y[1]/1E10, y[2], rho)*dydx[1]/1E10;
+    dydx[2] = Phase->dTdP_S(y[1]/1E10, effectiveT, rho)*dydx[1]/1E10;
   else
-    dydx[2] = -Phase->dTdm(Mtot-x, y[0], rho, y[1], y[2]);
+    dydx[2] = -Phase->dTdm(Mtot-x, y[0], rho, y[1], effectiveT);
   
   p -> x[0] = rho;
   
@@ -95,7 +151,7 @@ int derivs_m2(double x, const double y[], double dydx[], void * params)
   {
     if (verbose)
     {
-      cout<<"Warning: Derivative not finite. Can't find density for "<<Phase->getEOS()<<" when performing outside-in integral against m at location: r="<<y[0]<<"cm, m="<<(Mtot-x)/ME<<"MEarth, P="<<y[1]/1E10<<"GPa, T="<<y[2]<<"K, Component masses ";
+      cout<<"Warning: Derivative not finite. Can't find density for "<<Phase->getEOS()<<" when performing outside-in integral against m at location: r="<<y[0]<<"cm, m="<<(Mtot-x)/ME<<"MEarth, P="<<y[1]/1E10<<"GPa, T="<<effectiveT<<"K, Component masses ";
       for (int i=0; i < int(p -> M.size()); i++)
         cout<<p -> M[i]<<' ';
       cout<<endl;
@@ -117,13 +173,44 @@ int derivs_m3(double x, const double y[], double dydx[], void * params)
   int thermal = (int)p -> x[1];
   vector<double> M = p -> M;
   EOS *Phase = p -> Phase;
-  rho = Phase -> density(y[1], y[2], rho);
+
+  double effectiveT = y[2];
+  double dTdP = 0.0;
+  bool tp_gas = (p->tp != nullptr) && p->tp_gas;
+  if (tp_gas)
+  {
+    TPState state;
+    try
+    {
+      state = p->tp->at_cgs(y[1]);
+    }
+    catch (const std::exception& e)
+    {
+      if (p->tp_diagnostics)
+      {
+        p->tp_diagnostics->error = "TP profile evaluation failed at pressure: " + std::to_string(y[1]);
+        p->tp_diagnostics->error += " (error: ";
+        p->tp_diagnostics->error += e.what();
+        p->tp_diagnostics->error += ")";
+      }
+      return GSL_EBADFUNC;
+    }
+    effectiveT = state.temperature_K;
+    dTdP = state.dT_dP_cgs;
+    if (p->tp_diagnostics)
+    {
+      p->tp_diagnostics->gas_pressure_min = std::min(p->tp_diagnostics->gas_pressure_min, y[1]);
+      p->tp_diagnostics->gas_pressure_max = std::max(p->tp_diagnostics->gas_pressure_max, y[1]);
+    }
+  }
+
+  rho = Phase -> density(y[1], effectiveT, rho);
 
   if (!gsl_finite(rho)) 
   {
     if (verbose)
     {
-      cout<<"Warning: Can't find density for "<<Phase->getEOS()<<" when performing inside-out integral against m at location: r="<<y[0]<<" m="<<x/ME<<" P="<<y[1]/1E10<<"GPa, T="<<y[2]<<" Component masses ";
+      cout<<"Warning: Can't find density for "<<Phase->getEOS()<<" when performing inside-out integral against m at location: r="<<y[0]<<" m="<<x/ME<<" P="<<y[1]/1E10<<"GPa, T="<<effectiveT<<" Component masses ";
       for (int i=0; i < int(p -> M.size()); i++)
         cout<<p -> M[i]<<' ';
       cout<<endl;
@@ -133,20 +220,22 @@ int derivs_m3(double x, const double y[], double dydx[], void * params)
 
   dydx[0] = 1 / (4 * pi * sq(y[0]) * rho); // dr/dm = 1 / (4 pi r^2 rho)
   dydx[1] = - G * x / (4 * pi * pow(y[0], 4)); // dP/dm= - G m / (4 pi r^4)
-  if (thermal == 0 || thermal == 4)
+  if (tp_gas)
+    dydx[2] = dTdP * dydx[1];
+  else if (thermal == 0 || thermal == 4)
     dydx[2] = 0;
   else if (thermal == 10)
-    dydx[2] = Phase->dTdP_S(y[1]/1E10, y[2], rho)*dydx[1]/1E10;
+    dydx[2] = Phase->dTdP_S(y[1]/1E10, effectiveT, rho)*dydx[1]/1E10;
   else
-    dydx[2] = Phase->dTdm(x, y[0], rho, y[1], y[2]);
+    dydx[2] = Phase->dTdm(x, y[0], rho, y[1], effectiveT);
 
   p -> x[0] = rho;
   
-  if (!gsl_finite(dydx[0]) || !gsl_finite(dydx[1]))
+  if (!gsl_finite(dydx[0]) || !gsl_finite(dydx[1]) || !gsl_finite(dydx[2]))
   {
     if (verbose)
     {
-      cout<<"Warning: Derivative not finite. Can't find density for "<<Phase->getEOS()<<" when performing inside-out integral against m at location: r="<<y[0]<<"cm, m="<<x/ME<<"MEarth, P="<<y[1]/1E10<<"GPa, T="<<y[2]<<"K, Component masses ";
+      cout<<"Warning: Derivative not finite. Can't find density for "<<Phase->getEOS()<<" when performing inside-out integral against m at location: r="<<y[0]<<"cm, m="<<x/ME<<"MEarth, P="<<y[1]/1E10<<"GPa, T="<<effectiveT<<"K, Component masses ";
       for (int i=0; i < int(p -> M.size()); i++)
         cout<<p -> M[i]<<' ';
       cout<<endl;
@@ -157,13 +246,37 @@ int derivs_m3(double x, const double y[], double dydx[], void * params)
   return GSL_SUCCESS;
 }
 
-hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vector<double> Tgap, double ode_tol, double P0, bool isothermal):ode_status(2)
+hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vector<double> Tgap, double ode_tol, double P0, bool isothermal, const TPProfile* tp):ode_status(2), tp_diagnostics_()
 // Given the test planet radius, a vector of components, their masses, and the temperature discontinuity between each gaps (Temperature at the interior boundary minus exterior boundary.  The last temperature in the list is the planet equilibrium temperature). Bool isothermal determines whether use isothermal temperature profile or self-consistent calculation. The function integrates hydrostatic equation outside in.  The integration end when either the target mass reached or radius approaches 0.
 // Integration inside out need to fine tune the center pressure.  The center pressure is way larger than the surface pressure.  The required accuracy for the center pressure and the integration process is higher than double.
 // Integration outside-in will cause the same problem for the center mass.  It's hard to shoot the exact mass at the center.
 // Integration outside in is more straight forward for temperature because only the temperature at outer boundary is set.
 // Because the density has discontinuity at the shift between layers, the integration is operated within each layers.  And it's natural to choose mass as variable.
 {
+  tp_diagnostics_.enabled = (tp != nullptr);
+  if (tp_diagnostics_.enabled) {
+    if (Mass_Comp.size() != 4 || Tgap.size() != 4) {
+      tp_diagnostics_.error = "TP profile requires a 4-component model (Mass_Comp and Tgap must have length 4)";
+      return;
+    }
+    if (Comp_in.size() != 4) {
+      tp_diagnostics_.error = "TP profile requires exactly 4 components";
+      return;
+    }
+    if (Mass_Comp[3] * ME < 1.0) {
+      tp_diagnostics_.error = "Gas component mass must be at least 1 g";
+      return;
+    }
+    double non_gas_mass = (Mass_Comp[0] + Mass_Comp[1] + Mass_Comp[2]) * ME;
+    if (non_gas_mass < 1.0) {
+      tp_diagnostics_.error = "Non-gas total mass must be at least 1 g";
+      return;
+    }
+    if (!gsl_finite(P0) || P0 <= 0.0) {
+      tp_diagnostics_.error = "P0 must be finite positive for TP profile";
+      return;
+    }
+  }
   if (Comp_in.size() != Mass_Comp.size() || Mass_Comp.size() != Tgap.size())
   {
     cout<<"Error. The length of input vectors doesn't match."<<endl;
@@ -186,7 +299,19 @@ hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vec
 
   int i = n_Comp-1;
   Tt = Tgap.back();
-  
+
+  if (tp_diagnostics_.enabled) {
+    if (!project_tp_state(tp, true, P0, Tt, tp_diagnostics_, false)) {
+      rb.clear();
+      P.clear();
+      M.clear();
+      T.clear();
+      rho.clear();
+      Phaselist.clear();
+      return;
+    }
+  }
+
   for ( ; M_Comp[i]*ME<1 ; i--) //Massless layer, skipped
   {
     R_Comp[i-1] = Rp;
@@ -232,7 +357,7 @@ hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vec
 
   rho.resize(1, rhot);
 
-  struct mass_params params = {{rho[0], 0.0}, M_Comp, Phase};
+  struct mass_params params = {{rho[0], 0.0}, M_Comp, Phase, tp, false, &tp_diagnostics_};
   gsl_odeiv2_system sys = {derivs_m2, NULL, 3, &params};
   const gsl_odeiv2_step_type *ODE = gsl_odeiv2_step_rkf45;
   gsl_odeiv2_step *s = gsl_odeiv2_step_alloc(ODE, 3);
@@ -241,6 +366,15 @@ hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vec
   gsl_odeiv2_evolve *e = gsl_odeiv2_evolve_alloc(3);
 
   double y[3] = {rb[0], P[0], T[0]};
+  if (tp) {
+    double Tproj = y[2];
+    if (!project_tp_state(tp, (i == 3), y[1], Tproj, tp_diagnostics_, false)) {
+      rb.clear(); P.clear(); M.clear(); T.clear(); rho.clear(); Phaselist.clear();
+      gsl_odeiv2_evolve_free(e); gsl_odeiv2_control_free(c); gsl_odeiv2_step_free(s);
+      return;
+    }
+    y[2] = Tproj;
+  }
   double m = Mtot - M[0];
   double h = pow(rb[0], 4) * P[0] / (10 * G * M[0]); // With the mass of step size, the pressure increases by about 1%.
   
@@ -248,6 +382,9 @@ hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vec
   {    
     Phase = Comp[i].find_phase(P[0], T[0]);
     params.Phase = Phase;
+    params.tp_gas = (tp != nullptr && i == 3);
+    params.tp = tp;
+    params.tp_diagnostics = &tp_diagnostics_;
     thermal = isothermal ? 0 : Phase->getthermal();
     thermal = Phase->getthermal()==4 ? 4 : thermal; //for type 4, the isentrope temperature profile is enforced to the phase with this option even the isothermal option is chosen for the planet solver.
 
@@ -289,9 +426,21 @@ hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vec
 
     while (m < mmax && y[1] < 1E15)		// integrate to center.  If the mass is larger than 0 at the center, the gravity will diverge at the center.  Therefore cut the integration at 1E5 GPa.
     {
-      status = gsl_odeiv2_evolve_apply (e, c, s, &sys, &m, mmax, &h, y);
+      status = tp_evolve_step(e, c, s, &sys, &m, mmax, &h, y);
       if (status != GSL_SUCCESS)
       {
+        if (tp_diagnostics_.error != "") {
+          rb.clear();
+          P.clear();
+          M.clear();
+          T.clear();
+          rho.clear();
+          Phaselist.clear();
+          gsl_odeiv2_evolve_free (e);
+          gsl_odeiv2_control_free (c);
+          gsl_odeiv2_step_free (s);
+          return;
+        }
         if (status == GSL_FAILURE && y[0] > 1E-4 * Rp)
         {
           if (verbose)
@@ -329,9 +478,18 @@ hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vec
         return;
       }
 
+      if (tp && i == 3) {
+        bool accepted = project_tp_state(tp, true, y[1], y[2], tp_diagnostics_, true);
+        if (!accepted) {
+          std::string raw_y2_mismatch = tp_diagnostics_.error;
+          rb.clear(); P.clear(); M.clear(); T.clear(); rho.clear(); Phaselist.clear();
+          gsl_odeiv2_evolve_free(e); gsl_odeiv2_control_free(c); gsl_odeiv2_step_free(s);
+          return;
+        }
+        gsl_odeiv2_step_reset(s);
+        gsl_odeiv2_evolve_reset(e);
+      }
       new_Phase = Comp[i].find_phase(y[1], y[2]);
-      rhot = new_Phase -> density(P[0], y[2], rhot);
-
       if (!new_Phase)
       {
         if (verbose)
@@ -355,6 +513,11 @@ hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vec
         return;
       }
 
+      if (tp && i == 3) {
+        rhot = new_Phase -> density(y[1], y[2], rhot);
+      } else {
+        rhot = new_Phase -> density(P[0], y[2], rhot);
+      }
       if (new_Phase != Phase)
         // cross phase boundary but doesn't enter new composition
       {
@@ -426,6 +589,17 @@ hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vec
         params.x[1] = (double)thermal;
       }
         
+      if (tp && i == 3) {
+        double Tproj = y[2];
+        if (!project_tp_state(tp, true, y[1], Tproj, tp_diagnostics_, true)) {
+          rb.clear(); P.clear(); M.clear(); T.clear(); rho.clear(); Phaselist.clear();
+          gsl_odeiv2_evolve_free(e); gsl_odeiv2_control_free(c); gsl_odeiv2_step_free(s);
+          return;
+        }
+        y[2] = Tproj;
+        gsl_odeiv2_step_reset(s);
+        gsl_odeiv2_evolve_reset(e);
+      }
       rb.insert(rb.begin(), y[0]);
       P.insert(P.begin(), y[1]);
       M.insert(M.begin(), Mtot - m);
@@ -437,10 +611,18 @@ hydro::hydro(double Rp, vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vec
       //cout<<rb.size()<<' '<<y[0]/RE<<"RE "<<m/ME<<"ME "<<(mmax-m)/ME<<"ME "<<y[1]/1E10<<"GPa "<<params.x[0]<<"g/cm^3 "<<y[2]<<"K "<<h/ME<<"ME "<<Phaselist[0]->getEOS()<<" thermal_type "<<Phaselist[0]->getthermal()<<" params thermal "<<params.x[1]<<endl;
     }
 
+    if (i == 3 && tp) {
+      tp_diagnostics_.gas_base_pressure = y[1];
+      tp_diagnostics_.gas_base_temperature = y[2];
+      tp_diagnostics_.gas_base_mass = (Mtot - m); // grams
+      tp_diagnostics_.gas_pressure_min = std::min(tp_diagnostics_.gas_pressure_min, y[1]);
+      tp_diagnostics_.gas_pressure_max = std::max(tp_diagnostics_.gas_pressure_max, y[1]);
+    }
     if (i)
     {
       R_Comp[i-1] = y[0];		// Get the size of each composition layer
-      y[2] += Tgap[i-1];
+      if (!(tp && i == 3))
+        y[2] += Tgap[i-1];
     }
 
     while (i>1 && M_Comp[i-1]*ME<1)  //Massless layer, skipped
@@ -656,11 +838,32 @@ hydro::hydro(double Pc, double MCin, double MMin, double MWin, double P0, double
 }
 
 
-hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vector<double> Tgap, bool isothermal, double Mfit, double ode_tol, double P0, double &Ri, double &Pi, double &Ti, double &Ro, double &Po, double &To):ode_status(2)
+  hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector<double> Mass_Comp, vector<double> Tgap, bool isothermal, double Mfit, double ode_tol, double P0, double &Ri, double &Pi, double &Ti, double &Ro, double &Po, double &To, const TPProfile* tp):ode_status(2), tp_diagnostics_()
 // After finishing a round of iteration of outside-in integration and receive a reasonable value of Rp, Pc, and Tc, using these values as the initial guess to integrate equations from both the surface, and the center, and meet two branches at the fitting mass Mfit (in g).  ode_tol is the ode relative tolerance 
 // The R, P, and T value at inner edge (from inside-out integration with subscript i) and outer edge (from outside-in integration with subscript o) at the connection point is passed out. 
 {
   fit_iter++;
+  tp_diagnostics_.enabled = (tp != nullptr);
+  if (tp_diagnostics_.enabled) {
+    if (Comp_in.size() != 4) {
+      tp_diagnostics_.error = "TP profile requires exactly 4 components";
+      return;
+    }
+    if (Mass_Comp[3] * ME < 1.0) {
+      tp_diagnostics_.error = "Gas component mass must be at least 1 g";
+      return;
+    }
+    double non_gas_mass = (Mass_Comp[0] + Mass_Comp[1] + Mass_Comp[2]) * ME;
+    if (non_gas_mass < 1.0) {
+      tp_diagnostics_.error = "Non-gas total mass must be at least 1 g";
+      return;
+    }
+    if (!(Mfit > 0.0) || !(Mfit < non_gas_mass)) {
+      tp_diagnostics_.error = "Mfit must be finite positive and less than non-gas mass";
+      return;
+    }
+    tp_diagnostics_.fit_mass = Mfit;
+  }
   if (Comp_in.size() != Mass_Comp.size() || Mass_Comp.size() != Tgap.size())
   {
     if (verbose)
@@ -762,7 +965,7 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
   rho.push_back(rhot);
   T.push_back(Tt);
   
-  struct mass_params params = {{rhot, 0.0}, M_Comp, Phase};
+  struct mass_params params = {{rhot, 0.0}, M_Comp, Phase, tp, false, &tp_diagnostics_};
   gsl_odeiv2_system sys = {derivs_m3, NULL, 3, &params};
   const gsl_odeiv2_step_type *ODE = gsl_odeiv2_step_rkf45;
   gsl_odeiv2_step *s = gsl_odeiv2_step_alloc(ODE, 3);
@@ -778,6 +981,7 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
   {
     Phase = Comp[i].find_phase(y[1], y[2]);
     params.Phase = Phase;
+    params.tp_gas = (tp != nullptr && i == 3);
     thermal = isothermal ? 0 : Phase->getthermal();
     thermal = Phase->getthermal()==4 ? 4 : thermal; //for type 4, the isentrope temperature profile is enforced to the phase with this option even the isothermal option is chosen for the planet solver.
 
@@ -820,7 +1024,7 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
 
     while (m < mmax  && y[1]>P0)		// integrate from center to Mfit
     {
-      status = gsl_odeiv2_evolve_apply (e, c, s, &sys, &m, mmax, &h, y);
+      status = tp_evolve_step(e, c, s, &sys, &m, mmax, &h, y);
 
       if (status != GSL_SUCCESS)
       {
@@ -1001,12 +1205,22 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
   gsl_odeiv2_step_free (s);
 
   int ninner = rb.size();	// layers of the inner integration
+  if (tp && std::abs(M.back() - Mfit) > 64.0 * std::numeric_limits<double>::epsilon() * std::max(1.0, Mfit)) {
+    tp_diagnostics_.error = "Inner integration did not land on fitting mass";
+    rb.clear();
+    P.clear();
+    M.clear();
+    T.clear();
+    rho.clear();
+    Phaselist.clear();
+    return;
+  }
   
   Ri = rb.back();
   Pi = P.back();
   Ti = T.back() - Tcor;
 
-  if (m < 0.999*Mfit && Pi <= P0) // The pressure approaches P0 before the fitting mass, need correction for the fitting values.
+      if (m < 0.999*Mfit && Pi <= P0) // The pressure approaches P0 before the fitting mass, need correction for the fitting values.
   {
     if (verbose)
     {
@@ -1020,6 +1234,17 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
     Ri *= cbrt(Mfit/M.back());
     Pi -= (Mfit-M.back()) * G * M.back() / (4 * pi * pow(rb.back(), 4));
     Ti = (T[ninner-2]*(M.back()-Mfit) + Ti*(Mfit-M[ninner-2])) / (M.back() - M[ninner-2]);
+    if (tp) {
+      tp_diagnostics_.corrected_fit = true;
+      tp_diagnostics_.error = "Starting pressure P0 is too small for the inner part during fitting";
+      rb.clear();
+      P.clear();
+      M.clear();
+      T.clear();
+      rho.clear();
+      Phaselist.clear();
+      return;
+    }
   }
 // ---------------------------------
   // Integrate the outer part outside-in
@@ -1030,6 +1255,18 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
 
   i = n_Comp-1;
   Tt = Tgap.back();
+
+  if (tp_diagnostics_.enabled) {
+    if (!project_tp_state(tp, true, P0, Tt, tp_diagnostics_, false)) {
+      rb.clear();
+      P.clear();
+      M.clear();
+      T.clear();
+      rho.clear();
+      Phaselist.clear();
+      return;
+    }
+  }
 
   for ( ; M_Comp[i]*ME<1 ; i--) //Massless layer, skipped
   {
@@ -1069,7 +1306,7 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
   
   rho.insert(rho.begin()+ninner, rhot);
 
-  params = {{rho[ninner], 0.0}, M_Comp, Phase};
+  params = {{rho[ninner], 0.0}, M_Comp, Phase, tp, false, &tp_diagnostics_};
   sys = {derivs_m2, NULL, 3, &params};
   s = gsl_odeiv2_step_alloc(ODE, 3);
   c = gsl_odeiv2_control_y_new(1e-15, ode_tol); // eps_abs, eps_rel.  Control the error below eps_abs + eps_rel * y.  The eps_abs is the number precision (e.g. float).  Only important when y=0
@@ -1084,6 +1321,9 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
   for ( ; i >= 0; i--)
   {
     Phase = Comp[i].find_phase(y[1], y[2]);
+    params.tp = tp;
+    params.tp_gas = tp && (i == 3);
+    params.tp_diagnostics = &tp_diagnostics_;
     params.Phase = Phase;
     thermal = isothermal ? 0 : Phase->getthermal();
     thermal = Phase->getthermal()==4 ? 4 : thermal; //for type 4, the isentrope temperature profile is enforced to the phase with this option even the isothermal option is chosen for the planet solver.
@@ -1126,10 +1366,22 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
 
     while (m < mmax && y[1] < 1E15)		// integrate from surface to Mfit
     {
-      status = gsl_odeiv2_evolve_apply (e, c, s, &sys, &m, mmax, &h, y);
+      status = tp_evolve_step(e, c, s, &sys, &m, mmax, &h, y);
 
       if (status != GSL_SUCCESS)
       {
+        if (tp_diagnostics_.error != "") {
+          gsl_odeiv2_evolve_free (e);
+          gsl_odeiv2_control_free (c);
+          gsl_odeiv2_step_free (s);
+          rb.clear();
+          P.clear();
+          M.clear();
+          T.clear();
+          rho.clear();
+          Phaselist.clear();
+          return;
+        }
         if (status == GSL_FAILURE)
         {
           if (verbose)
@@ -1167,9 +1419,26 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
         return;
       }
 
+      if (params.tp_gas) {
+        double raw_y2 = y[2];
+        if (!project_tp_state(tp, true, y[1], y[2], tp_diagnostics_, true)) {
+          rb.clear();
+          P.clear();
+          M.clear();
+          T.clear();
+          rho.clear();
+          Phaselist.clear();
+          gsl_odeiv2_evolve_free(e);
+          gsl_odeiv2_control_free(c);
+          gsl_odeiv2_step_free(s);
+          return;
+        }
+        if (y[2] != raw_y2) {
+          gsl_odeiv2_step_reset(s);
+          gsl_odeiv2_evolve_reset(e);
+        }
+      }
       new_Phase = Comp[i].find_phase(y[1], y[2]);
-      rhot = new_Phase -> density(y[1], y[2], rhot);
-
       if (!new_Phase)
       {
         if (verbose)
@@ -1191,6 +1460,7 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
 
         return;
       }
+      rhot = new_Phase -> density(y[1], y[2], rhot);
       
       if (new_Phase != Phase) // cross phase boundary but doesn't enter new composition
       {
@@ -1274,6 +1544,13 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
     if (m > (1-1E-15) * (Mtot - Mfit) || y[1] >= 1E15)	// reaches the fit point
       break;
     
+    if (tp && i == 3)
+    {
+      tp_diagnostics_.gas_base_pressure = y[1];
+      tp_diagnostics_.gas_base_temperature = y[2];
+      tp_diagnostics_.gas_base_mass = Mtot - m;
+    }
+
     if (i)
     {
       R_Comp[i-1] = y[0];
@@ -1295,13 +1572,37 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
     }
   }
 
-  for (int j=0; j < n_Comp-1; j++) // Just in case some weird things occur near the fitting point
+  if (tp && std::abs(m - (Mtot - Mfit)) > 64.0 * std::numeric_limits<double>::epsilon() * std::max(1.0, Mtot - Mfit)) {
+    tp_diagnostics_.error = "Outer integration did not land on target mass";
+    gsl_odeiv2_evolve_free(e);
+    gsl_odeiv2_control_free(c);
+    gsl_odeiv2_step_free(s);
+    rb.clear();
+    P.clear();
+    M.clear();
+    T.clear();
+    rho.clear();
+    Phaselist.clear();
+    return;
+  }
+
+  for (int j = 0; j < n_Comp-1; j++) {
     if (R_Comp[j] < 0)
       R_Comp[j] = Ri;
+  }
 
   Ro = rb[ninner];
   Po = P[ninner];
   To = T[ninner];
+
+  if (tp_diagnostics_.enabled) {
+    tp_diagnostics_.fit_Ri = Ri;
+    tp_diagnostics_.fit_Ro = Ro;
+    tp_diagnostics_.fit_Pi = Pi;
+    tp_diagnostics_.fit_Po = Po;
+    tp_diagnostics_.fit_Ti = Ti;
+    tp_diagnostics_.fit_To = To;
+  }
 
   if ( m < 0.999*(Mtot-Mfit) && y[1] > 9E14) // The radius approachs 0 before the fitting mass, need correction for the fitting values.
   {
@@ -1317,6 +1618,20 @@ hydro::hydro(double Rp, double Pc, double Tc,  vector<PhaseDgm> &Comp_in, vector
 
     Po = (P[ninner+1]*(M[ninner]-Mfit) + Po*(Mfit-M[ninner+1])) / (M[ninner]-M[ninner+1]);
     To = (T[ninner+1]*(M[ninner]-Mfit) + To*(Mfit-M[ninner+1])) / (M[ninner]-M[ninner+1]);
+    if (tp) {
+      tp_diagnostics_.corrected_fit = true;
+      tp_diagnostics_.error = "Starting radius is too small for the outer part during fitting";
+      gsl_odeiv2_evolve_free(e);
+      gsl_odeiv2_control_free(c);
+      gsl_odeiv2_step_free(s);
+      rb.clear();
+      P.clear();
+      M.clear();
+      T.clear();
+      rho.clear();
+      Phaselist.clear();
+      return;
+    }
   }
 
   // only keep the inside value at the fitting points to avoid non-monotonic order caused by the fitting error.
@@ -1495,7 +1810,19 @@ double R_hydro(double Rp, void *params)
   if (Rp < 0)
     return Rp - Mtot;
 
-  hydro temp(Rp, p -> Comp, M, Tgap, ode_eps_rel0, P0, isothermal);
+  if (p->tp && !p->tp_error.empty()) {
+    p->x[0] = std::numeric_limits<double>::quiet_NaN();
+    p->x[1] = -1.0;
+    return std::numeric_limits<double>::quiet_NaN();
+  }
+  hydro temp(Rp, p -> Comp, M, Tgap, ode_eps_rel0, P0, isothermal, p->tp);
+  if (p->tp && !temp.tp_diagnostics().error.empty()) {
+    p->tp_error = temp.tp_diagnostics().error;
+    fprintf(stderr, "TP diagnostic error in radius trial constructor: %s\n", p->tp_error.c_str());
+    p->x[0] = std::numeric_limits<double>::quiet_NaN();
+    p->x[1] = -1.0;
+    return std::numeric_limits<double>::quiet_NaN();
+  }
 
   if (temp.getsize() == 0)	// can't find a solution
   {
@@ -1536,7 +1863,7 @@ void hydro::setstatus(int s)
 }
 
 
-hydro* Rloop(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<double> ave_rho, vector<double> Tgap, double P0, bool isothermal, double &Rp, double &Pc, double &Tc)
+hydro* Rloop(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<double> ave_rho, vector<double> Tgap, double P0, bool isothermal, double &Rp, double &Pc, double &Tc, const TPProfile* tp)
 // First round of iteration.  Input: list of componsations, masses and typical densities of each layers, the temperature discontinuity between each gaps (the last temperature in the list is the planet equilibrium temperature), boolean isothermal determines whether use isothermal temperature profile or self-consistent calculation.  The function iterates planet radius in order to get zero mass at the center.  The suggested planet radius, central pressure and temperature are also returned.
 {
   int n_Comp = int(Comp.size());
@@ -1565,7 +1892,7 @@ hydro* Rloop(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<double> ave_r
 
   double R_lo = 0.8 * Rp, R_hi = 1.2 * Rp, R_rsd = Rp;
   double success = -1;		// success > 0 means find a function value.  success < 0 means planet structure integration was failed.
-  struct loop_params params = {{R_rsd, success, P0}, Comp, M_Comp, Tgap, isothermal, NULL};
+  struct loop_params params = {{R_rsd, success, P0}, Comp, M_Comp, Tgap, isothermal, NULL, tp};
 
   const gsl_root_fsolver_type *EQN = gsl_root_fsolver_brent;
   gsl_root_fsolver *s = gsl_root_fsolver_alloc (EQN);
@@ -1575,6 +1902,12 @@ hydro* Rloop(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<double> ave_r
   F.params = &params;
 
   status = gsl_root_fsolver_set (s, &F, R_lo, R_hi);
+  if (tp && (status != GSL_SUCCESS && status != GSL_EINVAL)) {
+    std::string original_tp_error = params.tp_error;
+    fprintf(stderr, "TP diagnostic error in radius initial set: %s (status %d)\n", original_tp_error.c_str(), status);
+    gsl_root_fsolver_free(s);
+    return NULL;
+  }
 
   if (status == GSL_EINVAL && R_hi > R_lo)// Both shoots completed successfully and root is not straddled by the endpoints.
   {
@@ -1633,7 +1966,14 @@ hydro* Rloop(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<double> ave_r
         }
       }while(R_hydro(R_lo, &params) >= 0);
     }
-    gsl_root_fsolver_set (s, &F, R_lo, R_hi); // update correct endpoints that straddle target radius
+    status = gsl_root_fsolver_set (s, &F, R_lo, R_hi); // update correct endpoints that straddle target radius
+    if (tp && (status != GSL_SUCCESS || params.tp_error != "")) {
+      std::string original_tp_error = params.tp_error;
+      fprintf(stderr, "TP diagnostic error in radius refreshed set: %s (status %d)\n", original_tp_error.c_str(), status);
+      gsl_root_fsolver_free(s);
+      return NULL;
+    }
+
   }
   else if (status == GSL_EINVAL)
   {
@@ -1658,6 +1998,13 @@ hydro* Rloop(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<double> ave_r
   {
     iter++;
     status = gsl_root_fsolver_iterate (s);
+
+    if (tp && (status != GSL_SUCCESS || params.tp_error != "")) {
+      std::string original_tp_error = params.tp_error;
+      fprintf(stderr, "TP diagnostic error in radius iteration: %s (status %d)\n", original_tp_error.c_str(), status);
+      gsl_root_fsolver_free(s);
+      return NULL;
+    }
 
     if (params.x[1]<0)
       // planet structure integration was failed.
@@ -1688,8 +2035,22 @@ hydro* Rloop(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<double> ave_r
   gsl_root_fsolver_free (s);
 
   Rp = R_hi;
-  hydro *temp=new hydro(R_hi, Comp, M_Comp, Tgap, ode_eps_rel0, P0, isothermal); // Need the branch of solution that does not diverge at the center to get the central pressure and temperature
+  hydro *temp=new hydro(R_hi, Comp, M_Comp, Tgap, ode_eps_rel0, P0, isothermal, tp); // Need the branch of solution that does not diverge at the center to get the central pressure and temperature
 
+  if (tp) {
+    if (!temp || temp->getsize() == 0 || !temp->tp_diagnostics().error.empty() || !params.tp_error.empty()) {
+      std::string original_tp_error = temp ? temp->tp_diagnostics().error : "";
+      if (original_tp_error.empty()) {
+        original_tp_error = params.tp_error;
+      }
+      if (original_tp_error.empty()) {
+        original_tp_error = "empty model";
+      }
+      fprintf(stderr, "TP diagnostic error in final model: %s\n", original_tp_error.c_str());
+      delete temp;
+      return NULL;
+    }
+  }
   Pc = temp -> getP(0) * sqrt(1 + temp -> getR(0) / Rp); // Make a correction to the pressure
   Tc = temp -> getT(0);
 
@@ -1697,38 +2058,71 @@ hydro* Rloop(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<double> ave_r
 }
 
 int fitting_error(const gsl_vector *x, void *params, gsl_vector *f)
-// return the fitting error of R, P, and T given by the integrations from both end at the fitting point.
 {
   struct loop_params *p = (struct loop_params *) params;
+  if (p->tp && !p->tp_error.empty()) {
+    return GSL_EBADFUNC;
+  }
   double Mfit = p -> x[0];
   double ode_tol = p -> x[1];
   double P0 = p -> x[2];
   vector<double> M = p -> M;
   vector<double> Tgap = p -> Tgap;
   bool isothermal = p -> iso;
-  if (p->model != NULL)
+  if (p->model != NULL) {
     delete p->model;
-  
+    p->model = NULL;
+  }
+
   const double Rp = gsl_vector_get(x, 0);
   const double Pc = gsl_vector_get(x, 1);
   const double Tc = gsl_vector_get(x, 2);
 
-  double Ri, Pi, Ti, Ro, Po, To;
+  double Ri = 0.0, Pi = 0.0, Ti = 0.0, Ro = 0.0, Po = 0.0, To = 0.0;
 
-  p->model = new hydro(Rp, Pc, Tc, p->Comp, M, Tgap, isothermal, Mfit, ode_tol, P0, Ri, Pi, Ti, Ro, Po, To);
+  p->model = new hydro(Rp, Pc, Tc, p->Comp, M, Tgap, isothermal, Mfit, ode_tol, P0, Ri, Pi, Ti, Ro, Po, To, p->tp);
 
-  if (p->model->getsize() == 0)	// can't find a solution
+  if (p->tp && p->tp_error.empty()) {
+    p->tp_error = p->model->tp_diagnostics().error;
+  }
+  if (p->model->tp_diagnostics().error != "") {
+    std::string tp_error_copy = p->tp_error.empty() ? p->model->tp_diagnostics().error : p->tp_error;
+    fprintf(stderr, "TP diagnostic error in fitting_error: %s\n", tp_error_copy.c_str());
+    delete p->model;
+    p->model = NULL;
+    return GSL_EBADFUNC;
+  }
+
+  if (p->model->getsize() == 0) {
+    delete p->model;
+    p->model = NULL;
     return GSL_FAILURE;
+  }
 
-  gsl_vector_set (f, 0, (Ri-Ro) / (Ri+Ro)); // set the mass different at the fitting point and try to normalize the difference
-  gsl_vector_set (f, 1, (Pi-Po) / (Pi+Po));
-  gsl_vector_set (f, 2, (Ti-To) / (Ti+To));
+  double num0 = Ri - Ro;
+  double den0 = Ri + Ro;
+  double num1 = Pi - Po;
+  double den1 = Pi + Po;
+  double num2 = Ti - To;
+  double den2 = Ti + To;
+
+  if (!std::isfinite(num0) || !std::isfinite(den0) || den0 == 0.0 ||
+      !std::isfinite(num1) || !std::isfinite(den1) || den1 == 0.0 ||
+      !std::isfinite(num2) || !std::isfinite(den2) || den2 == 0.0) {
+    delete p->model;
+    p->model = NULL;
+    return GSL_FAILURE;
+  }
+
+  gsl_vector_set(f, 0, num0 / den0);
+  gsl_vector_set(f, 1, num1 / den1);
+  gsl_vector_set(f, 2, num2 / den2);
 
   return GSL_SUCCESS;
 }
 
 
-hydro* fitting_method(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<double> Tgap, vector<double> ave_rho, double P0, bool isothermal)	// Using the fitting method to integrate the model from both the center and the surface, and meet at an intermediate mass.  The precedure requires an accurate initial condition, run a Rloop first to determine a good initial condition.
+hydro* fitting_method(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<double> Tgap, vector<double> ave_rho, double P0, bool isothermal, const TPProfile* tp)	// Using the fitting method to integrate the model from both the center and the surface, and meet at an intermediate mass.  The precedure requires an accurate initial condition, run a Rloop first to determine a good initial condition.
 {
   int n_Comp = int(M_Comp.size());
   if (int(M_Comp.size()) != n_Comp || int(ave_rho.size()) != n_Comp || int(Tgap.size()) != n_Comp)
@@ -1768,10 +2162,25 @@ hydro* fitting_method(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<doub
   if (Mtot < 1E-14 * ME && verbose)
     cout<<"Warning: The total planet mass "<<Mtot/ME<<" Earth mass is too small.  The code may not handle correctly."<<endl;
 
+  if (tp) {
+    // Guard for fitting_method
+    if (Comp.size() != 4 || M_Comp.size() != 4 || Tgap.size() != 4) {
+      if (verbose)
+        cout << "Error: TP profile requires exactly 4 components and 4 mass slots for fitting method" << endl;
+      return nullptr;
+    }
+    double sum_first3 = (M_Comp[0] + M_Comp[1] + M_Comp[2]) * ME;
+    if (!gsl_finite(Mfit) || Mfit <= 0.0 || Mfit >= sum_first3) {
+      if (verbose)
+        cout << "Error: Mfit must be finite positive and strictly less than the sum of the first three component masses" << endl;
+      return nullptr;
+    }
+  }
+
   double Rp, Pc, Tc;
   count_shoot=0;
   count_step=0;
-  hydro *temp = Rloop(Comp, M_Comp, ave_rho, Tgap, P0, isothermal, Rp, Pc, Tc);
+  hydro *temp = Rloop(Comp, M_Comp, ave_rho, Tgap, P0, isothermal, Rp, Pc, Tc, tp);
   
   if (!temp)
     return NULL;
@@ -1786,7 +2195,7 @@ hydro* fitting_method(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<doub
   double ode_tol = ode_eps_rel1;
   fit_iter = 0;
   const size_t n = 3;
-  struct loop_params params = {{Mfit, ode_tol, P0}, Comp, M_Comp, Tgap, isothermal, NULL};
+  struct loop_params params = {{Mfit, ode_tol, P0}, Comp, M_Comp, Tgap, isothermal, NULL, tp};
   gsl_multiroot_function f = {&fitting_error, n, &params};
   gsl_vector *x;
   EQNS = gsl_multiroot_fsolver_hybrids;
@@ -1822,6 +2231,15 @@ hydro* fitting_method(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<doub
       iter++;
 
       status = gsl_multiroot_fsolver_iterate (s);
+
+      if (tp && !params.tp_error.empty()) {
+        fprintf(stderr, "TP latched error: %s\n", params.tp_error.c_str());
+        gsl_multiroot_fsolver_free(s);
+        gsl_vector_free(x);
+        delete params.model;
+        params.model = NULL;
+        return NULL;
+      }
 
       if (status != GSL_SUCCESS) 
       {
@@ -1861,6 +2279,17 @@ hydro* fitting_method(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<doub
       gsl_multiroot_fsolver_free (s);
       gsl_vector_free (x);
 
+      if (tp && (!params.model || params.model->getsize() == 0 || params.model->tp_diagnostics().corrected_fit || !params.model->tp_diagnostics().error.empty() || !params.tp_error.empty())) {
+        if (params.model) {
+          if (!params.model->tp_diagnostics().error.empty()) {
+            fprintf(stderr, "TP diagnostic error: %s\n", params.model->tp_diagnostics().error.c_str());
+          }
+          delete params.model;
+          params.model = NULL;
+        }
+        return NULL;
+      }
+
       if (params.model->checkdummy() != "")
       {
         cout<<"Warning: P-T of the solution pass through a dummy EOS "<<params.model->checkdummy()<<". Result is not reliable. Component masses ";
@@ -1883,6 +2312,11 @@ hydro* fitting_method(vector<PhaseDgm> &Comp, vector<double> M_Comp, vector<doub
       gsl_multiroot_fsolver_free (s);
       gsl_vector_free (x);
 
+      if (tp) {
+        delete params.model;
+        params.model = NULL;
+        return NULL;
+      }
       params.model->setstatus(2);
       return params.model;
     }

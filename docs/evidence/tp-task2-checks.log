@@ -1,0 +1,12 @@
+fit_status 9 retained TP profile evaluation failed at pressure: 1000100.000000 (error: TPProfile::at_cgs: pressure out of range [1000000.000000, 1000100.000000])
+radius_residual nan sentinel -1 retained TP profile evaluation failed at pressure: 1000100.000000 (error: TPProfile::at_cgs: pressure out of range [1000000.000000, 1000100.000000])
+fit_reason_assertion PASS radius_sentinel_assertion PASS radius_reason_assertion PASS
+PASS coverage
+Independent TP constructor checks: 118 assertions passed
+Independent TP hydro callbacks: 18 assertions passed
+Independent TP knot control: 353 assertions passed in 116 steps
+PASS reverse calls=165 max_T_abs=4.1296175368188415e-09 snaps=1
+PASS near-knot
+PASS near-knot
+truncation size=0 status=2 inner_mass_ME=-1 Pi=0 corrected=0 error=Inner integration did not land on fitting mass
+PASS truncation guard
