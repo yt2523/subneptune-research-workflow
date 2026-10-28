@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-28",
+  "stage": "TP stage 1: read-only audit and design",
+  "baseline_commit": "65b52ca770472de56e1b5fe68ccb9881db48a4b1",
+  "solver_baseline": "9e74aac2ccd62cd70102ce9dda922149afcb531b",
+  "branch": "main",
+  "initial_worktree_clean": true,
+  "source_and_makefile_hashes": {
+    "src/compfind.cpp": "b63e37165d99485b0414138b95d41b6b238c9feb2cd743827a7b5748edfccf66",
+    "src/compfind.h": "6a538d4f118b994a82992fc7cdd5f3d035150105fbd3c9e26863599290f21e76",
+    "src/define.h": "de052f6e08884e1d4f92be175444ed195785e59fda70f0b66ba4764ba5b72c29",
+    "src/EOS.cpp": "88be43d2da4d6c752807d3fde8cc78fa5982522b649c887aa917de2df46cffa5",
+    "src/EOS.h": "5419bfa836110ab43c0b736c0304f5f08f231fdd8ccaa15bba156f1bcf8ab919",
+    "src/EOSlist.cpp": "fd5b5bc2652f7bb3fc1e20b91d48c09c9ab48d283d4ece4ff6adf0d755b8b92b",
+    "src/EOSlist.h": "58918209ae0d2641af1147110aeae1a43b3505d3f583ab41ac6959bee5cb3d2c",
+    "src/EOSmodify.cpp": "31f2639eab8d4970691e4868b63fb903676053c9ed4677ea60bf2725dad26c47",
+    "src/EOSmodify.h": "4888f71eb511cb8cf6b73adb16d3e31f2a8eaeab3d4ee5bde94c3f9a7a1744a7",
+    "src/hydro.cpp": "098bfc6797b8558207ff15583db0ad7b7f6877d4bb4561afd592fdb795075c7b",
+    "src/hydro.h": "86ac59ed5952e3ecf1f9266d4fb3d54fe9c52b5e7dfb10d7468d4c16da116321",
+    "src/main.cpp": "59188aa1bdee2a7b470b52641369f8e7c0cc1ebcc898870eee8891a8e914da37",
+    "src/parser.cpp": "9137a002998e1c1dc5803fafd58ffec9f463e935ffa12d282f206d4efd220713",
+    "src/parser.h": "fb965fa0676545376f068fc9c36da00d34e1ec6f34df6640d3cb25a5616a56c1",
+    "src/phase.cpp": "909bfd89c162975cac7c1c782776c8e91dcd58ca85fe44cb8c4f47325a2c6cba",
+    "src/phase.h": "1070d389ff9cfa3d8093227dc17e85033690522cab7c18dfc7e0fa5fb7d6c488",
+    "Makefile": "b6cf9faa5ac06d89b06133088e0dc78d68287e49cc4bc0a72710d263cd5ea656"
+  },
+  "checks": {
+    "local_markdown_links": 25,
+    "git_diff_check": "passed",
+    "protected_src_makefile_workflow_experiments_diff": "empty",
+    "original_git_status": "read-only checked; original dirty entries preserved; clean worktree and tooling clean"
+  },
+  "review": {
+    "role": "fresh independent builder-readability reviewer",
+    "scope": "TP interface spec and task plan; not implementation/scientific acceptance",
+    "verdict": "No important unresolved question",
+    "edits": false,
+    "tests_or_models_run": false
+  },
+  "activities": {
+    "science_source_modified": false,
+    "planet_runs": 0,
+    "historical_reruns": 0,
+    "builder_provider_calls": 0,
+    "installations": 0,
+    "authentication_setup": 0
+  },
+  "next_action": "Present stage1 contract; implementation and numeric run authorization are not implied",
+  "scientific_acceptance": "NOT IMPLEMENTED / NOT RUN"
+}

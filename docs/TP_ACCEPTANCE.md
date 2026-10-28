@@ -2,6 +2,8 @@
 
 Status: NOT IMPLEMENTED; these are future scientific gates, not passed checks. Implementation cannot lower this table to make tests pass. Codex specifies; human confirms material physical choices; DeepSeek implements; uninvolved reviewer checks evidence.
 
+Stage 1 design (2026-10-28): [interface contract](TP_INTERFACE_SPEC.md), [source audit](TP_SOURCE_AUDIT.md), [task plan](superpowers/plans/2026-10-28-prescribed-tp.md). This adds a concrete proposed scope without marking any scientific gate passed or relaxing the requirements below.
+
 | ID | Requirement | Required evidence |
 |---|---|---|
 | TP01 | Default-off interface leaves existing behavior unchanged | Fixed baseline source/build/config identity and default-profile/radius regression; output precision and numerical tolerance declared before run |
