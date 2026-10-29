@@ -1,0 +1,26 @@
+{
+  "case": "B-truth",
+  "binary": {
+    "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\planet",
+    "sha256": "20e429cf450650499e2dfe708b8a6cfeaa054aff47162fc89a4fad6e41dd4676"
+  },
+  "config": {
+    "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\run.cfg",
+    "sha256": "50eeaa21b2782d9772be62c904b8f2e97a294a74a00db58bc0c89349f83271c2"
+  },
+  "numeric_contract_sha256": "6f4667856838110c39a410ab37601a749c66ef28445f78b55dc278750eae2775",
+  "gas_fraction": 0.01,
+  "controls": {
+    "R_eps_rel": 2e-05,
+    "ode_eps_rel0": 1e-07,
+    "rho_eps_rel": 1e-11,
+    "fit_eps_rel": 1e-06,
+    "ode_eps_rel1": 1e-10,
+    "T_eps_rel": 1e-11
+  },
+  "full_invocation_ordinal": 4,
+  "profile": {
+    "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\profile.csv",
+    "sha256": "eb0d57d9d0b1722aea5aaaa000138232fee58685bb22b5de776a716a90a102cb"
+  }
+}

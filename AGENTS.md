@@ -20,7 +20,7 @@ Subagent-driven-development and dispatching-parallel-agents are available in the
 
 ## Scope and continuity
 
-Main research question: under the same outer boundary and density EOS/composition treatment, how does TP shape change inferred gas mass? Current full TP interface is not implemented. Do not repeat completed grids to prove workflow infrastructure.
+Main research question: under the same outer boundary and density EOS/composition treatment, how does TP shape change inferred gas mass? Restricted mode0 prescribed-TP v1 is implemented. The frozen numerical contract stopped overall FAILED after8/20 fits (individual cases passed; no recovered composition); see experiments/prescribed-tp-20261028/README.md. Do not restart that failed contract or spend unused cases automatically. Fixed high-pressure EOS choice and any new implementation/provider budget require the operator’s decision; the author’s44-call DeepSeek allowance is exhausted. A single human-approved Codex cleanup-order repair is not broad permission to take over implementation. Do not repeat completed grids to prove workflow infrastructure.
 
 Portable runner uses staged source copies. Only approved changes are transferred back after review. One writer per run. Continue approved dependent tasks without asking between each small step; stop for missing scientific decisions, budget, permission boundary, or externally blocked state. Preserve explicit next action and stop reason. Never invent a successful reviewer verdict.
 

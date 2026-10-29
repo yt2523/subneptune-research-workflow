@@ -12,7 +12,7 @@ Replace the local clone path and credential path yourself. Do not put the actual
 若我要试真实工作流，复制 workflow.local.example.json 到被忽略的 workflow.local.json，选择新的 run_dir，检查 tests argv 后带 --allow-tests 执行。
 DeepSeek主要编码与修复；Codex做科学/工程决策、诊断和独立验收；固定测试由控制器执行。
 预算见配置；完成已授权节点后自动选依赖满足的下一项，保存状态、stop_reason和next_action。
-完整TP接口尚未实现；开始物理源码修改或新实验前，按TP_ACCEPTANCE.md明确假设、范围、阈值和预算。
+受限TP接口已实现，最新8次合成个案数值通过，但组成恢复合同FAILED并停止；先读PROJECT_STATUS.md和最新报告。不要自动追加作者已用尽的44次DeepSeek额度，也不要把未使用模型次数当成新合同许可。开始物理源码修改或新实验前，按TP_ACCEPTANCE.md明确假设、范围、阈值和预算。
 开始时只简短说明当前状态、依赖缺口、最小下一步，不重新下载全部资料。
 ```
 

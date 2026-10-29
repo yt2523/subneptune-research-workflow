@@ -1,0 +1,26 @@
+{
+  "case": "A-recovery-high",
+  "binary": {
+    "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\planet",
+    "sha256": "20e429cf450650499e2dfe708b8a6cfeaa054aff47162fc89a4fad6e41dd4676"
+  },
+  "config": {
+    "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\run.cfg",
+    "sha256": "9fc09d548f7d7eddcb89ddb1639acee8846c8347a5d22df9e9b7805d09fb4c01"
+  },
+  "numeric_contract_sha256": "6f4667856838110c39a410ab37601a749c66ef28445f78b55dc278750eae2775",
+  "gas_fraction": 0.08,
+  "controls": {
+    "R_eps_rel": 2e-05,
+    "ode_eps_rel0": 1e-07,
+    "rho_eps_rel": 1e-11,
+    "fit_eps_rel": 1e-06,
+    "ode_eps_rel1": 1e-10,
+    "T_eps_rel": 1e-11
+  },
+  "full_invocation_ordinal": 8,
+  "profile": {
+    "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\profile.csv",
+    "sha256": "bcfd25dbfd81ca5ea4625bb9b5c05f0d5e456adff951f3732ced96e9d2275af1"
+  }
+}

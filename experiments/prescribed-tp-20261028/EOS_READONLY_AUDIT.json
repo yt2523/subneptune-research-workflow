@@ -1,0 +1,22 @@
+{
+  "path": "tabulated/ChabrierHHe0275.txt",
+  "sha256": "6ccb48b3070fd0045a4dffd410d96bdf228df356d13a12537ad38f1613ee6fcb",
+  "header": "Press (GPa)\tTemp (K)\tDensity (g/cm^-3)\tdT/dP (K/GPa)",
+  "rows": 53361,
+  "unique_pressure_nodes": 441,
+  "unique_temperature_nodes": 121,
+  "rectangular_grid": true,
+  "pressure_GPa": [
+    1e-09,
+    10000000000000.0
+  ],
+  "temperature_K": [
+    100.0,
+    100000000.0
+  ],
+  "all_fields_finite": true,
+  "all_node_densities_positive": true,
+  "provenance_limit": "Source labels Chabrier/Debras Y0.275; primary paper/conversion provenance not reverified in this run. No real-EOS interpolation or model run performed.",
+  "selector_limit": "Existing HHe_tabulated returns Gas_iso below100bar and Gas_hhe above; not a single fixed-density EOS pointer.",
+  "range_limit": "EOS::density table branch returns edge values on GSL_EDOM; future prescribed real-EOS adapter must fail explicitly before that clamp."
+}

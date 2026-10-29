@@ -1,0 +1,382 @@
+{
+  "report_date": "2026-10-29",
+  "source_commit": "3608c3dc027f2ec0d92dd5adc025d30e220dbd7d",
+  "overall_status": "FAILED",
+  "forward_comparison": "PASS_UNDER_ENGINEERING_FIXTURE",
+  "composition_recovery": "NOT_BRACKETED_NO_INFERRED_COMPOSITION",
+  "full_fitting_calls": 8,
+  "original_budget": 20,
+  "bisection_calls": 0,
+  "unused_calls": 12,
+  "remaining_budget_is_not_permission_to_restart_failed_contract": true,
+  "radius_unit_cm_per_earth": 637810000.0,
+  "truth_gas_fraction": 0.01,
+  "outer_pressure_bar": 0.1,
+  "outer_temperature_K": 300,
+  "total_mass_earth": 5,
+  "density_eos": "same existing Gas(mu2,n2) in A/B; not physically validated for this research target",
+  "curves": {
+    "A": "300+30*ln(P_bar/0.1)",
+    "B": "300+40*ln(P_bar/0.1)"
+  },
+  "thermal_signal_cm": 23664201.696549416,
+  "thermal_signal_km": 236.64201696549415,
+  "thermal_signal_relative_to_A": 0.021174660335142495,
+  "tight_relative_to_B": 1.8937594061673194e-10,
+  "collinear_refine_relative_to_A": 2.035633317452716e-11,
+  "signal_over_observed_max_change": 109494327.34901443,
+  "off_radius_relative_difference": 0.0,
+  "limitations": [
+    "No recovered composition, unique root, posterior or confidence interval",
+    "Endpoint failure does not rule out an interior root",
+    "Three sampled A fractions invalidate monotonic-increase assumption but do not locate a global maximum",
+    "High gas density relative to solid flags fixture applicability; not independently proof of code defect or dynamical instability",
+    "Targeted tightening/refinement is not a rigorous global error bound; collinear nodes do not validate arbitrary curved TP interpolation",
+    "Gas-base temperature changes deeper-layer thermal state; coupled response, not gas-only thickness sensitivity",
+    "No actual TOI-732c atmosphere, RCE, evolution or moist mixed atmosphere inference"
+  ],
+  "cases": [
+    {
+      "name": "OFF-baseline",
+      "gas_fraction": 0.01,
+      "status": "PASS",
+      "ordinal": 1,
+      "exit_code": 0,
+      "seconds": 4.805884122848511,
+      "radius_cm": 1123823458.3214538,
+      "total_mass_g": 2.9861000000000006e+28,
+      "model_sha256": "e03b10327b6fdc8d145fd4f0c9421277d404364cc26fdd8d2001b03d762e45a9",
+      "radius_earth": 1.7620035093859516,
+      "rounded_profile_checks": {
+        "finite": true,
+        "radius_reversals": 0,
+        "mass_reversals": 0,
+        "pressure_reversals": 0,
+        "precision_limit": "legacy8-significant-digit output; not used for1e-12 acceptance"
+      }
+    },
+    {
+      "name": "OFF-current",
+      "gas_fraction": 0.01,
+      "status": "PASS",
+      "ordinal": 2,
+      "exit_code": 0,
+      "seconds": 4.999624967575073,
+      "radius_cm": 1123823458.3214538,
+      "total_mass_g": 2.9861000000000006e+28,
+      "model_sha256": "e03b10327b6fdc8d145fd4f0c9421277d404364cc26fdd8d2001b03d762e45a9",
+      "radius_earth": 1.7620035093859516,
+      "rounded_profile_checks": {
+        "finite": true,
+        "radius_reversals": 0,
+        "mass_reversals": 0,
+        "pressure_reversals": 0,
+        "precision_limit": "legacy8-significant-digit output; not used for1e-12 acceptance"
+      }
+    },
+    {
+      "name": "A-truth",
+      "gas_fraction": 0.01,
+      "status": "PASS",
+      "ordinal": 3,
+      "exit_code": 0,
+      "seconds": 4.793851375579834,
+      "measured_gas_fraction": 0.01000000000000012,
+      "radius_cm": 1117571725.921627,
+      "total_mass_g": 2.9861000000000006e+28,
+      "model_sha256": "37699729418572e8d310dcfe06d95ca918acf03220e93288941ffb1bd2ba4a8a",
+      "radius_earth": 1.7522016367282216,
+      "rounded_profile_checks": {
+        "finite": true,
+        "radius_reversals": 0,
+        "mass_reversals": 0,
+        "pressure_reversals": 0,
+        "precision_limit": "legacy8-significant-digit output; not used for1e-12 acceptance"
+      },
+      "reverified_acceptance": {
+        "status": "PASS",
+        "gas_rows": 195,
+        "max_effective_relative": 2.1874017602340123e-16,
+        "max_density_relative": 4.318456082023138e-16,
+        "radius_cm": 1117571725.921627,
+        "requested_gas_fraction": 0.01,
+        "measured_gas_fraction": 0.01000000000000012
+      },
+      "max_fit_residual": 2.550512482927656e-08,
+      "max_pre_projection_relative": 1.4615701760231435e-11,
+      "gas_base_pressure_GPa": 5.015697604278747,
+      "gas_base_temperature_K": 693.7649394076573,
+      "gas_base_density": 1.751715285163021,
+      "rounded_boundary": {
+        "radius_earth": 1.5221875,
+        "solid_density": 3.3111658,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "gas_thickness_earth": 0.23001413672822157
+      },
+      "hydrostatic_inverse_radius_bound": {
+        "lower_cm_inverse": 1.3506561596043327e-10,
+        "actual_from_rounded_base_cm_inverse": 1.3521067212583968e-10,
+        "upper_cm_inverse": 1.3642991511154877e-10,
+        "pass": true
+      },
+      "HHe_table_final_base_inside_rectangle": true
+    },
+    {
+      "name": "B-truth",
+      "gas_fraction": 0.01,
+      "status": "PASS",
+      "ordinal": 4,
+      "exit_code": 0,
+      "seconds": 4.789852619171143,
+      "measured_gas_fraction": 0.01000000000000012,
+      "radius_cm": 1141235927.6181765,
+      "total_mass_g": 2.9861000000000006e+28,
+      "model_sha256": "11ce7323a540269c29462dd55d8bd8d8f6caad9f1deb9457a72c25ca1483f8a2",
+      "radius_earth": 1.7893039112246225,
+      "rounded_profile_checks": {
+        "finite": true,
+        "radius_reversals": 0,
+        "mass_reversals": 0,
+        "pressure_reversals": 0,
+        "precision_limit": "legacy8-significant-digit output; not used for1e-12 acceptance"
+      },
+      "reverified_acceptance": {
+        "status": "PASS",
+        "gas_rows": 200,
+        "max_effective_relative": 2.2013720649318972e-16,
+        "max_density_relative": 4.025818853160903e-16,
+        "radius_cm": 1141235927.6181765,
+        "requested_gas_fraction": 0.01,
+        "measured_gas_fraction": 0.01000000000000012
+      },
+      "max_fit_residual": 3.442196144722674e-08,
+      "max_pre_projection_relative": 1.481937680089418e-11,
+      "gas_base_pressure_GPa": 4.944547314775931,
+      "gas_base_temperature_K": 824.4484352730144,
+      "gas_base_density": 1.4531403484016854,
+      "rounded_boundary": {
+        "radius_earth": 1.5235645,
+        "solid_density": 3.2976822,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "gas_thickness_earth": 0.2657394112246225
+      },
+      "hydrostatic_inverse_radius_bound": {
+        "lower_cm_inverse": 1.5266085508034038e-10,
+        "actual_from_rounded_base_cm_inverse": 1.5283389745388201e-10,
+        "upper_cm_inverse": 1.5420288391953575e-10,
+        "pass": true
+      },
+      "HHe_table_final_base_inside_rectangle": true
+    },
+    {
+      "name": "B-tight",
+      "gas_fraction": 0.01,
+      "status": "PASS",
+      "ordinal": 5,
+      "exit_code": 0,
+      "seconds": 6.0354766845703125,
+      "measured_gas_fraction": 0.01000000000000012,
+      "radius_cm": 1141235927.4020538,
+      "total_mass_g": 2.9861000000000006e+28,
+      "model_sha256": "ad45ca971122c60b1edba0729bd9a52c9b2492c7046ebee12b3be662d8f061d2",
+      "radius_earth": 1.7893039108857713,
+      "rounded_profile_checks": {
+        "finite": true,
+        "radius_reversals": 0,
+        "mass_reversals": 0,
+        "pressure_reversals": 0,
+        "precision_limit": "legacy8-significant-digit output; not used for1e-12 acceptance"
+      },
+      "reverified_acceptance": {
+        "status": "PASS",
+        "gas_rows": 305,
+        "max_effective_relative": 2.1806288902035233e-16,
+        "max_density_relative": 4.3761372342920207e-16,
+        "radius_cm": 1141235927.4020538,
+        "requested_gas_fraction": 0.01,
+        "measured_gas_fraction": 0.01000000000000012
+      },
+      "max_fit_residual": 1.3874485590261235e-08,
+      "max_pre_projection_relative": 1.1021825562900325e-12,
+      "gas_base_pressure_GPa": 4.944547311746534,
+      "gas_base_temperature_K": 824.4484352485075,
+      "gas_base_density": 1.4531403475545788,
+      "rounded_boundary": {
+        "radius_earth": 1.5235645,
+        "solid_density": 3.2976822,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "gas_thickness_earth": 0.26573941088577135
+      },
+      "hydrostatic_inverse_radius_bound": {
+        "lower_cm_inverse": 1.5266085506987947e-10,
+        "actual_from_rounded_base_cm_inverse": 1.5283389728794265e-10,
+        "upper_cm_inverse": 1.542028839089692e-10,
+        "pass": true
+      },
+      "HHe_table_final_base_inside_rectangle": true
+    },
+    {
+      "name": "A-collinear-refined",
+      "gas_fraction": 0.01,
+      "status": "PASS",
+      "ordinal": 6,
+      "exit_code": 0,
+      "seconds": 4.90238881111145,
+      "measured_gas_fraction": 0.01000000000000012,
+      "radius_cm": 1117571725.8988774,
+      "total_mass_g": 2.9861000000000006e+28,
+      "model_sha256": "0b6f8e48cf6568aa96806e2feb7675a84193c1aafcf4a5493cb53ccfbc1f1a9d",
+      "radius_earth": 1.7522016366925532,
+      "rounded_profile_checks": {
+        "finite": true,
+        "radius_reversals": 0,
+        "mass_reversals": 0,
+        "pressure_reversals": 0,
+        "precision_limit": "legacy8-significant-digit output; not used for1e-12 acceptance"
+      },
+      "reverified_acceptance": {
+        "status": "PASS",
+        "gas_rows": 490,
+        "max_effective_relative": 2.1364724823123075e-16,
+        "max_density_relative": 4.187368655087975e-16,
+        "radius_cm": 1117571725.8988774,
+        "requested_gas_fraction": 0.01,
+        "measured_gas_fraction": 0.01000000000000012
+      },
+      "max_fit_residual": 2.5428969615057942e-08,
+      "max_pre_projection_relative": 1.4579360143628923e-11,
+      "gas_base_pressure_GPa": 5.015697604207843,
+      "gas_base_temperature_K": 693.7649394072331,
+      "gas_base_density": 1.751715285139329,
+      "rounded_boundary": {
+        "radius_earth": 1.5221875,
+        "solid_density": 3.3111658,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "gas_thickness_earth": 0.23001413669255322
+      },
+      "hydrostatic_inverse_radius_bound": {
+        "lower_cm_inverse": 1.3506561596023015e-10,
+        "actual_from_rounded_base_cm_inverse": 1.3521067210762495e-10,
+        "upper_cm_inverse": 1.3642991511134357e-10,
+        "pass": true
+      },
+      "HHe_table_final_base_inside_rectangle": true
+    },
+    {
+      "name": "A-recovery-low",
+      "gas_fraction": 0.002,
+      "status": "PASS",
+      "ordinal": 7,
+      "exit_code": 0,
+      "seconds": 4.686466455459595,
+      "measured_gas_fraction": 0.0020000000000000018,
+      "radius_cm": 1096510592.4179645,
+      "total_mass_g": 2.9860999999999998e+28,
+      "model_sha256": "d134c6527f25cae1f8d48e965b15645975f626f7676e81c58ae3ef1d0215c0a2",
+      "radius_earth": 1.71918062184344,
+      "rounded_profile_checks": {
+        "finite": true,
+        "radius_reversals": 0,
+        "mass_reversals": 0,
+        "pressure_reversals": 0,
+        "precision_limit": "legacy8-significant-digit output; not used for1e-12 acceptance"
+      },
+      "reverified_acceptance": {
+        "status": "PASS",
+        "gas_rows": 173,
+        "max_effective_relative": 2.1976349608518118e-16,
+        "max_density_relative": 4.0606096279526483e-16,
+        "radius_cm": 1096510592.4179645,
+        "requested_gas_fraction": 0.002,
+        "measured_gas_fraction": 0.0020000000000000018
+      },
+      "max_fit_residual": 4.3483517637352134e-08,
+      "max_pre_projection_relative": 1.4605484957120443e-11,
+      "gas_base_pressure_GPa": 0.9902822361904621,
+      "gas_base_temperature_K": 645.0948052664462,
+      "gas_base_density": 0.37194606355635074,
+      "rounded_boundary": {
+        "radius_earth": 1.5302447,
+        "solid_density": 3.2166644,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "gas_thickness_earth": 0.1889359218434401
+      },
+      "hydrostatic_inverse_radius_bound": {
+        "lower_cm_inverse": 1.1257394528711407e-10,
+        "actual_from_rounded_base_cm_inverse": 1.1260063030375139e-10,
+        "upper_cm_inverse": 1.127995443758658e-10,
+        "pass": true
+      },
+      "HHe_table_final_base_inside_rectangle": true
+    },
+    {
+      "name": "A-recovery-high",
+      "gas_fraction": 0.08,
+      "status": "PASS",
+      "ordinal": 8,
+      "exit_code": 0,
+      "seconds": 4.892026662826538,
+      "measured_gas_fraction": 0.07999999999999996,
+      "radius_cm": 1105234713.8397307,
+      "total_mass_g": 2.9861000000000006e+28,
+      "model_sha256": "7bd4d05b3b307e0f82321438f64bd00a8b500a09ac93ccceae8b3fc5b9cd6542",
+      "radius_earth": 1.732858866809443,
+      "rounded_profile_checks": {
+        "finite": true,
+        "radius_reversals": 0,
+        "mass_reversals": 0,
+        "pressure_reversals": 0,
+        "precision_limit": "legacy8-significant-digit output; not used for1e-12 acceptance"
+      },
+      "reverified_acceptance": {
+        "status": "PASS",
+        "gas_rows": 226,
+        "max_effective_relative": 2.1612428522783375e-16,
+        "max_density_relative": 4.2998462480366804e-16,
+        "radius_cm": 1105234713.8397307,
+        "requested_gas_fraction": 0.08,
+        "measured_gas_fraction": 0.07999999999999996
+      },
+      "max_fit_residual": 5.103159566938957e-08,
+      "max_pre_projection_relative": 1.4598376635892184e-11,
+      "gas_base_pressure_GPa": 45.57878090049648,
+      "gas_base_temperature_K": 759.9710322618294,
+      "gas_base_density": 14.531491393079182,
+      "rounded_boundary": {
+        "radius_earth": 1.4593231,
+        "solid_density": 4.7105784,
+        "solid_phase": "Brg (Oganov)",
+        "gas_thickness_earth": 0.2735357668094429
+      },
+      "hydrostatic_inverse_radius_bound": {
+        "lower_cm_inverse": 1.682862245610791e-10,
+        "actual_from_rounded_base_cm_inverse": 1.6959308778628492e-10,
+        "upper_cm_inverse": 1.8291980930552075e-10,
+        "pass": true
+      },
+      "HHe_table_final_base_inside_rectangle": true
+    }
+  ],
+  "next_EOS_readonly_audit": {
+    "path": "tabulated/ChabrierHHe0275.txt",
+    "sha256": "6ccb48b3070fd0045a4dffd410d96bdf228df356d13a12537ad38f1613ee6fcb",
+    "header": "Press (GPa)\tTemp (K)\tDensity (g/cm^-3)\tdT/dP (K/GPa)",
+    "rows": 53361,
+    "unique_pressure_nodes": 441,
+    "unique_temperature_nodes": 121,
+    "rectangular_grid": true,
+    "pressure_GPa": [
+      1e-09,
+      10000000000000.0
+    ],
+    "temperature_K": [
+      100.0,
+      100000000.0
+    ],
+    "all_fields_finite": true,
+    "all_node_densities_positive": true,
+    "provenance_limit": "Source labels Chabrier/Debras Y0.275; primary paper/conversion provenance not reverified in this run. No real-EOS interpolation or model run performed.",
+    "selector_limit": "Existing HHe_tabulated returns Gas_iso below100bar and Gas_hhe above; not a single fixed-density EOS pointer.",
+    "range_limit": "EOS::density table branch returns edge values on GSL_EDOM; future prescribed real-EOS adapter must fail explicitly before that clamp."
+  }
+}

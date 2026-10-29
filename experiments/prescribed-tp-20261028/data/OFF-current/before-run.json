@@ -1,0 +1,22 @@
+{
+  "case": "OFF-current",
+  "binary": {
+    "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tests\\.build\\tp-off-probe",
+    "sha256": "3735f703d141901019394a1380639928da408fd363082263b0419c1b84d9f735"
+  },
+  "config": {
+    "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-current\\run.cfg",
+    "sha256": "85123d74cafd7ecd468b8c7dd3319910ec58755e42c2cefa75a9cfbae6a83a31"
+  },
+  "numeric_contract_sha256": "6f4667856838110c39a410ab37601a749c66ef28445f78b55dc278750eae2775",
+  "gas_fraction": 0.01,
+  "controls": {
+    "R_eps_rel": 2e-05,
+    "ode_eps_rel0": 1e-07,
+    "rho_eps_rel": 1e-11,
+    "fit_eps_rel": 1e-06,
+    "ode_eps_rel1": 1e-10,
+    "T_eps_rel": 1e-11
+  },
+  "full_invocation_ordinal": 2
+}

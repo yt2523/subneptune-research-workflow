@@ -1,6 +1,6 @@
 # TP interface acceptance / TP 接口验收表
 
-Status: NOT IMPLEMENTED; these are future scientific gates, not passed checks. Implementation cannot lower this table to make tests pass. Codex specifies; human confirms material physical choices; DeepSeek implements; uninvolved reviewer checks evidence.
+Status2026-10-29: restricted v1 implemented; individual numerical checks pass, but composition recovery remains FAILED. The requirement table below is unchanged. Implementation cannot lower it to make tests pass. Codex specifies; human confirms material physical choices; DeepSeek implements; uninvolved reviewer checks evidence.
 
 Stage 1 design (2026-10-28): [interface contract](TP_INTERFACE_SPEC.md), [source audit](TP_SOURCE_AUDIT.md), [task plan](superpowers/plans/2026-10-28-prescribed-tp.md). This adds a concrete proposed scope without marking any scientific gate passed or relaxing the requirements below.
 
@@ -20,3 +20,23 @@ Stage 1 design (2026-10-28): [interface contract](TP_INTERFACE_SPEC.md), [source
 | TP12 | Reversible, auditable delivery | Baseline, optional interface, scoped commits, exact source/inputs/output hashes, independent review and rollback description |
 
 Do not infer new numeric tolerances from old studies: set each threshold before its corresponding new experiment, using output precision and baseline stability. Historical 2e-5 radius matching was a past experiment's stopping rule, not a universal physical accuracy claim.
+
+## Current evidence, without lowering the requirements
+
+Original-source run3608c3d: [report and raw evidence](../experiments/prescribed-tp-20261028/README.md). Overall FAILED,8/20 full fits,0 bisection, no inferred composition.
+
+| ID | Current bounded status |
+|---|---|
+| TP01 | Solver OFF PASS: full-precision radii equal, legacy profile bytes equal. Full CLI OFF was not separately executed; CLI failure handling/source paths reviewed. |
+| TP02 | Parser/unit checks PASS (Task1/2 evidence). |
+| TP03 | Analytic interpolation/out-of-range checks and collinear-node integration PASS. No arbitrary-curved-profile accuracy claim. |
+| TP04–TP05 | v1 common gas T/density and chain-rule paths PASS; controlled tests both directions. Whole-planet fitting point remains in non-gas material. |
+| TP06 | A/B same5ME,0.1bar,300K and fixed density EOS PASS. |
+| TP07 | Tested cases have status0/no corrections, small raw fit residuals, matching masses/boundaries; rounded saved M/R/P profiles show no reversal. No physical-stability claim. |
+| TP08 | Six tested TP cases and negative coverage fixture PASS. No recovered-fraction domain established. |
+| TP09 | Targeted tightening/refinement PASS under frozen thresholds; not a rigorous global error bound. |
+| TP10 | FAILED: fixed recovery endpoints do not bracket target; no inferred composition or uniqueness. |
+| TP11 | Approximation labels/limitations recorded; real high-pressure EOS applicability remains unvalidated. |
+| TP12 | Source/inputs/output identities, raw byte archive, independent review and scoped continuing commits preserved. |
+
+Any new real-EOS implementation or recovery sampling needs explicit physical choices and a new authorized contract; the unused budget is not a waiver.

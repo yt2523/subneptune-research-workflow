@@ -1,0 +1,4 @@
+# Preserve exact archived bytes; generated/raw whitespace is intentional.
+* -text whitespace=cr-at-eol
+data/** -whitespace
+figures/*.svg -whitespace
