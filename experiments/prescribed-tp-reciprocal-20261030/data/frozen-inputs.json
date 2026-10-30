@@ -1,0 +1,594 @@
+{
+  "contract_sha256": "db05dae2f7ab9fecb51ba8690d87e621b73a8786a3d63ccdb9f6673d9233da2e",
+  "binary": {
+    "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\planet",
+    "sha256": "20e429cf450650499e2dfe708b8a6cfeaa054aff47162fc89a4fad6e41dd4676"
+  },
+  "source_files": [
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\compfind.cpp",
+      "sha256": "b63e37165d99485b0414138b95d41b6b238c9feb2cd743827a7b5748edfccf66"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\EOS.cpp",
+      "sha256": "88be43d2da4d6c752807d3fde8cc78fa5982522b649c887aa917de2df46cffa5"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\EOSlist.cpp",
+      "sha256": "fd5b5bc2652f7bb3fc1e20b91d48c09c9ab48d283d4ece4ff6adf0d755b8b92b"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\EOSmodify.cpp",
+      "sha256": "31f2639eab8d4970691e4868b63fb903676053c9ed4677ea60bf2725dad26c47"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\hydro.cpp",
+      "sha256": "1cc35dd847e3fc39f025ef4b5d97cef7aae8bdf44d038b2822ad3b3041b7ee4e"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\main.cpp",
+      "sha256": "440f3a459f285f43fdcb5d3776a686f0fa86160f0713ef11850c43d2f14775b0"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\parser.cpp",
+      "sha256": "bd9a5ffd9a4c0e3feff7d45e1c74919506bf28d9d2547b74648fd00b76fb83eb"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\phase.cpp",
+      "sha256": "534b841823bdb2f698999fa0685551c4906750f93ace5cc537ebe69302a6ea44"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\tp_diagnostics.cpp",
+      "sha256": "090def245a7bc6d6131cbcf7dac779e83e86deced58b6a07c6a3b21f6c183271"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\tp_profile.cpp",
+      "sha256": "91c18a44e866c250e2e98db87e92653825f980a7549f1e0f55c49a496cef3f3b"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\tp_settings.cpp",
+      "sha256": "ce6a01ca0da25c090e02d6e3852d91de07f55373cf8e09c453fedf0f2ed7ca04"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\tp_stepper.cpp",
+      "sha256": "c78fea949630c6faa129988e87e4f0ce01b02589f96a5bc38b8a7b5ee7831fb4"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\compfind.h",
+      "sha256": "6a538d4f118b994a82992fc7cdd5f3d035150105fbd3c9e26863599290f21e76"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\define.h",
+      "sha256": "de052f6e08884e1d4f92be175444ed195785e59fda70f0b66ba4764ba5b72c29"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\EOS.h",
+      "sha256": "5419bfa836110ab43c0b736c0304f5f08f231fdd8ccaa15bba156f1bcf8ab919"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\EOSlist.h",
+      "sha256": "58918209ae0d2641af1147110aeae1a43b3505d3f583ab41ac6959bee5cb3d2c"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\EOSmodify.h",
+      "sha256": "4888f71eb511cb8cf6b73adb16d3e31f2a8eaeab3d4ee5bde94c3f9a7a1744a7"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\hydro.h",
+      "sha256": "34ac278b042c7b12da373a48c99d829d762b4df8bcca96eb73cd2b9e21811215"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\parser.h",
+      "sha256": "cabe2c902ef84b6a50936f8bbc4f310af6bba7fbda4569f30f65a3f68862fa4c"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\phase.h",
+      "sha256": "1f8c51cd6ee7ccc8cd2a732af9c3d6c56f589f8c50dbaf37ccd7c07d48ddb4cf"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\tp_diagnostics.h",
+      "sha256": "4eb049790cd33b4c8242b73e74cdd031cb29ee97bb38911ddff5857cd761227c"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\tp_profile.h",
+      "sha256": "cad902c684f3cceb58fc8afd4ae7d409af18741472e063eeeebc277cb999652d"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\src\\tp_settings.h",
+      "sha256": "dd52df9199b0eedebe55b8ee049a016e04c8f343222ae93f632e80f242b769e3"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\Makefile",
+      "sha256": "f0c16664481c3568b0d507e98133c5914c7a26cbbc9345ee40392fe1f5a3d84c"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\AQUA.txt",
+      "sha256": "b205a5e8fe6ad1dcda3f3810d9ae0129f51624e42fd040820a470d55b33dd625"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\ChabrierHHe0275.txt",
+      "sha256": "6ccb48b3070fd0045a4dffd410d96bdf228df356d13a12537ad38f1613ee6fcb"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\iron.txt",
+      "sha256": "76a19bc513688812ba84fe8d91f8b77036aa69c06ebcef062b4db39b7dadb674"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\SeaFreeze.txt",
+      "sha256": "3026b4c1c7e78e04ba0a7052d96e54221455bdca3e8f556bedf03e2e1c1d1617"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\SFiceih.txt",
+      "sha256": "8a1d61fcb6a2eb7da26db5e4a4f3137092f4da203e6a7b8f95eef5e7d65eb49d"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\SFiceii.txt",
+      "sha256": "cfca04be214ee70dad072da7418782d6cfface89d1cbe0326c26fbf7af316e02"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\SFiceiii.txt",
+      "sha256": "f1a95c33ecdfcdd8371c25b562da7f770bbf53b4a98cf09ac8d1c30343d21120"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\SFiceV.txt",
+      "sha256": "5638b133b914386dfe0576479335c74cd028b2f42b2b7765b52fd0aed2485ab5"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\SFiceVI.txt",
+      "sha256": "02d5a6dfd99d06dbaec95983eedb8656f4f4234b1f3309e22824752b0476c9ce"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\SFwater1.txt",
+      "sha256": "8495241d343c813cd37b0930fbe610e9ca40c1c714beafa65af09fa4e9699028"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\silicate.txt",
+      "sha256": "9a6b8a7befc77cb85afa1a93bed2963cd0cf1aa8b3786fd10c3b4302410f4a2c"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\SiPREM.txt",
+      "sha256": "640e4e5f537ee1368871ab539e1c656d49f344242b87fc6c551a8a09dedb13be"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\water.txt",
+      "sha256": "35bc69231a2501682b2604a558f538ea13658f2d7206a4047a1e1ef68dcee0a9"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\water_Brown.txt",
+      "sha256": "5bb743bb39e843104379496799e82212c8f465d45698ac9d2c7d22559aa84b1c"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tabulated\\water_IAPWS95.txt",
+      "sha256": "d758ac32b4d30e8d2619405b276fcad24a5a08e2ef745829c4d9335a3e2691d0"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tests\\run_tp_validation.py",
+      "sha256": "896f1054a443b0a6dd6fbb032b37c6248132231dfc743c2aaa8388d2ded189e9"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tests\\check_tp_model.py",
+      "sha256": "d433f06a9d6ed3d3c39c9ffe9c7b19319790290c4e95584c40ef49de30abc85a"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tests\\tp_off_probe.cpp",
+      "sha256": "bda12fdd8419c4087456478161c36615c641ce18134cdf457a3f556a6f14220d"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\run\\mode0.cfg",
+      "sha256": "51c5ec0ee37fc36266262d5a407c11b7e48d4f98707cac2890374d1164c7b9bb"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tests\\fixtures\\tp_run_contract.json",
+      "sha256": "6f4667856838110c39a410ab37601a749c66ef28445f78b55dc278750eae2775"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tests\\fixtures\\tp_reciprocal_contract.json",
+      "sha256": "db05dae2f7ab9fecb51ba8690d87e621b73a8786a3d63ccdb9f6673d9233da2e"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tests\\run_tp_reciprocal.py",
+      "sha256": "a364dc1596fb594e73ef85e0a9e3319e1a741021480104dec0a59a2c9f717d00"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tests\\tp_recovery_search.py",
+      "sha256": "75205d4f5a17b56f6e8b4ecd94d2c651c4d1d49edce4e1e34b56d8eeeefde28c"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tests\\test_tp_recovery_search.py",
+      "sha256": "ebe9292102475c4c30fa5db8f451a6f68bfbb0a601ce51b56ad8b41459c5fa7c"
+    },
+    {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\tests\\test_tp_reciprocal_screen.py",
+      "sha256": "351276654792860a407a63813cfab6c58c63fe6f8cae980812e8e7431af875c6"
+    },
+    {
+      "path": "C:\\Users\\PC\\AppData\\Roaming\\Python\\Python312\\site-packages\\scipy\\optimize\\_zeros_py.py",
+      "sha256": "2f1e8f547124952b6c2b912f58add55613e3d820abf89eba03beeaf7780f0567"
+    },
+    {
+      "path": "C:\\Users\\PC\\AppData\\Roaming\\Python\\Python312\\site-packages\\scipy\\optimize\\_zeros.cp312-win_amd64.pyd",
+      "sha256": "c7b6c1630d17410db58ba3bcacea4168ff14b410e4610ca606eb92a21d70fdcd"
+    }
+  ],
+  "cached_files": [
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\frozen-inputs.json",
+      "sha256": "966fdc2f2c66f5e398a0d847f9f036c863570392dbe5043ef6a2f5bd8150feb0"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\numeric-contract.json",
+      "sha256": "dbffd318389ef2902b8c34566ad65829a761b2588456b446be00a7455d2bcbd1"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\results.json",
+      "sha256": "aac1692ee8b08e6a7a72979476d3e60b8ac7a4721b3ff27dd840004c69fb5ee7"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-collinear-refined\\acceptance-contract.json",
+      "sha256": "485668f8ecb4a1d86c04e1f667f8327dd968ef3346ec090fb288817ca24b35f3"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-collinear-refined\\acceptance.json",
+      "sha256": "761e0fea943debb04af9db8af4e806019f0dca688ea00e89aa12b7d5f6fb2220"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-collinear-refined\\before-run.json",
+      "sha256": "34caa416cee11ae453e0794251a3278db70212c5d1c44d253db1db1345479cb3"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-collinear-refined\\model.txt",
+      "sha256": "0b6f8e48cf6568aa96806e2feb7675a84193c1aafcf4a5493cb53ccfbc1f1a9d"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-collinear-refined\\model.txt.tp.json",
+      "sha256": "9ee9bf4da37f2274d108526afbd540fddc6522b119fe7a523e0006f37b9c86b2"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-collinear-refined\\profile.csv",
+      "sha256": "efde632d66beff4fbc9d86521295b4507b5a80dce6aefa0fc1e565c6982d1fad"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-collinear-refined\\run.cfg",
+      "sha256": "f2936c301d9cd5da65ace59e714d0d07a3d8d7a6d5348024eb02c0f8fa03f656"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-collinear-refined\\source-manifest.json",
+      "sha256": "c6cf3b16bb8d3f611eb7157d3f5572451bdbcbec26b5dd1f066f28ce89ee05ff"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-collinear-refined\\stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-collinear-refined\\stdout.log",
+      "sha256": "ef51251043e44337948c8ce77dbd50b6f50d0bddb86321e2a3a42cb1a7cf974d"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\acceptance-contract.json",
+      "sha256": "69655b376e9e09c4d1d7ccebd0fcfb8ec3ca00f6c21301ccb4530e455231a535"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\acceptance.json",
+      "sha256": "c68cc5b7d71500149f6a1f269667d6d66f3cd5ba17bc3889e2002735fa86fbe3"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\before-run.json",
+      "sha256": "32ad5e53a997fc93b50038c0b807045022fe77187f73e83adfa7508a118cb724"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\model.txt",
+      "sha256": "7bd4d05b3b307e0f82321438f64bd00a8b500a09ac93ccceae8b3fc5b9cd6542"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\model.txt.tp.json",
+      "sha256": "c1158c6f866b3771d02d0b39a66f6dcf9938d98fc8d8718ab1ea2401d18fbb0f"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\profile.csv",
+      "sha256": "bcfd25dbfd81ca5ea4625bb9b5c05f0d5e456adff951f3732ced96e9d2275af1"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\run.cfg",
+      "sha256": "9fc09d548f7d7eddcb89ddb1639acee8846c8347a5d22df9e9b7805d09fb4c01"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\source-manifest.json",
+      "sha256": "c6cf3b16bb8d3f611eb7157d3f5572451bdbcbec26b5dd1f066f28ce89ee05ff"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-high\\stdout.log",
+      "sha256": "2dc95e979ac2dd8895386d072f8f0dd917944d7f529522ad9240bd4ea9963dc9"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-low\\acceptance-contract.json",
+      "sha256": "4c19337846af0d374235748ff43e8fbcce254225d151686b65a42a442ce5c8ab"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-low\\acceptance.json",
+      "sha256": "0e01742bca9b562a256f4d5f5e5cde4d4794a3a489ef833d51e218455f3a17ce"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-low\\before-run.json",
+      "sha256": "dbbfc627c701bbe19b3a516a55f04a71bc912295b69f465f8578b529316390cb"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-low\\model.txt",
+      "sha256": "d134c6527f25cae1f8d48e965b15645975f626f7676e81c58ae3ef1d0215c0a2"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-low\\model.txt.tp.json",
+      "sha256": "4387be1fd99706c899e2d884e3d6f967a21bc2e0dd7ed8d6a8d7c6cfb0bd903b"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-low\\profile.csv",
+      "sha256": "bcfd25dbfd81ca5ea4625bb9b5c05f0d5e456adff951f3732ced96e9d2275af1"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-low\\run.cfg",
+      "sha256": "d60a36c6c339011b344d23889bd23b396c39c09a161718519d7ef07102d806fe"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-low\\source-manifest.json",
+      "sha256": "c6cf3b16bb8d3f611eb7157d3f5572451bdbcbec26b5dd1f066f28ce89ee05ff"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-low\\stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-recovery-low\\stdout.log",
+      "sha256": "95c683db893548b15c8778272483a8bd2a3c0c2c7e21b38a6021660b01cfc507"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-truth\\acceptance-contract.json",
+      "sha256": "b29fb8e16d9aa943deff117134304a6303fe4b4a81e9e3539072ba1b4de87eee"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-truth\\acceptance.json",
+      "sha256": "1fd674e6d2f056c3d1f0f48ee669988c070ec1ff1fad3bfc3489a0bd76fe1edf"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-truth\\before-run.json",
+      "sha256": "ab5b61f93627bfb7c3bf78562fb3319fa11539777b4569dfc3d2c6b9847686d3"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-truth\\model.txt",
+      "sha256": "37699729418572e8d310dcfe06d95ca918acf03220e93288941ffb1bd2ba4a8a"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-truth\\model.txt.tp.json",
+      "sha256": "3a5c3897ea38aa7108942d1dcf9e9ca46e320f7d3d5ed0106ca0c3694938758d"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-truth\\profile.csv",
+      "sha256": "bcfd25dbfd81ca5ea4625bb9b5c05f0d5e456adff951f3732ced96e9d2275af1"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-truth\\run.cfg",
+      "sha256": "0c0a67a5f783f915c8db8ce18f5a82c3280379670521ccd82c52b384d541830a"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-truth\\source-manifest.json",
+      "sha256": "c6cf3b16bb8d3f611eb7157d3f5572451bdbcbec26b5dd1f066f28ce89ee05ff"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-truth\\stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-truth\\stdout.log",
+      "sha256": "cc2ea748cc1404e2968f3014a4914fa8262e33727ff4f7f0902df3d0a2d6bce9"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-tight\\acceptance-contract.json",
+      "sha256": "5fbfb77a48f6f9daddf4eff069752414cbf3545a8b75cc4d55e294e128ba1bde"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-tight\\acceptance.json",
+      "sha256": "6d8cc9f21026148b0639c56c99bf5ee3c981aed267c2ce0873d3f3fe222af885"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-tight\\before-run.json",
+      "sha256": "831fa8658755ca52e1233681fea537c1f6d17eff401fd71199664fa4cc87c013"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-tight\\model.txt",
+      "sha256": "ad45ca971122c60b1edba0729bd9a52c9b2492c7046ebee12b3be662d8f061d2"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-tight\\model.txt.tp.json",
+      "sha256": "b48484f3e61ef6f0342f8f5b55847935ac463d084a6c7ef59e2cccbf090fc0b9"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-tight\\profile.csv",
+      "sha256": "eb0d57d9d0b1722aea5aaaa000138232fee58685bb22b5de776a716a90a102cb"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-tight\\run.cfg",
+      "sha256": "423860b7e3ad612d85ba79b084567660af8d9c15bc421b42bfa38902e8adae7f"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-tight\\source-manifest.json",
+      "sha256": "c6cf3b16bb8d3f611eb7157d3f5572451bdbcbec26b5dd1f066f28ce89ee05ff"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-tight\\stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-tight\\stdout.log",
+      "sha256": "5dcbf4fbc997609ee02eadaa3faf0cf87500ed412b54e8f88a658fc2a02db8fe"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\acceptance-contract.json",
+      "sha256": "0215db1b95151b7e9c997afe84c0075db4b4612dc92011c23cdfc776ea5e0de7"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\acceptance.json",
+      "sha256": "78cd4a579a8cda6914948e0869babee8cfc282efcd698852d4b098fa6e1ce612"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\before-run.json",
+      "sha256": "710758977cb3805464742829b360237d9279bcfe3eec303912f9bfb5004201f7"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\model.txt",
+      "sha256": "11ce7323a540269c29462dd55d8bd8d8f6caad9f1deb9457a72c25ca1483f8a2"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\model.txt.tp.json",
+      "sha256": "27ca7d2851cf82bb2548324b9147be33e7174ccea16af956681d20a08876315f"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\profile.csv",
+      "sha256": "eb0d57d9d0b1722aea5aaaa000138232fee58685bb22b5de776a716a90a102cb"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\run.cfg",
+      "sha256": "50eeaa21b2782d9772be62c904b8f2e97a294a74a00db58bc0c89349f83271c2"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\source-manifest.json",
+      "sha256": "c6cf3b16bb8d3f611eb7157d3f5572451bdbcbec26b5dd1f066f28ce89ee05ff"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth\\stdout.log",
+      "sha256": "4b8db977574442168c88d710c494879d5c812c7c3fd98d4c2d3598492fad048a"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-baseline\\before-run.json",
+      "sha256": "29eeb4023fc6d84bf65b16ba64be63495dba7c271d6c621e01f2b8050d33f95b"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-baseline\\model.txt",
+      "sha256": "e03b10327b6fdc8d145fd4f0c9421277d404364cc26fdd8d2001b03d762e45a9"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-baseline\\model.txt.off.json",
+      "sha256": "945ec9937102afd093f3331d67778bbe202180e630ff36490f1267f3717a6210"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-baseline\\run.cfg",
+      "sha256": "85123d74cafd7ecd468b8c7dd3319910ec58755e42c2cefa75a9cfbae6a83a31"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-baseline\\source-manifest.json",
+      "sha256": "24e34d23cef68dbcdd0ebc710e06909b16d9935f09fa25d54d88283c139a795d"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-baseline\\stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-baseline\\stdout.log",
+      "sha256": "98ecd0d7d3659518736d518b3034d2e25d6d0a1d6f5afa078ea59ccc2cab6900"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-current\\before-run.json",
+      "sha256": "a59c92dbc9390bea6209204996511cd5d5b530b6e094312bdaf99bf060510eac"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-current\\model.txt",
+      "sha256": "e03b10327b6fdc8d145fd4f0c9421277d404364cc26fdd8d2001b03d762e45a9"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-current\\model.txt.off.json",
+      "sha256": "945ec9937102afd093f3331d67778bbe202180e630ff36490f1267f3717a6210"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-current\\run.cfg",
+      "sha256": "85123d74cafd7ecd468b8c7dd3319910ec58755e42c2cefa75a9cfbae6a83a31"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-current\\source-manifest.json",
+      "sha256": "c6cf3b16bb8d3f611eb7157d3f5572451bdbcbec26b5dd1f066f28ce89ee05ff"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-current\\stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-current\\stdout.log",
+      "sha256": "98ecd0d7d3659518736d518b3034d2e25d6d0a1d6f5afa078ea59ccc2cab6900"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-shared\\model.txt",
+      "sha256": "e03b10327b6fdc8d145fd4f0c9421277d404364cc26fdd8d2001b03d762e45a9"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-shared\\model.txt.off.json",
+      "sha256": "945ec9937102afd093f3331d67778bbe202180e630ff36490f1267f3717a6210"
+    },
+    {
+      "path": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\OFF-shared\\run.cfg",
+      "sha256": "85123d74cafd7ecd468b8c7dd3319910ec58755e42c2cefa75a9cfbae6a83a31"
+    }
+  ],
+  "reused_evidence": {
+    "A-truth": {
+      "directory": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-truth",
+      "original_acceptance_contract_sha256": "b29fb8e16d9aa943deff117134304a6303fe4b4a81e9e3539072ba1b4de87eee",
+      "diagnostics_sha256": "3a5c3897ea38aa7108942d1dcf9e9ca46e320f7d3d5ed0106ca0c3694938758d",
+      "original_config_sha256": "0c0a67a5f783f915c8db8ce18f5a82c3280379670521ccd82c52b384d541830a",
+      "radius_cm": 1117571725.921627,
+      "requested_fraction": 0.01,
+      "original_controller_identity": "retained in original source manifest; not relabelled as followup",
+      "branch_screen": {
+        "gas_density": 1.751715285163021,
+        "rounded_solid_density": 3.3111658,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "ratio": 0.529032791158637,
+        "relative_margin": 1e-06,
+        "pass": true,
+        "meaning": "branch screen only, not physical validity/stability"
+      }
+    },
+    "B-truth": {
+      "directory": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-truth",
+      "original_acceptance_contract_sha256": "0215db1b95151b7e9c997afe84c0075db4b4612dc92011c23cdfc776ea5e0de7",
+      "diagnostics_sha256": "27ca7d2851cf82bb2548324b9147be33e7174ccea16af956681d20a08876315f",
+      "original_config_sha256": "50eeaa21b2782d9772be62c904b8f2e97a294a74a00db58bc0c89349f83271c2",
+      "radius_cm": 1141235927.6181765,
+      "requested_fraction": 0.01,
+      "original_controller_identity": "retained in original source manifest; not relabelled as followup",
+      "branch_screen": {
+        "gas_density": 1.4531403484016854,
+        "rounded_solid_density": 3.2976822,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "ratio": 0.4406550602121955,
+        "relative_margin": 1e-06,
+        "pass": true,
+        "meaning": "branch screen only, not physical validity/stability"
+      }
+    },
+    "A-collinear-refined": {
+      "directory": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\A-collinear-refined",
+      "original_acceptance_contract_sha256": "485668f8ecb4a1d86c04e1f667f8327dd968ef3346ec090fb288817ca24b35f3",
+      "diagnostics_sha256": "9ee9bf4da37f2274d108526afbd540fddc6522b119fe7a523e0006f37b9c86b2",
+      "original_config_sha256": "f2936c301d9cd5da65ace59e714d0d07a3d8d7a6d5348024eb02c0f8fa03f656",
+      "radius_cm": 1117571725.8988774,
+      "requested_fraction": 0.01,
+      "original_controller_identity": "retained in original source manifest; not relabelled as followup"
+    },
+    "B-tight": {
+      "directory": "D:\\Codex\\tmp\\subneptune-tp-20261028\\numeric-a30b40-v2\\B-tight",
+      "original_acceptance_contract_sha256": "5fbfb77a48f6f9daddf4eff069752414cbf3545a8b75cc4d55e294e128ba1bde",
+      "diagnostics_sha256": "b48484f3e61ef6f0342f8f5b55847935ac463d084a6c7ef59e2cccbf090fc0b9",
+      "original_config_sha256": "423860b7e3ad612d85ba79b084567660af8d9c15bc421b42bfa38902e8adae7f",
+      "radius_cm": 1141235927.4020538,
+      "requested_fraction": 0.01,
+      "original_controller_identity": "retained in original source manifest; not relabelled as followup"
+    }
+  },
+  "python_version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "scipy_version": "1.15.3",
+  "new_api_calls": 0
+}

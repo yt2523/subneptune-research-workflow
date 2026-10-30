@@ -1,0 +1,9 @@
+{
+  "gas_density": 0.3927983589049635,
+  "rounded_solid_density": 3.2107093,
+  "solid_phase": "Fo/Ol (Dorogokupets)",
+  "ratio": 0.12234005704127854,
+  "relative_margin": 1e-06,
+  "pass": true,
+  "meaning": "branch screen only, not physical validity/stability"
+}

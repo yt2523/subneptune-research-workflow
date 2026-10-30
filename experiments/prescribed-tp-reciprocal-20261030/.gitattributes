@@ -1,0 +1,4 @@
+# Keep exact report/raw artifact bytes.
+* -text whitespace=cr-at-eol
+data/** -whitespace
+figures/*.svg -whitespace

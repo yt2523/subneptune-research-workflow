@@ -1,0 +1,28 @@
+{
+  "followup_contract_sha256": "db05dae2f7ab9fecb51ba8690d87e621b73a8786a3d63ccdb9f6673d9233da2e",
+  "binary": {
+    "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\planet",
+    "sha256": "20e429cf450650499e2dfe708b8a6cfeaa054aff47162fc89a4fad6e41dd4676"
+  },
+  "config": {
+    "path": "D:\\Codex\\tmp\\subneptune-stage4-20261029\\numeric-reciprocal-v1\\confirm-refined\\run.cfg",
+    "sha256": "423478a53685c76eb17c82f1b957955a3382730decf5e0758b921b128d1884da"
+  },
+  "profile": {
+    "path": "D:\\Codex\\tmp\\subneptune-stage4-20261029\\numeric-reciprocal-v1\\confirm-refined\\profile.csv",
+    "sha256": "aee7e96915a378848d7d4ae58f09505ddb3c9c788c45ff14d8e76b0dfc53ba67"
+  },
+  "requested_fraction": 0.0024360387783536647,
+  "controls": {
+    "R_eps_rel": 2e-05,
+    "ode_eps_rel0": 1e-07,
+    "rho_eps_rel": 1e-11,
+    "fit_eps_rel": 1e-06,
+    "ode_eps_rel1": 1e-10,
+    "T_eps_rel": 1e-11
+  },
+  "kind": "confirmation",
+  "variant": "refined",
+  "new_fit_ordinal": 6,
+  "cumulative_fit_ordinal": 14
+}

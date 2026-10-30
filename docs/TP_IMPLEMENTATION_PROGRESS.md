@@ -37,3 +37,7 @@ Current implementation is available for mode0 prescribed TP under the documented
 ## 2026-10-29 numerical-result closure
 
 Original run source3608c3d. All8 individual fits passed their frozen checks, including6 prescribed-TP and2 precision-only OFF probes. Overall contract FAILED after endpoint nonbracketing;0 bisection calls and no recovered composition. The targeted forward signal passed; it does not validate the ideal EOS physically. Unused12 cases are not permission to restart. [Report, original evidence and next gate](../experiments/prescribed-tp-20261028/README.md). Independent result/claim audit approved this limited interpretation; it did not rerun models. Do not relabel the run overall PASS.
+
+## Stage4 reciprocal completion
+
+Latest explicit human continuation authorized a separate, reviewed post-failure A→B contract before new fits (223374d). Same A30/B40,1%truth,5ME,outerP/T andGas(mu2,n2); no source physics edits/API extension. Foursearch+twoindependentconfirmation fits foundfg0.0024360387783536647 withsignednumericalbracket[0.0024303854921362464,0.0024360387783536647], residual2.0373e-8. Bothsamefg tight/refinedchecks passed. Independent rawdata/claim audits approved oneconditional local Stage4 engineering recovery. Original direction remainsFAILED; no uniqueness/realisticEOS/statisticalinterval claim. [New report](../experiments/prescribed-tp-reciprocal-20261030/README.md). Cumulative14fits;provider44/44 unchanged. Stage5notstarted; unusedcallsnotautomaticauthorization.

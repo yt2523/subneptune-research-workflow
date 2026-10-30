@@ -29,10 +29,12 @@ Create tests/tp_recovery_search.py (pure bracket-search helper), tests/test_tp_r
 
 ## Task2: bounded follow-up
 
-- [ ] Verify original8-case state/hashes/currentbinary, cachedtargetA and upperB, controls and gas composition; freeze all actual scientific/controller/dependency identities.
-- [ ] Compute newlowerB0.0005; require genuine target bracket with cachedB0.01.
-- [ ] Search within budget; everyacceptedpoint retains provenance and branchscreen.
-- [ ] Atactualcandidate run one tighter-only and one collinear-only check; both mustpass everyexistinggate and targetmatch.
-- [ ] Fresh independent audit of rawoutputs, signs, massbias and claimlimits; archive samecontinuationbranch, keeping originalfailure intact.
+- [x] Verify original8-case state/hashes/currentbinary, cachedtargetA and upperB, controls and gas composition; freeze all actual scientific/controller/dependency identities.
+- [x] Compute newlowerB0.0005; require genuine target bracket with cachedB0.01.
+- [x] Search within budget; everyacceptedpoint retains provenance and branchscreen.
+- [x] Atactualcandidate run one tighter-only and one collinear-only check; both mustpass everyexistinggate and targetmatch.
+- [x] Fresh independent audit of rawoutputs, signs, massbias and claimlimits; archive samecontinuationbranch, keeping originalfailure intact.
 
 If any criterion fails, record failure and diagnose from evidence; do not silently tune the contract. Completion is conditionalengineeringstage4 evidence, not realisticEOS/observedplanetinference. Stage5 remains separate.
+
+Outcome: conditional local recoveryPASS after6newfits; originalfailed direction retained. See ../../../experiments/prescribed-tp-reciprocal-20261030/README.md.

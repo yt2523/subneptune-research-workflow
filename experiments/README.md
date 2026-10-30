@@ -33,3 +33,5 @@ PYTHONDONTWRITEBYTECODE=1 python3 experiments/replay.py literature-cases \
 The first quantitative reproduction targets the default two-layer planet in Huang et al. (2022), Fig. 4. Historical capstone and literature-recipe experiments are archived without changing their raw results, including flagged trials. Their original scripts/configs retain historical absolute paths; `replay.py` rewrites only the output path for portable Linux replay. Use a fresh output directory on each run. Diagnostic builds add read-only logging to a temporary copy of main.cpp; solver and EOS sources are unchanged. Model convergence alone does not certify physical validity.
 
 - [Prescribed TP2026-10-28, audited2026-10-29](prescribed-tp-20261028/README.md): forward numerical comparison passed; recovery overallFAILED,8/20 fits, no inferred composition.
+
+- [Stage4 reciprocal recovery](prescribed-tp-reciprocal-20261030/README.md): oneconditionalA→Blocal recoveryPASS; originaloppositedirectionFAILEDretained;6new/14cumulativefits,0newAPI.

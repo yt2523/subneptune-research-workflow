@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "status": "FROZEN_BEFORE_RUNS",
+  "date": "2026-10-28",
+  "scope": "synthetic fixed-mu2 prescribed-TP sensitivity; not TOI-732c atmosphere",
+  "total_mass_earth": 5,
+  "outer_pressure_bar": 0.1,
+  "outer_temperature_K": 300,
+  "rock_core_fraction": 0.325,
+  "water_mass_earth": 0,
+  "truth_gas_fraction": 0.01,
+  "curves": {
+    "B": "300 + 40*ln(P_bar/0.1)",
+    "A": "300 + 30*ln(P_bar/0.1)"
+  },
+  "profile_pressure_bar": [
+    0.1,
+    10000000000.0
+  ],
+  "density_eos": "gas_fixed_mu2: existing Gas, mmol2,n2",
+  "baseline_source_commit": "9e74aac2ccd62cd70102ce9dda922149afcb531b",
+  "solver_controls": {
+    "R_eps_rel": 2e-05,
+    "ode_eps_rel0": 1e-07,
+    "rho_eps_rel": 1e-11,
+    "fit_eps_rel": 1e-06,
+    "ode_eps_rel1": 1e-10,
+    "T_eps_rel": 1e-11
+  },
+  "tight_controls": {
+    "ode_eps_rel0": 1e-08,
+    "R_eps_rel": 2e-06,
+    "ode_eps_rel1": 1e-11,
+    "fit_eps_rel": 1e-07
+  },
+  "thresholds": {
+    "normalized_fit_residual_max": 1e-06,
+    "recovery_radius_relative_stop": 1e-05,
+    "recovery_fraction_bracket_width_stop": 2e-05,
+    "minimum_signal_to_numerical_change": 10,
+    "effective_temperature_relative_max": 1e-12,
+    "radius_tight_or_refine_relative_max": 2e-05,
+    "total_mass_relative_error_max": 1e-08,
+    "stored_density_relative_max": 1e-10,
+    "accepted_pre_projection_temperature_relative_max": 1e-06,
+    "off_default_radius_relative_max": 1e-12
+  },
+  "rationale": {
+    "off": "identical solver equations and same build environment should reproduce unchanged baseline",
+    "numerical": "historical targeted controls ranged5.5e-8 to2.5e-6;2e-5 is conservative test ceiling, AND actual variation must be10x smaller than signal",
+    "interpolation": "two-node linear T(logP) curves are exact within evaluator; added collinear nodes test implementation knot handling, no curved-profile accuracy claim",
+    "fit": "explicit solver contract1e-6, stricter than historical1e-4; not universal planet accuracy",
+    "state": "common evaluator and idealGas algebra should agree at roundoff; preprojection tolerance measured separately"
+  },
+  "budget": {
+    "max_recovery_iterations": 12,
+    "max_seconds_per_case": 120,
+    "max_total_planet_invocations": 20
+  },
+  "planned_cases": [
+    "unchanged_OFF_baseline",
+    "modified_OFF_samecfg",
+    "A_truth",
+    "B_truth",
+    "B_tight",
+    "A_collinear_refined",
+    "A_recovery_low",
+    "A_recovery_high",
+    "A_recovery_bisection_up_to12"
+  ],
+  "inverse_bracket": [
+    0.002,
+    0.08
+  ],
+  "rules": [
+    "every invocation including failed ones counts; no silent budget extension",
+    "no corrected-fit acceptance; ode_status0 and exact input/config/source/profile identities required",
+    "no new solid/water/mixed atmosphere physics; preserve core:mantle ratio as gas fraction varies",
+    "if no bracket or signal unresolved, report failure; do not fabricate recovered composition",
+    "freeze exact source/build/config/profile hashes immediately before runs"
+  ],
+  "previous_contract_sha256": "08e42d88e187b84a00e1d7009d1c76d621537dc9a3e744682e612b630d5c9533",
+  "earth_mass_g": 5.9722e+27,
+  "density_formula": {
+    "mmol": 2,
+    "mp": 1.672621777e-24,
+    "kb": 1.3806488e-16
+  },
+  "pre_run_amendment": {
+    "full_planet_invocations_before_amendment": 0,
+    "reason": "Synthetic fixture design before any outputs: constant-gravity thin-envelope estimate integral T dlnP=300L+bL^2/2 at L~13 suggests A20 versus B40 needs ~18x gas fraction, outside frozen0.002..0.08 bracket. A30 versus B40 suggests ~3.3x, inside bracket. This approximation is for fixture planning only, not solver evidence. No threshold, bracket or20-case budget changed."
+  },
+  "requested_gas_fraction": 0.0024360387783536647,
+  "followup_contract_sha256": "db05dae2f7ab9fecb51ba8690d87e621b73a8786a3d63ccdb9f6673d9233da2e",
+  "artifacts": {
+    "build": {
+      "path": "D:\\Codex\\downloads\\subneptune-research-workflow\\planet",
+      "sha256": "20e429cf450650499e2dfe708b8a6cfeaa054aff47162fc89a4fad6e41dd4676"
+    },
+    "config": {
+      "path": "D:\\Codex\\tmp\\subneptune-stage4-20261029\\numeric-reciprocal-v1\\confirm-refined\\run.cfg",
+      "sha256": "423478a53685c76eb17c82f1b957955a3382730decf5e0758b921b128d1884da"
+    },
+    "profile": {
+      "path": "D:\\Codex\\tmp\\subneptune-stage4-20261029\\numeric-reciprocal-v1\\confirm-refined\\profile.csv",
+      "sha256": "aee7e96915a378848d7d4ae58f09505ddb3c9c788c45ff14d8e76b0dfc53ba67"
+    },
+    "source_manifest": {
+      "path": "D:\\Codex\\tmp\\subneptune-stage4-20261029\\numeric-reciprocal-v1\\confirm-refined\\source-manifest.json",
+      "sha256": "4fe1a4f3bdaefac2f67efd9a5646d4e30fed9ba1a1a935e2365235246a3c525a"
+    },
+    "diagnostics": {
+      "path": "D:\\Codex\\tmp\\subneptune-stage4-20261029\\numeric-reciprocal-v1\\confirm-refined\\model.txt.tp.json",
+      "sha256": "ed1c9ba9dcdab82792ed481d7ec94f6eec11b70f57d4b42339291bcb82e1b71c"
+    }
+  }
+}

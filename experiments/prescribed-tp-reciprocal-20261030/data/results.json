@@ -1,0 +1,272 @@
+{
+  "status": "PASS_LOCAL_ENGINEERING_RECOVERY",
+  "old_contract_status": "FAILED",
+  "prior_full_fits": 8,
+  "new_full_fits": 6,
+  "cumulative_full_fits": 14,
+  "cases": [
+    {
+      "case": "search-01-lower",
+      "gas_fraction": 0.0005,
+      "kind": "search",
+      "variant": null,
+      "status": "PASS",
+      "new_fit_ordinal": 1,
+      "exit_code": 0,
+      "seconds": 13.912903785705566,
+      "model_sha256": "72b8f274fd53f7b8cc7fc9ef357bd4d41d8d542b8e079b9fca358eb0dc0f3fa4",
+      "diagnostics_sha256": "a379e114500633304c8eb11cae22ba6bb3e957f57e3a4eba106abf69a88a3fcb",
+      "radius_cm": 1089359983.0997381,
+      "measured_gas_fraction": 0.0004999999999999449,
+      "target_relative_residual": -0.025243787192829673,
+      "branch_screen": {
+        "gas_density": 0.08437830888711016,
+        "rounded_solid_density": 3.1910892,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "ratio": 0.026441852169820312,
+        "relative_margin": 1e-06,
+        "pass": true,
+        "meaning": "branch screen only, not physical validity/stability"
+      }
+    },
+    {
+      "case": "search-02",
+      "gas_fraction": 0.002549824845391515,
+      "kind": "search",
+      "variant": null,
+      "status": "PASS",
+      "new_fit_ordinal": 2,
+      "exit_code": 0,
+      "seconds": 6.779201507568359,
+      "model_sha256": "87d66cabfe01a3f9540304a1f178f021eabcacc59ee229a82246cd90c58fbee8",
+      "diagnostics_sha256": "e1359ee225b365599af70e6e3b3cd61fc06391f1d161a7c8594dcdbcf749084b",
+      "radius_cm": 1118396969.4232671,
+      "measured_gas_fraction": 0.0025498248453914574,
+      "target_relative_residual": 0.000738425536812439,
+      "branch_screen": {
+        "gas_density": 0.3927983589049635,
+        "rounded_solid_density": 3.2107093,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "ratio": 0.12234005704127854,
+        "relative_margin": 1e-06,
+        "pass": true,
+        "meaning": "branch screen only, not physical validity/stability"
+      }
+    },
+    {
+      "case": "search-03",
+      "gas_fraction": 0.0024303854921362464,
+      "kind": "search",
+      "variant": null,
+      "status": "PASS",
+      "new_fit_ordinal": 3,
+      "exit_code": 0,
+      "seconds": 6.37770414352417,
+      "model_sha256": "ee07d98e6ddaa629ed91e6865b0f975e5d01df42bb4b96138e41400be6285b91",
+      "diagnostics_sha256": "2449a098bd31e59ce5722ab3153d010744050663ec35370e00958381cb3f8120",
+      "radius_cm": 1117529725.9297473,
+      "measured_gas_fraction": 0.0024303854921362555,
+      "target_relative_residual": -3.75814732115431e-05,
+      "branch_screen": {
+        "gas_density": 0.37531622314622715,
+        "rounded_solid_density": 3.2093797,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "ratio": 0.11694353994518852,
+        "relative_margin": 1e-06,
+        "pass": true,
+        "meaning": "branch screen only, not physical validity/stability"
+      }
+    },
+    {
+      "case": "search-04",
+      "gas_fraction": 0.0024360387783536647,
+      "kind": "search",
+      "variant": null,
+      "status": "PASS",
+      "new_fit_ordinal": 4,
+      "exit_code": 0,
+      "seconds": 5.383366584777832,
+      "model_sha256": "50aad170569e157c6ea00ef12eb126e0663432f947f29e522d445df665674f56",
+      "diagnostics_sha256": "be38a73a674bb216883130d82866598621c546b7dd1286957216951e3398de53",
+      "radius_cm": 1117571748.6900938,
+      "measured_gas_fraction": 0.002436038778353633,
+      "target_relative_residual": 2.0373159219170345e-08,
+      "branch_screen": {
+        "gas_density": 0.3761444950971985,
+        "rounded_solid_density": 3.2094424,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "ratio": 0.11719932879842258,
+        "relative_margin": 1e-06,
+        "pass": true,
+        "meaning": "branch screen only, not physical validity/stability"
+      }
+    },
+    {
+      "case": "confirm-tight",
+      "gas_fraction": 0.0024360387783536647,
+      "kind": "confirmation",
+      "variant": "tight",
+      "status": "PASS",
+      "new_fit_ordinal": 5,
+      "exit_code": 0,
+      "seconds": 7.588711977005005,
+      "model_sha256": "04caea780899cef0434b3ff1d0620e46d70a14ef4c71c7b83b6e867d0407e430",
+      "diagnostics_sha256": "6eb1d4b2ae5fb216588c26fed5685200490dc2015e83bab7edc847df4de69b5f",
+      "radius_cm": 1117571748.6663868,
+      "measured_gas_fraction": 0.002436038778353633,
+      "target_relative_residual": 2.035194634088745e-08,
+      "branch_screen": {
+        "gas_density": 0.37614449473486244,
+        "rounded_solid_density": 3.2094424,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "ratio": 0.1171993286855257,
+        "relative_margin": 1e-06,
+        "pass": true,
+        "meaning": "branch screen only, not physical validity/stability"
+      }
+    },
+    {
+      "case": "confirm-refined",
+      "gas_fraction": 0.0024360387783536647,
+      "kind": "confirmation",
+      "variant": "refined",
+      "status": "PASS",
+      "new_fit_ordinal": 6,
+      "exit_code": 0,
+      "seconds": 6.125061273574829,
+      "model_sha256": "af5865483064371661e53d20ad26e83faec9a1a01d2e83741924de6f477c918e",
+      "diagnostics_sha256": "ed1c9ba9dcdab82792ed481d7ec94f6eec11b70f57d4b42339291bcb82e1b71c",
+      "radius_cm": 1117571748.671967,
+      "measured_gas_fraction": 0.002436038778353633,
+      "target_relative_residual": 2.0356939476195403e-08,
+      "branch_screen": {
+        "gas_density": 0.37614449508701375,
+        "rounded_solid_density": 3.2094424,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "ratio": 0.11719932879524922,
+        "relative_margin": 1e-06,
+        "pass": true,
+        "meaning": "branch screen only, not physical validity/stability"
+      }
+    }
+  ],
+  "new_provider_calls": 0,
+  "selection_disclosure": "A->B direction selected after seeing B->A endpoints fail. Preserve/report both outcomes. A success is conditional, not an unbiased survey or generally successful inversion.",
+  "search": {
+    "converged": true,
+    "candidate": {
+      "case": "search-04",
+      "gas_fraction": 0.0024360387783536647,
+      "kind": "search",
+      "variant": null,
+      "status": "PASS",
+      "new_fit_ordinal": 4,
+      "exit_code": 0,
+      "seconds": 5.383366584777832,
+      "model_sha256": "50aad170569e157c6ea00ef12eb126e0663432f947f29e522d445df665674f56",
+      "diagnostics_sha256": "be38a73a674bb216883130d82866598621c546b7dd1286957216951e3398de53",
+      "radius_cm": 1117571748.6900938,
+      "measured_gas_fraction": 0.002436038778353633,
+      "target_relative_residual": 2.0373159219170345e-08,
+      "branch_screen": {
+        "gas_density": 0.3761444950971985,
+        "rounded_solid_density": 3.2094424,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "ratio": 0.11719932879842258,
+        "relative_margin": 1e-06,
+        "pass": true,
+        "meaning": "branch screen only, not physical validity/stability"
+      },
+      "residual": 2.0373159219170345e-08,
+      "x": -6.017382010396796
+    },
+    "lower": {
+      "case": "search-03",
+      "gas_fraction": 0.0024303854921362464,
+      "kind": "search",
+      "variant": null,
+      "status": "PASS",
+      "new_fit_ordinal": 3,
+      "exit_code": 0,
+      "seconds": 6.37770414352417,
+      "model_sha256": "ee07d98e6ddaa629ed91e6865b0f975e5d01df42bb4b96138e41400be6285b91",
+      "diagnostics_sha256": "2449a098bd31e59ce5722ab3153d010744050663ec35370e00958381cb3f8120",
+      "radius_cm": 1117529725.9297473,
+      "measured_gas_fraction": 0.0024303854921362555,
+      "target_relative_residual": -3.75814732115431e-05,
+      "branch_screen": {
+        "gas_density": 0.37531622314622715,
+        "rounded_solid_density": 3.2093797,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "ratio": 0.11694353994518852,
+        "relative_margin": 1e-06,
+        "pass": true,
+        "meaning": "branch screen only, not physical validity/stability"
+      },
+      "residual": -3.75814732115431e-05,
+      "x": -6.019705395472278
+    },
+    "upper": {
+      "case": "search-04",
+      "gas_fraction": 0.0024360387783536647,
+      "kind": "search",
+      "variant": null,
+      "status": "PASS",
+      "new_fit_ordinal": 4,
+      "exit_code": 0,
+      "seconds": 5.383366584777832,
+      "model_sha256": "50aad170569e157c6ea00ef12eb126e0663432f947f29e522d445df665674f56",
+      "diagnostics_sha256": "be38a73a674bb216883130d82866598621c546b7dd1286957216951e3398de53",
+      "radius_cm": 1117571748.6900938,
+      "measured_gas_fraction": 0.002436038778353633,
+      "target_relative_residual": 2.0373159219170345e-08,
+      "branch_screen": {
+        "gas_density": 0.3761444950971985,
+        "rounded_solid_density": 3.2094424,
+        "solid_phase": "Fo/Ol (Dorogokupets)",
+        "ratio": 0.11719932879842258,
+        "relative_margin": 1e-06,
+        "pass": true,
+        "meaning": "branch screen only, not physical validity/stability"
+      },
+      "residual": 2.0373159219170345e-08,
+      "x": -6.017382010396796
+    },
+    "fraction_width": 5.6532862174182505e-06,
+    "new_evaluations": 3,
+    "cleanup_evaluations": 0,
+    "optimizer_status": "stopped_on_verified_criteria",
+    "acceptance_reason": "actual_radius_and_signed_bracket",
+    "unique_root_proven": false
+  },
+  "stage4_claim": "one selected reciprocal local recovery; original direction remains FAILED",
+  "recovery": {
+    "truth_profile": "A30",
+    "fit_profile": "B40",
+    "true_fraction": 0.01,
+    "inferred_fraction": 0.0024360387783536647,
+    "signed_bias_fraction": -0.007563961221646336,
+    "relative_bias": -0.7563961221646336,
+    "signed_bracket_fraction": [
+      0.0024303854921362464,
+      0.0024360387783536647
+    ],
+    "nominal_radius_relative_residual": 2.0373159219170345e-08,
+    "confirmation": [
+      {
+        "case": "confirm-tight",
+        "same_fraction": 0.0024360387783536647,
+        "target_relative_residual": 2.035194634088745e-08,
+        "relative_change_from_nominal": 2.1212877850725598e-11
+      },
+      {
+        "case": "confirm-refined",
+        "same_fraction": 0.0024360387783536647,
+        "target_relative_residual": 2.0356939476195403e-08,
+        "relative_change_from_nominal": 1.6219742644496013e-11
+      }
+    ],
+    "unique_root_proven": false,
+    "statistical_confidence_interval": false
+  }
+}

@@ -1,6 +1,6 @@
 # TP interface acceptance / TP 接口验收表
 
-Status2026-10-29: restricted v1 implemented; individual numerical checks pass, but composition recovery remains FAILED. The requirement table below is unchanged. Implementation cannot lower it to make tests pass. Codex specifies; human confirms material physical choices; DeepSeek implements; uninvolved reviewer checks evidence.
+Current status: restricted v1 and one selected reciprocal local composition recovery pass their bounded checks; original direction remains FAILED. The requirement table below is unchanged. Implementation cannot lower it to make tests pass. Codex specifies; human confirms material physical choices; DeepSeek implements; uninvolved reviewer checks evidence.
 
 Stage 1 design (2026-10-28): [interface contract](TP_INTERFACE_SPEC.md), [source audit](TP_SOURCE_AUDIT.md), [task plan](superpowers/plans/2026-10-28-prescribed-tp.md). This adds a concrete proposed scope without marking any scientific gate passed or relaxing the requirements below.
 
@@ -40,3 +40,9 @@ Original-source run3608c3d: [report and raw evidence](../experiments/prescribed-
 | TP12 | Source/inputs/output identities, raw byte archive, independent review and scoped continuing commits preserved. |
 
 Any new real-EOS implementation or recovery sampling needs explicit physical choices and a new authorized contract; the unused budget is not a waiver.
+
+## Separate reciprocal follow-up: conditional Stage4 PASS
+
+[Full evidence](../experiments/prescribed-tp-reciprocal-20261030/README.md). Original failure above is unchanged. Under the same curves/EOS/1%truth, the new A→B pairing recovered0.243603878% gas with signedbias−0.756396122percentagepoints. Actual sign bracket width5.6533e-6 and radiuserror2.0373e-8 passed both frozen stopping gates. Same-fraction tighter/refined checks passed all old model gates; refinedmodel actually used10nodes/5snaps. Everytestedbranch density screen passed without being treated as physicalvalidation.
+
+TP10 is therefore PASS for this one hindsight-selected local engineering recovery, not for the failed original direction or general/global/observed inference. TP08/09 cover its evaluated points and confirmations, not all physicalEOS regimes. Sixnewfits/14cumulative,0newAPI; no C++changes or criteria relaxation. Stage5 remains separate.

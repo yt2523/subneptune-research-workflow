@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "gas_rows": 180,
+  "max_effective_relative": 2.157205451047739e-16,
+  "max_density_relative": 4.3635671613539365e-16,
+  "radius_cm": 1117571748.6900938,
+  "requested_gas_fraction": 0.0024360387783536647,
+  "measured_gas_fraction": 0.002436038778353633
+}
