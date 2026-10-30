@@ -1,0 +1,174 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sub-Neptune 项目工作总报告</title><style>body{max-width:1100px;margin:36px auto;padding:0 24px;font:16px/1.85 system-ui,"Microsoft YaHei",sans-serif;color:#202c3b;background:#fafbfd}h1,h2,h3{line-height:1.45;color:#123853}h2{margin-top:2.2em;border-bottom:1px solid #ccd7e2;padding-bottom:8px}a{color:#086ca4}code{background:#eaf0f5;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px}td{border:1px solid #ccd7e2;padding:9px;vertical-align:top}tr:first-child{background:#e4edf5;font-weight:bold}tr:nth-child(even){background:#f0f5f8}li{margin:8px 0}@media print{body{max-width:none;font-size:11px}td{font-size:10px}}</style><main><h1>Sub-Neptune 项目工作总报告</h1>
+<p>截至 2026-10-30（Europe/London）。范围：本地可核查的 2026-10-18—2026-10-30 项目记录；证据基准为公开仓库 main 的 <code>871d6e2715d7e6f10ef8a686e73cfbf6c53a2d2c</code>，本报告随后追加存档。</p>
+<h2>1. 先看结论</h2>
+<p>目前已经从“改变外边界温度”推进到“相同外边界、相同密度 EOS 下改变指定 T–P 曲线”，并完成一个局部合成气层质量恢复案例。第五阶段的论文大气廓线接入尚未开始。</p>
+<ul>
+<li>新 TP 实验的固定输入：5 地球质量，表面 0.1 bar / 300 K，无水层，固体核/幔质量比 0.325/0.675；气体统一使用原有 Gas(mu=2,n=2) 工程夹具。</li>
+<li>曲线 A：<code>T=300+30 ln(P_bar/0.1)</code>；曲线 B：<code>T=300+40 ln(P_bar/0.1)</code>。同为 1% 气层时，B 相对 A 半径增大约 <strong>236.642 km（2.11747%）</strong>。</li>
+<li>原方向：以 B 的半径为目标、用 A 恢复组成。预设气层分数 0.002—0.08 的两个端点不包围目标，整项合同 <strong>FAILED</strong>，没有恢复组成。不能据此断言内部没有根。</li>
+<li>后续反向案例：以 A 的 1% 气层为真值、用 B 拟合，恢复 <strong>0.2436038778%</strong> 气层，偏差 <strong>−0.756396 个百分点</strong>，相对低估 <strong>75.6396%</strong>。名义半径相对残差约 <strong>2.0373e-8</strong>；相同组成的收紧容差和节点细化对照通过。</li>
+<li>反向方向是在看到原失败后选择的，属于事后选择的局部工程验证，不是无偏调查或原失败结果的改写。</li>
+<li>新 TP 合同累计 <strong>14 次完整拟合（原 8 + 新 6，含 OFF 对照）</strong>；DeepSeek 接口实现调用 <strong>44/44</strong>。反向恢复新增 API 调用 0，新增 C++/EOS 修改 0。本次总报告只读取归档、核对链接和哈希，不运行模型。</li>
+</ul>
+<p>以上说明热结构假设能够在这个合成夹具里造成明显的组成恢复偏移；不能直接转化为真实亚海王星的组成结论。</p>
+<h2>2. 这份“从开始到现在”的记录如何划分</h2>
+<p>2026-10-27 交接前的实验已由之前项目会话完成，我在接手时读取并归档，没有重跑。接手后的工作包括工作流打包、TP 接口开发的规格/诊断/独立验收，以及新增 14 次完整拟合。科学接口主要由 DeepSeek 编码；Codex 负责决策、测试和执行控制、诊断与独立审核。不能把所有源码都归为 Codex 独立编写，也不能把模型生成的“通过”当实际验收。</p>
+<p>历史 54 次灰大气评价、8 次 mode0 验证、67 次温度与恢复评价，与新 14 次拟合采用不同统计单位；这里按批次分别列出，不相加宣传成一个“独立实验总数”。历史复跑、强制重编核查也不另计为全新科研案例。</p>
+<div class="scroll"><table><tbody>
+<tr><td>阶段与日期</td><td>实际完成的工作</td><td>验收或主要结果</td><td>范围限制</td></tr>
+<tr><td>10-18 基础实践</td><td>1 M⊕、300/1000 K、ODE 与匹配容差对照，4 个模型</td><td>均记录 status0；升温半径增加 0.605667%</td><td>类地球练习，不是真实地球或亚海王星</td></tr>
+<tr><td>10-18 文献配方</td><td>归档 16 组运行，含联合容差和气体 EOS/蒸汽探测</td><td>联合细化最大半径变化 2.668e-6；标记蒸汽错误高密度支</td><td>配方试算，不是完整论文复现</td></tr>
+<tr><td>10-18 Huang 图4基准</td><td>论文默认双层模型、重复、容差加严、新默认地幔对照；另做强制重编核查</td><td>0.966807032925 R⊕，达到论文图例 0.9668 的显示精度</td><td>只核对该默认模型半径，无精确参考全剖面</td></tr>
+<tr><td>10-25 灰大气/绝热连接</td><td>54 次半灰曲线与连接压力/分辨率评价</td><td>通用外壳修复后与受控实现最大缩放差约 4.44e-16</td><td>连接压力不是求得的 RCB；恒重力层厚不是行星半径</td></tr>
+<tr><td>10-25 mode0 批跑</td><td>2 质量×3 温度及重复/容差，共8次</td><td>质量/外边界/剖面检查；重复逐字节一致；resume跳过验证</td><td>还不是同边界下的 TP 形状比较</td></tr>
+<tr><td>10-25 温度与组成</td><td>18 正向 +39 恢复 +6 容差 +4 整套气层处方，共67次</td><td>较冷假设恢复更多气体，较热恢复更少；详见下文</td><td>改变表面温度；并非纯 TP 形状效应</td></tr>
+<tr><td>10-27 公共工程与工作流</td><td>归档既有结果、打包可配置工作流、离线检查/断点恢复、角色与规则</td><td>Windows/WSL 各记录66测试通过；新克隆启动/恢复证据</td><td>未验证新的便携运行器真实模型端到端流程</td></tr>
+<tr><td>10-28 TP接口</td><td>规格、可选输入、共同有效状态、积分与诊断、逐轮独立复核</td><td>受限 mode0 v1 工程验收；默认 OFF 兼容</td><td>不是任意相图/多层/真实大气通用接口</td></tr>
+<tr><td>10-29 首轮数值</td><td>8次拟合，包含2 OFF、6 TP</td><td>前向差异通过；反演端点不包围，整体失败</td><td>无恢复组成</td></tr>
+<tr><td>10-30 反向局部恢复</td><td>4次搜索+2次独立设置确认，6次新增</td><td>一个条件性局部恢复通过</td><td>事后选择方向；理想气体夹具；不证明唯一根</td></tr>
+</tbody></table></div>
+<h3>历史报告入口</h3>
+<ul>
+<li><a href="../../experiments/archive/20261018/capstone/README.md">基础实践与4个模型</a></li>
+<li><a href="../../experiments/archive/20261018/literature-cases/README.md">文献配方及蒸汽支警告</a></li>
+<li><a href="../../experiments/huang2022-fig4/README.md">Huang 2022 图4复现、判据与强制重编记录</a></li>
+<li><a href="../../experiments/subneptune-20261027/outputs/tp-comparison-20261025-dedb3d/REPORT.md">54项灰大气/绝热比较</a></li>
+<li><a href="../../experiments/subneptune-20261027/outputs/mode0-inputs-20261025-a17b/REPORT.md">8次mode0验证</a></li>
+<li><a href="../../experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/REPORT.md">67次温度边界与合成恢复</a></li>
+<li><a href="../../experiments/subneptune-20261027/HANDOFF.md">原始交接全文（历史状态，不覆盖当前进展）</a></li>
+</ul>
+<p>67 次实验的合成真值为 360 K、气层 1%。5 M⊕ 在 300/450 K 假设下恢复 2.34399% / 0.39385%；8.04 M⊕ 恢复 2.60665% / 0.38042%。容差加严后的最大半径相对变化 2.464462e-6；HHe_tabulated 整套处方对照的半径差约 5.54%—7.18%，不可写为纯 EOS 或纯热效应。</p>
+<p>该历史批次 DeepSeek 原始审核 verdict 为 false，回复还存在格式问题；后续逐条对源码裁决并保存记录。这里不把它改写为“DeepSeek 通过”。</p>
+<ul>
+<li><a href="../../experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/independent_numeric_checks.json">历史数值独立检查</a></li>
+<li><a href="../../experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/independent-review.json">历史原始审核</a></li>
+<li><a href="../../experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/review-adjudication.json">逐项裁决</a></li>
+</ul>
+<h2>3. 五阶段计划的完成程度</h2>
+<div class="scroll"><table><tbody>
+<tr><td>阶段</td><td>现在状态</td><td>实际交付与验收</td></tr>
+<tr><td>1 只读审计与定规格</td><td>完成</td><td>厘清密度、温度、双向积分与拟合路径；确认100 bar切换混杂；固定验收表与合同</td></tr>
+<tr><td>2 最小TP接口</td><td>受限v1完成</td><td>默认关闭；CSV插值、失败关闭、共同T用于密度/积分、高精度诊断；OFF对照一致</td></tr>
+<tr><td>3 小规模前向比较</td><td>工程夹具中完成</td><td>A/B同外边界、同密度EOS；信号远大于本次紧化/共线细化所见变化</td></tr>
+<tr><td>4 合成组成恢复</td><td>一个局部反向案例完成</td><td>原方向失败保留；另立合同，用6次新拟合恢复局部根，收紧/细化确认通过</td></tr>
+<tr><td>5 接入论文廓线</td><td>尚未开始</td><td>仅做H/He表的只读盘点；未选定真实对象、真实大气参数或物理有效高压EOS</td></tr>
+</tbody></table></div>
+<h3>TP 接口具体改了什么</h3>
+<p>输入为 <code>P_bar,T_K</code>，正有限、严格递增压力、至少两行；内部转cgs单位。采用 T 对 ln(P) 线性插值，越界直接失败，禁止静默外推。可选 <code>tp_profile_file</code> 不给时走旧路径。</p>
+<p>气体被明确固定为 <code>gas_fixed_mu2</code>。这样避免 <code>gas_default</code> 在100 bar两侧同时把分子量3变2、等温变绝热的混杂；不靠移动该切换压力伪造纯热实验。密度计算、积分右端和实际接受状态使用同一 T(P)，不同时强制原绝热热方程。跨节点控制步长并重置步进状态；拟合点严格放到非气体区域。气层底部连续温度会影响固体内部，因此结果包含耦合内部响应。</p>
+<p>输出 <code>.tp.json</code> 保存高精度实际 P/T/密度/质量、原始匹配残差、覆盖范围、气层底部和修正状态。独立检查核对实际组成、EOS身份、边界与原始残差；只改最终输出温度不能通过验收。CLI 对无效输入与旧成功侧车文件实施失败关闭。</p>
+<p>v1 主要限制：mode0、四个组成槽、气体至少1g且存在非气体、三个层间温差为0；部分路径格式如含空白/UNC不支持。Gas(mu2,n2) 只是工程夹具，不是目标行星的物理气体EOS验收。</p>
+<ul>
+<li><a href="../../docs/TP_SOURCE_AUDIT.md">TP源代码审计</a></li>
+<li><a href="../../docs/TP_INTERFACE_SPEC.md">接口详细规格与限制</a></li>
+<li><a href="../../docs/TP_ACCEPTANCE.md">验收表</a></li>
+<li><a href="../../docs/TP_IMPLEMENTATION_PROGRESS.md">实施台账与失败修复</a></li>
+<li><a href="../../docs/tp-stage1-verification.json">阶段1核查</a></li>
+<li><a href="../../docs/tp-task1-verification.json">Task1核查</a></li>
+<li><a href="../../docs/tp-task2-verification.json">Task2核查</a></li>
+<li><a href="../../docs/tp-task3-verification.json">Task3核查</a></li>
+</ul>
+<h3>工程检查做到了什么</h3>
+<p>这些数字是断言/夹具数量，不能当完整行星拟合次数：Task1记录38个廓线断言、28个配置断言、12个积分前CLI拒绝案例；Task2记录18个RHS、353个节点步进、118个构造检查；Task3记录8个写入I/O、20个独立协议、7个CLI拒绝检查。另有反向积分、近节点进入、提前截断拒绝，以及615/599行的旧OFF修正夹具逐字节对照。158行混合相图负例能识别近表面错误Gas_iso行；其中模拟status0只验证序列化/检查器，不是科学收敛证据。反向搜索控制器增加12项纯函数/缓存/密度筛选测试。</p>
+<h2>4. 新增14次完整拟合：逐次清单</h2>
+<p>表中“单案例通过”仅指各自固定检查；首批整体仍为FAILED。单位 R⊕ 采用归档中的 637810000 cm。每行链接进入该次完整原始文件目录，包含实际配置、剖面、日志和来源记录；TP案例另有高精度诊断和验收。</p>
+<div class="scroll"><table><tbody>
+<tr><td>批次</td><td>案例</td><td>气层质量分数（占总质量）</td><td>半径 R⊕</td><td>单案例记录</td><td>原始证据</td></tr>
+<tr><td>原8次</td><td>OFF-baseline</td><td>0.01</td><td>1.762003509386</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-20261028/data/OFF-baseline">配置/剖面/日志</a></td></tr>
+<tr><td>原8次</td><td>OFF-current</td><td>0.01</td><td>1.762003509386</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-20261028/data/OFF-current">配置/剖面/日志</a></td></tr>
+<tr><td>原8次</td><td>A-truth</td><td>0.01</td><td>1.752201636728</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-20261028/data/A-truth">配置/剖面/日志</a></td></tr>
+<tr><td>原8次</td><td>B-truth</td><td>0.01</td><td>1.789303911225</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-20261028/data/B-truth">配置/剖面/日志</a></td></tr>
+<tr><td>原8次</td><td>B-tight</td><td>0.01</td><td>1.789303910886</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-20261028/data/B-tight">配置/剖面/日志</a></td></tr>
+<tr><td>原8次</td><td>A-collinear-refined</td><td>0.01</td><td>1.752201636693</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-20261028/data/A-collinear-refined">配置/剖面/日志</a></td></tr>
+<tr><td>原8次</td><td>A-recovery-low</td><td>0.002</td><td>1.719180621843</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-20261028/data/A-recovery-low">配置/剖面/日志</a></td></tr>
+<tr><td>原8次</td><td>A-recovery-high</td><td>0.08</td><td>1.732858866809</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-20261028/data/A-recovery-high">配置/剖面/日志</a></td></tr>
+<tr><td>新增6次</td><td>search-01-lower</td><td>0.0005</td><td>1.707969431492</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-reciprocal-20261030/data/search-01-lower">配置/剖面/日志</a></td></tr>
+<tr><td>新增6次</td><td>search-02</td><td>0.00254982484539152</td><td>1.753495507162</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-reciprocal-20261030/data/search-02">配置/剖面/日志</a></td></tr>
+<tr><td>新增6次</td><td>search-03</td><td>0.00243038549213625</td><td>1.752135786409</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-reciprocal-20261030/data/search-03">配置/剖面/日志</a></td></tr>
+<tr><td>新增6次</td><td>search-04</td><td>0.00243603877835366</td><td>1.752201672426</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-reciprocal-20261030/data/search-04">配置/剖面/日志</a></td></tr>
+<tr><td>新增6次</td><td>confirm-tight</td><td>0.00243603877835366</td><td>1.752201672389</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-reciprocal-20261030/data/confirm-tight">配置/剖面/日志</a></td></tr>
+<tr><td>新增6次</td><td>confirm-refined</td><td>0.00243603877835366</td><td>1.752201672398</td><td>PASS</td><td><a href="../../experiments/prescribed-tp-reciprocal-20261030/data/confirm-refined">配置/剖面/日志</a></td></tr>
+</tbody></table></div>
+<h3>为什么原方向没有完成反演</h3>
+<p>A 在气层分数0.002和0.08时的半径都小于 B 的目标半径，预定括区间不成立，故0次二分且没有推断组成。A 在0.002、0.01、0.08三个样本上也非单调递增；不能默认“多加气一定增大总半径”。气层加厚与固体压缩/热状态变化存在耦合。</p>
+<p>A 的8%气体案例底部约45.58 GPa、760 K，理想气体密度约14.53 g/cm³，高于邻接固体约4.71 g/cm³。这提示夹具物理适用性问题，不能单凭它证明代码bug或动力学不稳定。没有通过调阈值把这轮失败变为成功。</p>
+<h3>反向恢复是怎样验收的</h3>
+<p>先在提交 <code>223374d</code> 固定新合同，保留原A/B、真值、边界和求解器，仅交换真值/拟合方向并使用带符号局部括区间搜索。复用的旧结果通过提交与哈希验证，不再运行；新4次搜索和2次最终确认均留存实际输出。</p>
+<p>恢复的带符号数值括区间为 <code>[0.0024303854921362464, 0.0024360387783536647]</code>，宽约5.6533e-6；名义根同时满足半径残差≤5e-6和区间宽≤2e-5。收紧容差与共线节点细化分别保持同一恢复组成，半径相对名义变化约2.12e-11和1.62e-11；细化曲线实际加载了10个节点。全部新案例通过原残差、覆盖、组成和错误相图等检查，以及气/固密度支筛选。</p>
+<p>真值气层质量0.05 M⊕，恢复约0.01218019 M⊕，有符号差约−0.03781981 M⊕。括区间是数值求根证据，不是置信区间；没有证明唯一解或未采样范围的行为。密度筛选通过也不是EOS物理有效性认证。</p>
+<ul>
+<li><a href="../../experiments/prescribed-tp-20261028/README.md">原8次报告（整体失败）</a></li>
+<li><a href="../../experiments/prescribed-tp-20261028/REPORT.html">原8次可视报告</a></li>
+<li><a href="../../experiments/prescribed-tp-20261028/summary.json">原8次机器汇总</a></li>
+<li><a href="../../experiments/prescribed-tp-20261028/INDEPENDENT_REVIEW.md">原8次独立审核</a></li>
+<li><a href="../../experiments/prescribed-tp-reciprocal-20261030/README.md">反向6次报告</a></li>
+<li><a href="../../experiments/prescribed-tp-reciprocal-20261030/REPORT.html">反向6次可视报告</a></li>
+<li><a href="../../experiments/prescribed-tp-reciprocal-20261030/summary.json">反向6次机器汇总</a></li>
+<li><a href="../../experiments/prescribed-tp-reciprocal-20261030/INDEPENDENT_REVIEW.md">反向6次独立审核</a></li>
+<li><a href="../../docs/TP_NUMERICAL_RUN_CONTRACT.md">原合同与预算</a></li>
+<li><a href="../../tests/fixtures/tp_reciprocal_contract.json">反向合同与停止条件</a></li>
+<li><a href="../../experiments/prescribed-tp-reciprocal-20261030/data/search-04/model.txt.tp.json">实际恢复点高精度诊断</a></li>
+<li><a href="../../experiments/prescribed-tp-reciprocal-20261030/data/search-04/acceptance.json">实际恢复点验收</a></li>
+</ul>
+<h2>5. 开发过程中确实遇到的问题</h2>
+<p>这项工作不是一次生成就通过。独立审核先后提出修改要求，返修后的具体源码和实际检查才获得限定范围批准。</p>
+<ul>
+<li>Cline 最初长时间规划后仅生成桩文件，终止该次执行；保存状态是 act 模式，不能把原因确定为误入 plan 模式。随后使用已有同模型官方API和限定编辑任务，无需重复安装或认证。</li>
+<li>一次推理参数尝试耗尽18000推理token，返回长度上限而无可用内容；没有把这种调用算为有效修复或科学结果。没有统一可核对的全项目token/费用账单，本报告不捏造总费用。</li>
+<li>私有临时源副本曾被模型片段错误整体覆盖，原研究仓库与公开科学基线未受该事故修改；从保留响应恢复，并增加调用前快照、禁止既有大文件整体替换、编辑重叠与唯一锚点检查。原始模型响应仅私有保存，不公开密钥或会话。</li>
+<li>实际审查纠正过旧温度参与密度、选相早于温度投影、步进器未重置、质量/长度单位误比、OFF旧修正路径回归、提前截断被接受、失败状态/原因丢失、诊断遗漏错误相图气行和缺少边界锚点等问题。详见实施台账和分阶段证据，不能将早期版本视为最终版本。</li>
+<li>达到32次额度后，用户明确批准最多再12次，总上限44。44次用尽后，用户仅明确允许Codex直接修一个重复TP选项触发错误前清理旧诊断的局部顺序问题；该修改也经过独立复验。没有据此扩大为Codex接管科学实现。</li>
+<li>首轮恢复未括根时停止并原样封存；后续在用户继续指令下另立合同。控制器和缓存绑定实际组成、源文件、求解器及运行时EOS表身份，避免把旧缓存/错质量结果误当新结果。</li>
+</ul>
+<h2>6. 公开工作流具体交付了什么</h2>
+<p>工程、科学归档和工作流放在同一个仓库，提供 README/START_HERE、AGENTS分工、短规则、TP验收表、状态文件、固定检查控制器、预算/停止原因和断点恢复、外部密钥路径配置、离线样例、问题模板。参考项目与设计来源单独列在来源文档，保留MAGRATHEA上游署名与MIT许可。</p>
+<p>主要执行结构：人决定研究目标/物理选择/预算；Codex定义合同、诊断与独立验收；DeepSeek主要编码；确定性控制器执行预声明检查、记哈希与用量。运行检查本身可由控制器代DeepSeek执行，不必为每个数值案例开启模型会话。同根因5次有效且无进展的修复才考虑Codex小范围接手；格式错误和超时不算有效修复。新运行器在需要诊断时停止，不暗中切换编码模型。</p>
+<p>已记录的工作流验证：Windows Python 3.12与WSL Python 3.14各66测试通过，分别4/2项权限或平台跳过；新克隆完成doctor、三个依赖节点、状态和二次恢复，0模型调用。provider适配器有mock测试；<strong>没有完成这个新便携运行器的真实DeepSeek→Codex端到端验收</strong>。本轮TP实际开发使用私有受控调用脚本与公开的确定性数值控制器，不能声称全由portable.py自动编排。远端CI结果也未由这些本地检查证明。</p>
+<p>同学可以从仓库和配置入口开始，自己提供API文件位置、权限及本地依赖；“可配置复用”不等于仅给密钥路径就能跳过系统依赖、科学假设和检查。Issue模板可用于脱敏问题报告，本项目没有自动发Issue、@陌生人或发送协作消息。Git历史contributors保留上游提交署名，不等于邀请他们参与或通知他们。</p>
+<ul>
+<li><a href="../../START_HERE.md">工作流启动入口</a></li>
+<li><a href="../../AGENTS.md">分工与操作合同</a></li>
+<li><a href="../../docs/workflow/SHORT_RULES.md">短规则</a></li>
+<li><a href="../../docs/workflow/SETUP.md">配置与外部密钥</a></li>
+<li><a href="../../workflow/portable.py">便携运行器</a></li>
+<li><a href="../../docs/workflow/RELEASE_VERIFICATION.md">发行验收与真实边界</a></li>
+<li><a href="../../docs/workflow/PROVENANCE.md">参考设计与来源</a></li>
+<li><a href="../../.github/ISSUE_TEMPLATE/bug_report.md">问题报告模板</a></li>
+</ul>
+<h2>7. 存档、保护和可复现性</h2>
+<p>公开仓库：<a href="https://github.com/yt2523/subneptune-research-workflow">yt2523/subneptune-research-workflow</a>，继续使用main，不改写上游历史。原有研究分支与工作树保留；用户原主目录中的未提交plot/run/result改动没有被本次TP工作清理或覆盖。原始CLI二进制曾存在质量异常，后续使用验证源码与隔离构建，没有覆盖旧二进制掩盖问题。</p>
+<div class="scroll"><table><tbody>
+<tr><td>检查点</td><td>提交</td><td>内容</td></tr>
+<tr><td>原研究基础</td><td>9e74aac</td><td>Huang基准与早期归档</td></tr>
+<tr><td>历史热实验归档</td><td>0aa6316</td><td>54/8/67批次、工具与原改动快照</td></tr>
+<tr><td>便携工作流</td><td>da9bde3</td><td>外部密钥、离线执行和工作流源码</td></tr>
+<tr><td>TP规格</td><td>4d41257</td><td>审计、规格和有界计划</td></tr>
+<tr><td>输入/插值</td><td>f477dc6</td><td>Task1</td></tr>
+<tr><td>积分接入</td><td>e9a5119</td><td>Task2</td></tr>
+<tr><td>诊断与验收</td><td>82e5a05</td><td>Task3</td></tr>
+<tr><td>数值源冻结</td><td>3608c3d</td><td>14次新拟合使用的科学源码及EOS表基准</td></tr>
+<tr><td>首轮8次归档</td><td>0e9c11c</td><td>前向通过、恢复整体失败</td></tr>
+<tr><td>反向合同冻结</td><td>223374d</td><td>拟合开始前固定新控制器与验收</td></tr>
+<tr><td>局部恢复归档</td><td>871d6e2</td><td>新6次及限定范围审核通过</td></tr>
+</tbody></table></div>
+<p>原始配置、stdout/stderr、剖面、机器结果与哈希保存在各实验目录。公开归档不包含密钥、私有模型完整响应、私人论文或编译二进制。历史文件可能保留当时D盘绝对路径；他人复跑应读SCIENCE_REPRODUCTION和各目录说明，使用新的输出目录，不能覆盖已有结果。总报告的证据清单记录了链接目标文件哈希，便于辨认所引用的版本。</p>
+<ul>
+<li><a href="../../docs/SCIENCE_REPRODUCTION.md">科学环境与复现说明</a></li>
+<li><a href="../../experiments/archive/20261018/inventory.json">2026-10-18原始117文件清单</a></li>
+<li><a href="../../experiments/subneptune-20261027/SHA256SUMS.json">交接归档哈希清单</a></li>
+<li><a href="../../experiments/prescribed-tp-20261028/INDEX_SHA256.json">原8次91项字节清单</a></li>
+<li><a href="../../experiments/prescribed-tp-reciprocal-20261030/INDEX_SHA256.json">新6次78项字节清单</a></li>
+<li><a href="../../experiments/prescribed-tp-20261028/EOS_READONLY_AUDIT.json">H/He EOS只读盘点</a></li>
+</ul>
+<h2>8. 结论的边界与真正还缺什么</h2>
+<p>尚未完成：真实行星选定、与辐照/重力/丰度/云霾/内部温度匹配的论文大气廓线、高压混合气体物理EOS认可、任意弯曲廓线插值收敛研究、自洽辐射对流/化学/演化、观测后验与全局唯一性。</p>
+<p>只读H/He表盘点记录了53361行、正有限节点与数值覆盖范围；这些不证明物理适用范围。现有HHe_tabulated选择器仍在100bar混合不同气体分支，表格越界路径有边缘值返回，后续不能直接替换进来就声称“固定EOS且失败关闭”。</p>
+<p>最小下一步应先确定一个有来源的外部TP曲线及相匹配的物理气体EOS，明确共同外边界、组成、覆盖范围和向深处延续策略；冻结一个新合同后才做少量正向检查，再决定是否新增恢复。验收至少包括实际加载曲线/密度一致、全气层覆盖且禁止静默外推、边界及残差合格、默认兼容、信号对数值变化有余量、EOS物理适用性有来源。任何拼接压力都不能未经论证叫真实RCB。</p>
+<p>44次实现API额度已用尽；14/20拟合记录不意味着剩余6次可以自动使用。本报告不启动第五阶段，也不补跑任何历史实验。</p>
+<h2>9. 阅读顺序与本报告核查记录</h2>
+<p>快速了解：先看本报告第1、3、8节。核查结果：看第4节及两份独立审核。追到每次执行：打开第4节对应目录的配置、诊断、日志和验收文件。复用流程：读START_HERE与SETUP。</p>
+<ul>
+<li><a href="evidence-index.json">本报告机器证据索引与本次只读核查结果</a></li>
+<li><a href="REPORT.html">本报告可视HTML版</a></li>
+</ul>
+<p>此报告没有重建完整私人聊天或提供每次API原始响应。可证实的历史来自已保存的输入/输出/验证文件和提交；归档中未记录的操作，不写成已独立完成。旧文件中“TP尚未实现”等描述是当时检查点，以当前状态和之后归档为准。</p></main></html>

@@ -1,0 +1,387 @@
+{
+  "report_date": "2026-10-30",
+  "evidence_base_commit": "871d6e2715d7e6f10ef8a686e73cfbf6c53a2d2c",
+  "scope": "Archived evidence summary; historical checks remain historical. This audit verifies bytes and links only.",
+  "new_solver_calls": 0,
+  "new_provider_calls": 0,
+  "local_links_checked": 59,
+  "link_targets": [
+    {
+      "link": "../../experiments/archive/20261018/capstone/README.md",
+      "repo_path": "experiments/archive/20261018/capstone/README.md",
+      "kind": "file",
+      "sha256": "174989eb29a0514913d0742ddac98d0c05710e6fb5c7fa686c966ea117e8579b"
+    },
+    {
+      "link": "../../experiments/archive/20261018/literature-cases/README.md",
+      "repo_path": "experiments/archive/20261018/literature-cases/README.md",
+      "kind": "file",
+      "sha256": "041961bf463a9b33bae2660e2db2930d8cb3d469fd53b8a0a6e29d62cbde9dfa"
+    },
+    {
+      "link": "../../experiments/huang2022-fig4/README.md",
+      "repo_path": "experiments/huang2022-fig4/README.md",
+      "kind": "file",
+      "sha256": "033e2757af364e11832a7af375a27ff7406163bb892676886b0e324f5a8d285f"
+    },
+    {
+      "link": "../../experiments/subneptune-20261027/outputs/tp-comparison-20261025-dedb3d/REPORT.md",
+      "repo_path": "experiments/subneptune-20261027/outputs/tp-comparison-20261025-dedb3d/REPORT.md",
+      "kind": "file",
+      "sha256": "4531abbdb67026ee6c323beebe8576e0c08e19a4f5d2ff91aed588f4d17492dc"
+    },
+    {
+      "link": "../../experiments/subneptune-20261027/outputs/mode0-inputs-20261025-a17b/REPORT.md",
+      "repo_path": "experiments/subneptune-20261027/outputs/mode0-inputs-20261025-a17b/REPORT.md",
+      "kind": "file",
+      "sha256": "5600ec46398b93468e248ae4e6c581d9ce3d86a3e1cc37009f5e7222c4d77781"
+    },
+    {
+      "link": "../../experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/REPORT.md",
+      "repo_path": "experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/REPORT.md",
+      "kind": "file",
+      "sha256": "e4cea7553182a5f9625a9a7548c7dc0f20a6febaecfe3f393d430db1474a5d2b"
+    },
+    {
+      "link": "../../experiments/subneptune-20261027/HANDOFF.md",
+      "repo_path": "experiments/subneptune-20261027/HANDOFF.md",
+      "kind": "file",
+      "sha256": "40300a1e5df53177dae99e0cc0d90fea5f928332562b0a270b9396af8310e85a"
+    },
+    {
+      "link": "../../experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/independent_numeric_checks.json",
+      "repo_path": "experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/independent_numeric_checks.json",
+      "kind": "file",
+      "sha256": "368cbb99583b2a56d45d04711d4eee8db8df873c77c88941e188997787746c7e"
+    },
+    {
+      "link": "../../experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/independent-review.json",
+      "repo_path": "experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/independent-review.json",
+      "kind": "file",
+      "sha256": "2da8dff753f20ad8d79ddb7aaf454c23eb760dccea694edea9d3c4fe59a8f8ba"
+    },
+    {
+      "link": "../../experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/review-adjudication.json",
+      "repo_path": "experiments/subneptune-20261027/outputs/thermal-composition-20261025-b01/review-adjudication.json",
+      "kind": "file",
+      "sha256": "17313356b334a1d598a262ae1c6c9e3610ea828837703a25d68f0129cdc44d2b"
+    },
+    {
+      "link": "../../docs/TP_SOURCE_AUDIT.md",
+      "repo_path": "docs/TP_SOURCE_AUDIT.md",
+      "kind": "file",
+      "sha256": "a83c37ec334f1fa6d7b247be1331b9dcb283a93887492b300e7c2ee8ae789880"
+    },
+    {
+      "link": "../../docs/TP_INTERFACE_SPEC.md",
+      "repo_path": "docs/TP_INTERFACE_SPEC.md",
+      "kind": "file",
+      "sha256": "9eb2e9c6844949c8752649bd246f40e3d56343dd6ff00e89cb908e9bcd9b83c1"
+    },
+    {
+      "link": "../../docs/TP_ACCEPTANCE.md",
+      "repo_path": "docs/TP_ACCEPTANCE.md",
+      "kind": "file",
+      "sha256": "0c478bf7e8108ade14f5cec6c6e961d9eebb7c4186476776d28ad9e846dd5cf8"
+    },
+    {
+      "link": "../../docs/TP_IMPLEMENTATION_PROGRESS.md",
+      "repo_path": "docs/TP_IMPLEMENTATION_PROGRESS.md",
+      "kind": "file",
+      "sha256": "1001317fc92e0bc6805b31a449a310471301a54298d71ac33a56765fb3c5d4e6"
+    },
+    {
+      "link": "../../docs/tp-stage1-verification.json",
+      "repo_path": "docs/tp-stage1-verification.json",
+      "kind": "file",
+      "sha256": "a4b1f93d8313ff6a28bcfb94899b813990db1c25f2f5b13df175a54ee73e17b6"
+    },
+    {
+      "link": "../../docs/tp-task1-verification.json",
+      "repo_path": "docs/tp-task1-verification.json",
+      "kind": "file",
+      "sha256": "4ff56233db71741e963a308d2bdb1afe75d02a26487e4aefc03edac1469f0af9"
+    },
+    {
+      "link": "../../docs/tp-task2-verification.json",
+      "repo_path": "docs/tp-task2-verification.json",
+      "kind": "file",
+      "sha256": "e193682882a5c6d9be2b999b88785c1a53a9c02aebbb120c66d2aaf387fbee72"
+    },
+    {
+      "link": "../../docs/tp-task3-verification.json",
+      "repo_path": "docs/tp-task3-verification.json",
+      "kind": "file",
+      "sha256": "760345dd065a71941a9781364e22e924d94d06bfc6a52865c717f762f2f8e35b"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/data/OFF-baseline",
+      "repo_path": "experiments/prescribed-tp-20261028/data/OFF-baseline",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/data/OFF-current",
+      "repo_path": "experiments/prescribed-tp-20261028/data/OFF-current",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/data/A-truth",
+      "repo_path": "experiments/prescribed-tp-20261028/data/A-truth",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/data/B-truth",
+      "repo_path": "experiments/prescribed-tp-20261028/data/B-truth",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/data/B-tight",
+      "repo_path": "experiments/prescribed-tp-20261028/data/B-tight",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/data/A-collinear-refined",
+      "repo_path": "experiments/prescribed-tp-20261028/data/A-collinear-refined",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/data/A-recovery-low",
+      "repo_path": "experiments/prescribed-tp-20261028/data/A-recovery-low",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/data/A-recovery-high",
+      "repo_path": "experiments/prescribed-tp-20261028/data/A-recovery-high",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/data/search-01-lower",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/data/search-01-lower",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/data/search-02",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/data/search-02",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/data/search-03",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/data/search-03",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/data/search-04",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/data/search-04",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/data/confirm-tight",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/data/confirm-tight",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/data/confirm-refined",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/data/confirm-refined",
+      "kind": "directory"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/README.md",
+      "repo_path": "experiments/prescribed-tp-20261028/README.md",
+      "kind": "file",
+      "sha256": "2e36849eea97c323b9708eeac9960565056fa275b5981ecb0462d199fd204247"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/REPORT.html",
+      "repo_path": "experiments/prescribed-tp-20261028/REPORT.html",
+      "kind": "file",
+      "sha256": "84c2157cc08b23773c762c8b7fb38132cea2543180444b36fd23eaf1ebb997f2"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/summary.json",
+      "repo_path": "experiments/prescribed-tp-20261028/summary.json",
+      "kind": "file",
+      "sha256": "98cf762e97e543d36d8086bc67c6fa8039a31d2e43614c91700abe55683130b5"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/INDEPENDENT_REVIEW.md",
+      "repo_path": "experiments/prescribed-tp-20261028/INDEPENDENT_REVIEW.md",
+      "kind": "file",
+      "sha256": "eac18e38cb8e3b4154aabb075442e734d132f623c782deff1e42c1ea32e06314"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/README.md",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/README.md",
+      "kind": "file",
+      "sha256": "251bac6ad1c439427d8b51a701967b983f605505b9fe408bb6179097ed0ec7c5"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/REPORT.html",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/REPORT.html",
+      "kind": "file",
+      "sha256": "de6922f3e1214e198c5ec323cfbc63d9393ed4cb8981bf8bff43e907d498be28"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/summary.json",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/summary.json",
+      "kind": "file",
+      "sha256": "e0fba97766a15e8d77f50a2ebe4f8bc6e8d4d10334a4e2ba63d864083f813f92"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/INDEPENDENT_REVIEW.md",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/INDEPENDENT_REVIEW.md",
+      "kind": "file",
+      "sha256": "15de3c2e4c49de9f1a6b73779826004e218a5476f9668893df9e234fc8776f00"
+    },
+    {
+      "link": "../../docs/TP_NUMERICAL_RUN_CONTRACT.md",
+      "repo_path": "docs/TP_NUMERICAL_RUN_CONTRACT.md",
+      "kind": "file",
+      "sha256": "d3c7613d6fbd66e303f5f147f14bf401f66aa179c92b1103ebe93864e4498301"
+    },
+    {
+      "link": "../../tests/fixtures/tp_reciprocal_contract.json",
+      "repo_path": "tests/fixtures/tp_reciprocal_contract.json",
+      "kind": "file",
+      "sha256": "db05dae2f7ab9fecb51ba8690d87e621b73a8786a3d63ccdb9f6673d9233da2e"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/data/search-04/model.txt.tp.json",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/data/search-04/model.txt.tp.json",
+      "kind": "file",
+      "sha256": "be38a73a674bb216883130d82866598621c546b7dd1286957216951e3398de53"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/data/search-04/acceptance.json",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/data/search-04/acceptance.json",
+      "kind": "file",
+      "sha256": "f3521edb6ccadc03c1c515972a09abe71daa3f908aa7a72daeb1196a6ff2ee0d"
+    },
+    {
+      "link": "../../START_HERE.md",
+      "repo_path": "START_HERE.md",
+      "kind": "file",
+      "sha256": "b8b07aa7f3abd0cf0bf89e22f823b1384393de5db97d131dc5648b4d6a8b8bc4"
+    },
+    {
+      "link": "../../AGENTS.md",
+      "repo_path": "AGENTS.md",
+      "kind": "file",
+      "sha256": "deaf72fe1ba08430dc5208d75a14da556d7a5d376af448e416bb2882803a4bd8"
+    },
+    {
+      "link": "../../docs/workflow/SHORT_RULES.md",
+      "repo_path": "docs/workflow/SHORT_RULES.md",
+      "kind": "file",
+      "sha256": "b771e3f82e1d9e16beb65268ba6aae6cf2acc75044ce6e02f517b480338c4b08"
+    },
+    {
+      "link": "../../docs/workflow/SETUP.md",
+      "repo_path": "docs/workflow/SETUP.md",
+      "kind": "file",
+      "sha256": "ddd254f61af96de8816b4510d92ec3f49d075a5e3c95f0b677ac8f488fc07b01"
+    },
+    {
+      "link": "../../workflow/portable.py",
+      "repo_path": "workflow/portable.py",
+      "kind": "file",
+      "sha256": "3cc1bc4f213c1d2ff9fc47055daed7679d1415b55dbb457389cd42733cd190b3"
+    },
+    {
+      "link": "../../docs/workflow/RELEASE_VERIFICATION.md",
+      "repo_path": "docs/workflow/RELEASE_VERIFICATION.md",
+      "kind": "file",
+      "sha256": "b2d0b7e027d076b99961b769ed2b9d74fd43d1a66dd35da3a5464421f63318ac"
+    },
+    {
+      "link": "../../docs/workflow/PROVENANCE.md",
+      "repo_path": "docs/workflow/PROVENANCE.md",
+      "kind": "file",
+      "sha256": "12d690d33e7ec9c545ab9d49d6591fba83d6d854f84c41577225b56c318bac33"
+    },
+    {
+      "link": "../../.github/ISSUE_TEMPLATE/bug_report.md",
+      "repo_path": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "kind": "file",
+      "sha256": "69a3bf7b262c3be10df0d30794afdf21e06c36770ab3e99041a0bf8cfebca544"
+    },
+    {
+      "link": "../../docs/SCIENCE_REPRODUCTION.md",
+      "repo_path": "docs/SCIENCE_REPRODUCTION.md",
+      "kind": "file",
+      "sha256": "db4931714df256b40453233843c48ab491eddfb67fc7a66ad10de0256ee51339"
+    },
+    {
+      "link": "../../experiments/archive/20261018/inventory.json",
+      "repo_path": "experiments/archive/20261018/inventory.json",
+      "kind": "file",
+      "sha256": "52cedf942b3cc9e85e8d0ef0bd24e7779ef382a48c410f2dd92585225a5e280f"
+    },
+    {
+      "link": "../../experiments/subneptune-20261027/SHA256SUMS.json",
+      "repo_path": "experiments/subneptune-20261027/SHA256SUMS.json",
+      "kind": "file",
+      "sha256": "af4c198dd31e46732ca52d03e2e281450851ed6cbb0a95c1a86e40de3ceaac8f"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/INDEX_SHA256.json",
+      "repo_path": "experiments/prescribed-tp-20261028/INDEX_SHA256.json",
+      "kind": "file",
+      "sha256": "b1f4670e1fe16203627b0cc70498d5a40e730c617d409fb68ddcf6f90e13a468"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-reciprocal-20261030/INDEX_SHA256.json",
+      "repo_path": "experiments/prescribed-tp-reciprocal-20261030/INDEX_SHA256.json",
+      "kind": "file",
+      "sha256": "3664d441ecc165614ecf9edc7cccb89b977b89fabb073ae6e144e56c5ae6143d"
+    },
+    {
+      "link": "../../experiments/prescribed-tp-20261028/EOS_READONLY_AUDIT.json",
+      "repo_path": "experiments/prescribed-tp-20261028/EOS_READONLY_AUDIT.json",
+      "kind": "file",
+      "sha256": "83e0a9f33afc96ecfbb1b2485fa30df3543223cda009e1a50a57ddeab797a7f1"
+    },
+    {
+      "link": "REPORT.html",
+      "repo_path": "reports/project-history-20261030/REPORT.html",
+      "kind": "file",
+      "sha256": "83b7d45874914885fa6797269531db8d6d2292886d55cd6f903f64c5b3e1e1b4"
+    }
+  ],
+  "archive_integrity_checks": [
+    {
+      "archive": "experiments/archive/20261018",
+      "checked_files": 117,
+      "result": "BYTE_HASHES_MATCH",
+      "solver_calls": 0
+    },
+    {
+      "archive": "experiments/subneptune-20261027",
+      "checked_files": 689,
+      "result": "BYTE_HASHES_MATCH",
+      "solver_calls": 0
+    },
+    {
+      "archive": "experiments/prescribed-tp-20261028",
+      "checked_files": 91,
+      "result": "BYTE_HASHES_MATCH",
+      "solver_calls": 0
+    },
+    {
+      "archive": "experiments/prescribed-tp-reciprocal-20261030",
+      "checked_files": 78,
+      "result": "BYTE_HASHES_MATCH",
+      "solver_calls": 0
+    }
+  ],
+  "report_sha256": {
+    "README.md": "88d3f893e0c9328eef61ae239cbf2f2c1372ccfcdc2c64f1beff30fa61ff8f65",
+    "REPORT.html": "83b7d45874914885fa6797269531db8d6d2292886d55cd6f903f64c5b3e1e1b4"
+  },
+  "independent_review": {
+    "file": "INDEPENDENT_REVIEW.md",
+    "verdict": "SCOPED_APPROVAL",
+    "reviewer": "tp_spec_check",
+    "sha256": "739f38f8630990fb63a183345ee8d5cca2f339dbe8b0f6846af30c0caa9f1bb4",
+    "limits": "No full historical experiment rerun or full attribution audit"
+  }
+}
